@@ -16,8 +16,6 @@ public class PickUp : MonoBehaviour
     // A flag to prevent instant re-pickup
     private bool canPickup = true;
 
-    public float throwforce = 20;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -31,15 +29,6 @@ public class PickUp : MonoBehaviour
             {
                 Drop();
             }
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            Rigidbody rb = heldobject.GetComponent<Rigidbody>();
-            heldobject.transform.SetParent(null);
-            rb.useGravity = true;
-            rb.isKinematic = false;
-            rb.AddForce(playerCamera.transform.forward * throwforce, ForceMode.Impulse);
         }
     }
 
