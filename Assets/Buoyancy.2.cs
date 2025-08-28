@@ -42,13 +42,13 @@ public class MultiFloaterBuoyancy : MonoBehaviour
 
         if (floatersUnderwater > 0)
         {
-            rb.drag = underwaterDrag;
-            rb.angularDrag = underwaterAngularDrag;
+            rb.linearDamping = underwaterDrag;
+            rb.angularDamping = underwaterAngularDrag;
         }
         else
         {
-            rb.drag = airDrag;
-            rb.angularDrag = airAngularDrag;
+            rb.linearDamping = airDrag;
+            rb.angularDamping = airAngularDrag;
         }
     }
 }

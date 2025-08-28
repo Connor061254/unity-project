@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MultiFloaterBuoyancy : MonoBehaviour
+public class multiFloaterBuoyancy : MonoBehaviour
 {
     // You can drag your floater objects onto this in the Inspector
     public Transform[] floaters;
