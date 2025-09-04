@@ -1,54 +1,80 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MultiFloaterBuoyancy : MonoBehaviour
+public class Buoyancy : MonoBehaviour
 {
-    public Transform[] floaters;
+    [Header("Buoyancy Settings")]
+    [Tooltip("The strength of the buoyant force pushing the object up.")]
+    [SerializeField] private float buoyancyStrength = 15f;
+    
+    [Tooltip("The strength of the damping force to slow down vertical movement.")]
+    [SerializeField] private float waterDrag = 3f;
 
-    public float underwaterDrag = 3f;
-    public float underwaterAngularDrag = 1f;
-    public float airDrag = 0f;
-    public float airAngularDrag = 0.05f;
-    public float floatingPower = 15f;
-    // We no longer need the public waterHeight variable
-    // public float waterHeight = 0f;
+    [Tooltip("The strength of the damping force to slow down rotational movement.")]
+    [SerializeField] private float waterAngularDrag = 1f;
+    
+    [Tooltip("An array of points on the object where buoyancy forces will be applied.")]
+    [SerializeField] private Transform[] floaterPoints;
+
+    [Tooltip("An offset to adjust how high the object sits in the water.")]
+    [SerializeField] private float waveHeightOffset = 0.0f;
 
     private Rigidbody rb;
-    private int floatersUnderwater;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        floatersUnderwater = 0;
-        
-        foreach (Transform floater in floaters)
+        if (WaveManager.instance == null)
         {
-            // --- THIS IS THE KEY CHANGE ---
-            // Ask the WaterManager for the current water height at the floater's position
-            float waterHeight = WaterManager.instance.GetWaterHeightAtPosition(floater.position);
+            return;
+        }
 
-            float difference = floater.position.y - waterHeight;
+        int pointsSubmerged = 0;
 
-            if (difference < 0)
+        // Apply forces for each floater point
+        foreach (Transform floater in floaterPoints)
+        {
+            Vector3 floaterPosition = floater.position;
+            Vector3 waveDisplacement = WaveManager.instance.GetWaveDisplacement(floaterPosition);
+            float waveHeight = waveDisplacement.y + WaveManager.instance.transform.position.y;
+            
+            // Check if the floater is below the wave
+            if (floaterPosition.y < waveHeight + waveHeightOffset)
             {
-                rb.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(difference), floater.position, ForceMode.Force);
-                floatersUnderwater++;
+                pointsSubmerged++;
+                float submersion = (waveHeight + waveHeightOffset) - floaterPosition.y;
+                
+                // Calculate and apply buoyant force
+                Vector3 buoyantForce = Vector3.up * buoyancyStrength * submersion;
+                rb.AddForceAtPosition(buoyantForce, floaterPosition, ForceMode.Force);
+
+                // Apply drag force to dampen movement
+                Vector3 dragForce = -rb.GetPointVelocity(floaterPosition) * waterDrag * submersion;
+                rb.AddForceAtPosition(dragForce, floaterPosition, ForceMode.Force);
+                
+                // Apply angular drag to dampen rotation
+                Vector3 angularDragForce = -rb.angularVelocity * waterAngularDrag * submersion;
+                rb.AddTorque(angularDragForce, ForceMode.Force);
             }
         }
+    }
 
-        if (floatersUnderwater > 0)
+    // Visualize the floater points in the editor for easier setup
+    private void OnDrawGizmosSelected()
+    {
+        if (floaterPoints == null) return;
+
+        Gizmos.color = Color.cyan;
+        foreach (Transform floater in floaterPoints)
         {
-            rb.linearDamping = underwaterDrag;
-            rb.angularDamping = underwaterAngularDrag;
-        }
-        else
-        {
-            rb.linearDamping = airDrag;
-            rb.angularDamping = airAngularDrag;
+            if (floater != null)
+            {
+                Gizmos.DrawSphere(floater.position, 0.1f);
+            }
         }
     }
 }
