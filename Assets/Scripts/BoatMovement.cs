@@ -28,7 +28,7 @@ public class BoatController : MonoBehaviour
             float turnInput = Input.GetAxis("Horizontal"); // A/D
 
             // Apply forces
-            rb.AddRelativeForce(Vector3.forward * forwardInput * speed * Time.fixedDeltaTime);
+            rb.AddRelativeForce(-Vector3.up * forwardInput * speed * Time.fixedDeltaTime);
             rb.AddTorque(Vector3.up * turnInput * turnSpeed * Time.fixedDeltaTime);
         }
     }
