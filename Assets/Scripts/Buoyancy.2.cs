@@ -28,7 +28,7 @@ public class Buoyancy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (WaveManager.instance == null)
+        if (WaveManagerTest.instance == null)
         {
             return;
         }
@@ -36,29 +36,40 @@ public class Buoyancy : MonoBehaviour
         int pointsSubmerged = 0;
 
         // Apply forces for each floater point
+        // Apply forces for each floater point
         foreach (Transform floater in floaterPoints)
         {
             Vector3 floaterPosition = floater.position;
-            Vector3 waveDisplacement = WaveManager.instance.GetWaveDisplacement(floaterPosition);
-            float waveHeight = waveDisplacement.y + WaveManager.instance.transform.position.y;
-            
+
+            // Get the wave height (a float) by passing the x and z coordinates
+            float waveY = WaveManagerTest.instance.GetWaveDisplacement(floaterPosition.x, floaterPosition.z);
+
+            // Calculate the final world-space height of the wave at that point
+            float waveHeight = waveY + WaveManagerTest.instance.transform.position.y;
+
             // Check if the floater is below the wave
             if (floaterPosition.y < waveHeight + waveHeightOffset)
             {
-                pointsSubmerged++;
-                float submersion = (waveHeight + waveHeightOffset) - floaterPosition.y;
-                
-                // Calculate and apply buoyant force
-                Vector3 buoyantForce = Vector3.up * buoyancyStrength * submersion;
-                rb.AddForceAtPosition(buoyantForce, floaterPosition, ForceMode.Force);
+                // ... the rest of your code stays the same
 
-                // Apply drag force to dampen movement
-                Vector3 dragForce = -rb.GetPointVelocity(floaterPosition) * waterDrag * submersion;
-                rb.AddForceAtPosition(dragForce, floaterPosition, ForceMode.Force);
-                
-                // Apply angular drag to dampen rotation
-                Vector3 angularDragForce = -rb.angularVelocity * waterAngularDrag * submersion;
-                rb.AddTorque(angularDragForce, ForceMode.Force);
+                // Check if the floater is below the wave
+                if (floaterPosition.y < waveHeight + waveHeightOffset)
+                {
+                    pointsSubmerged++;
+                    float submersion = (waveHeight + waveHeightOffset) - floaterPosition.y;
+
+                    // Calculate and apply buoyant force
+                    Vector3 buoyantForce = Vector3.up * buoyancyStrength * submersion;
+                    rb.AddForceAtPosition(buoyantForce, floaterPosition, ForceMode.Force);
+
+                    // Apply drag force to dampen movement
+                    Vector3 dragForce = -rb.GetPointVelocity(floaterPosition) * waterDrag * submersion;
+                    rb.AddForceAtPosition(dragForce, floaterPosition, ForceMode.Force);
+
+                    // Apply angular drag to dampen rotation
+                    Vector3 angularDragForce = -rb.angularVelocity * waterAngularDrag * submersion;
+                    rb.AddTorque(angularDragForce, ForceMode.Force);
+                }
             }
         }
     }

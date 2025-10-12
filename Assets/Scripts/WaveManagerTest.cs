@@ -36,7 +36,7 @@ public class WaveManagerTest : MonoBehaviour
     /// <summary>
     /// Calculates the combined wave height at a specific world position.
     /// </summary>
-    public float GetWaveHeight(float x, float z)
+    public float GetWaveDisplacement(float x, float z)
     {
         // Calculate scrolling offset for each wave
         float offsetX1 = Time.time * speed1 * direction1.x;
