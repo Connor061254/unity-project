@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 12f;
+    public float walkSpeed = 9f;
+
+    public float sprintSpeed = 18f;
+
+    public float currentSpeed = 0f;
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
 
@@ -17,6 +21,11 @@ public class PlayerController : MonoBehaviour
 
     public float groundCheckRadius = 0.2f; 
 
+    void Start()
+    {
+        currentSpeed = walkSpeed;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -26,14 +35,22 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -2f;
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprintSpeed;
+        }
 
+        else
+        {
+            currentSpeed = walkSpeed;
+        }
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
+        
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
