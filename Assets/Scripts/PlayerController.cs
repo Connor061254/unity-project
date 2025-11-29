@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 9f;
 
+    public float standingHeight;
+
     public float sprintSpeed = 18f;
 
     public float currentSpeed = 0f;

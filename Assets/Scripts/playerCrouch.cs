@@ -1,9 +1,6 @@
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
-public class crouch : MonoBehaviour
-
-
+public class playerCrouch : MonoBehaviour
 {
     private PlayerController controller;
 
@@ -17,13 +14,17 @@ public class crouch : MonoBehaviour
 
     public Camera playerCamera;
 
+    private CharacterController characterController;
+
 
 
 
         void Start()
     {
         controller = GetComponent<PlayerController>();
-        standingHeight = controller.standingHeight;
+        characterController = GetComponent<CharacterController>();
+        standingHeight = characterController.height;
+        
     }
 
 
@@ -43,14 +44,16 @@ public class crouch : MonoBehaviour
     void Crouch()
     {
         standingHeight = crouchHeight;
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, crouchHeight, playerCamera.transform.position.z);
+        playerCamera.transform.position = new UnityEngine.Vector3(playerCamera.transform.position.x, crouchHeight, playerCamera.transform.position.z);
         controller.walkSpeed = crouchSpeed;
     }
 
     void StandUp()
     {
+        crouchHeight = standingHeight;
+        playerCamera.transform.position = new UnityEngine.Vector3 (playerCamera.transform.position.x, standingHeight, playerCamera.transform.position.z);
+        crouchSpeed = controller.walkSpeed;
         
     }
     
-
 }
