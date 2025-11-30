@@ -373,6 +373,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Look
   playerBody: {fileID: 5424377}
   mouseSensitivity: 150
+--- !u!20 &987333985 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4718840995518050974, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+  m_PrefabInstance: {fileID: 1958061217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1622599136
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +517,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1126674046194701899, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1495772764345841082, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       propertyPath: walkSpeed
       value: 5
@@ -523,6 +532,14 @@ PrefabInstance:
     - target: {fileID: 1495772764345841082, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       propertyPath: groundMask.m_Bits
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558903856484071662, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1558903856484071662, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6192939158146156958, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -564,6 +581,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6779858148051682120, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.842
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779858148051682120, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.068
+      objectReference: {fileID: 0}
     - target: {fileID: 6846458078157117917, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       propertyPath: m_Name
       value: First Person Player
@@ -571,6 +596,10 @@ PrefabInstance:
     - target: {fileID: 6846458078157117917, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031219704985751579, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8758089569041460089, guid: 8ee83501832541f4db555683a451d37e, type: 3}
@@ -580,6 +609,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6846458078157117917, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1958061219}
+    - targetCorrespondingSourceObject: {fileID: 6846458078157117917, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1958061225}
     - targetCorrespondingSourceObject: {fileID: 6326238420399790362, guid: 8ee83501832541f4db555683a451d37e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 987333984}
@@ -601,6 +633,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b547cd1c09dcbee44aa0eb8662555de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::crouch
+--- !u!114 &1958061225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958061218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e097058410a15ba448090075fc81d4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerCrouch
+  crouchSpeed: 2
+  crouchHeight: 0.9
+  WalkSpeed: 0
+  standingHeight: 0
+  playerCamera: {fileID: 987333985}
 --- !u!1001 &1982233724
 PrefabInstance:
   m_ObjectHideFlags: 0

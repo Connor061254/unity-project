@@ -8,9 +8,17 @@ public class playerCrouch : MonoBehaviour
 
     public float crouchHeight = 4f;
 
-    public float walkSpeed;
+    private float crouchCamera;
+
+    private float standingCamera;
+
+    public float WalkSpeed;
 
     public float standingHeight;
+
+    private Vector3 standingCenter;
+
+    private Vector3 crouchCenter;
 
     public Camera playerCamera;
 
@@ -24,7 +32,13 @@ public class playerCrouch : MonoBehaviour
         controller = GetComponent<PlayerController>();
         characterController = GetComponent<CharacterController>();
         standingHeight = characterController.height;
+        standingCenter = characterController.center;
+        WalkSpeed = controller.walkSpeed;
+        standingCamera = playerCamera.transform.localPosition.y;
+
+        crouchCenter = new Vector3(standingCenter.x, standingCenter.y - (standingHeight - crouchHeight) / 2f, standingCenter.z);
         
+        crouchCamera = standingCamera - (standingHeight - crouchHeight);
     }
 
 
@@ -43,16 +57,19 @@ public class playerCrouch : MonoBehaviour
 
     void Crouch()
     {
-        standingHeight = crouchHeight;
-        playerCamera.transform.position = new UnityEngine.Vector3(playerCamera.transform.position.x, crouchHeight, playerCamera.transform.position.z);
+        characterController.height = crouchHeight;
+        characterController.center = crouchCenter;
         controller.walkSpeed = crouchSpeed;
+        playerCamera.transform.localPosition = new UnityEngine.Vector3(playerCamera.transform.localPosition.x, crouchCamera, playerCamera.transform.localPosition.z);
+        
     }
 
     void StandUp()
     {
-        crouchHeight = standingHeight;
-        playerCamera.transform.position = new UnityEngine.Vector3 (playerCamera.transform.position.x, standingHeight, playerCamera.transform.position.z);
-        crouchSpeed = controller.walkSpeed;
+        characterController.height = standingHeight;
+        characterController.center = standingCenter;
+        playerCamera.transform.localPosition = new UnityEngine.Vector3 (playerCamera.transform.localPosition.x, standingCamera, playerCamera.transform.localPosition.z);
+        controller.walkSpeed = WalkSpeed;
         
     }
     
