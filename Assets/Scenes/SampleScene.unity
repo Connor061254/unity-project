@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.018
       objectReference: {fileID: 0}
+    - target: {fileID: 8981295747303729658, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8981295747303729658, guid: 8ee83501832541f4db555683a451d37e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.044
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8758089569041460089, guid: 8ee83501832541f4db555683a451d37e, type: 3}
     m_RemovedGameObjects: []
@@ -317,8 +325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa170e5e890ff944b675f4de13bfc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraBob
-  defualtPosY: 0
-  defualtPosX: 0
+  walkingCameraBobFrequancy: 8
+  walkingCameraBobStrength: 0.1
+  smoothReturnSpeed: 4.96
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

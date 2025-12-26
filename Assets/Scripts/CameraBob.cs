@@ -3,25 +3,24 @@ using UnityEngine;
 public class CameraBob : MonoBehaviour
 {
 
-    private float walkingCameraBobFrequancy;
+    [SerializeField] private float walkingCameraBobFrequancy;
 
-    private float walkingCameraBobStrength;
+    [SerializeField] private float walkingCameraBobStrength;
 
     private float timer = 0f;
 
-    public float defualtPosY = 0f;
+    private Vector3 defualtPos;
 
-    public float defualtPosX = 0f;
+    [SerializeField] [Range(1,10)] private float smoothReturnSpeed = 5f;
+
 
     private bool isMoving = false;
-
-    private float horizontal;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       defualtPosY = transform.localPosition.y;
+       defualtPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -32,6 +31,10 @@ public class CameraBob : MonoBehaviour
         if (isMoving == true)
         {
             StartCameraBob();
+        }
+        else
+        {
+            ReturnCameraPos();
         }
     }
 
@@ -54,6 +57,18 @@ public class CameraBob : MonoBehaviour
     void StartCameraBob()
     {
         timer += Time.deltaTime * walkingCameraBobFrequancy;
-        float newY = defualtPosY + Mathf.Sin(timer) * walkingCameraBobStrength;
+        float newY = defualtPos.y + Mathf.Sin(timer) * walkingCameraBobStrength;
+        float newX = defualtPos.x + Mathf.Cos(timer/2) * walkingCameraBobStrength;
+
+        transform.localPosition = new Vector3(newX, newY, defualtPos.z);
+    }
+
+    void ReturnCameraPos()
+    {
+        if (transform.localPosition != defualtPos)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, defualtPos, Time.deltaTime * smoothReturnSpeed);
+            timer = 0;
+        }
     }
 }
