@@ -327,6 +327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraBob
   walkingCameraBobFrequancy: 8
   walkingCameraBobStrength: 0.1
+  runningCameraBobFrequancy: 16
+  runningCameraBobStrength: 0.12
   smoothReturnSpeed: 4.96
 --- !u!1 &330585543
 GameObject:

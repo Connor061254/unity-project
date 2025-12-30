@@ -7,9 +7,15 @@ public class CameraBob : MonoBehaviour
 
     [SerializeField] private float walkingCameraBobStrength;
 
+    [SerializeField] private float runningCameraBobFrequancy;
+
+    [SerializeField] private float runningCameraBobStrength;
+
     private float timer = 0f;
 
-    private Vector3 defualtPos;
+    private float runTimer = 0f;
+
+    private Vector3 defaultPos;
 
     [SerializeField] [Range(1,10)] private float smoothReturnSpeed = 5f;
 
@@ -20,7 +26,7 @@ public class CameraBob : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       defualtPos = transform.localPosition;
+       defaultPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -30,7 +36,15 @@ public class CameraBob : MonoBehaviour
 
         if (isMoving == true)
         {
-            StartCameraBob();
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                RunCameraBob();
+            }
+            else
+            {
+                StartCameraBob();
+            }
+            
         }
         else
         {
@@ -57,18 +71,27 @@ public class CameraBob : MonoBehaviour
     void StartCameraBob()
     {
         timer += Time.deltaTime * walkingCameraBobFrequancy;
-        float newY = defualtPos.y + Mathf.Sin(timer) * walkingCameraBobStrength;
-        float newX = defualtPos.x + Mathf.Cos(timer/2) * walkingCameraBobStrength;
+        float newY = defaultPos.y + Mathf.Sin(timer) * walkingCameraBobStrength;
+        float newX = defaultPos.x + Mathf.Cos(timer/2) * walkingCameraBobStrength;
 
-        transform.localPosition = new Vector3(newX, newY, defualtPos.z);
+        transform.localPosition = new Vector3(newX, newY, defaultPos.z);
     }
 
     void ReturnCameraPos()
     {
-        if (transform.localPosition != defualtPos)
+        if (transform.localPosition != defaultPos)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, defualtPos, Time.deltaTime * smoothReturnSpeed);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, defaultPos, Time.deltaTime * smoothReturnSpeed);
             timer = 0;
         }
+    }
+
+    void RunCameraBob()
+    {
+        runTimer += Time.deltaTime * runningCameraBobFrequancy;
+        float newY = defaultPos.y + Mathf.Sin(runTimer) * runningCameraBobStrength;
+        float newX = defaultPos.x + Mathf.Cos(runTimer/2) * runningCameraBobStrength;
+
+        transform.localPosition = new Vector3(newX, newY, defaultPos.z);
     }
 }
