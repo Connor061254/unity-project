@@ -13,4 +13,14 @@ public class DamageDealer : MonoBehaviour
     {
         
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        var targetHealth = collision.gameObject.GetComponent<HealthController>();
+
+        if (targetHealth != null)
+        {
+            targetHealth.TakeDamage(10f);
+        }
+    }
 }

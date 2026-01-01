@@ -5,9 +5,6 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float maxPlayerHealth = 100f;
     [SerializeField] private float currentPlayerHealth = 100f;
 
-    private float damage = 10f;
-
-    public bool takingDamage = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,17 +17,17 @@ public class HealthController : MonoBehaviour
        
     }
 
-    public void takeDamage()
+    public void TakeDamage(float damageAmount)
     {
-        if (takingDamage == true)
+        currentPlayerHealth -= damageAmount;
+
+        if(currentPlayerHealth <= 0f)
         {
-            currentPlayerHealth -= damage;
-
-            if(currentPlayerHealth <= 0f)
-            {
-                Destroy(this);
-            }
-
+           Destroy(gameObject);
         }
+
+    
     }
+
+    
 }
