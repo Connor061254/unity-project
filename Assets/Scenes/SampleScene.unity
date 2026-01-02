@@ -299,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::playerCrouch
   crouchSpeed: 2
   crouchHeight: 0.9
+  crouchCameraHeight: 0.4
+  crouchTransitionSpeed: 10
   WalkSpeed: 4
   standingHeight: 0
   playerCamera: {fileID: 194454024}
@@ -359,7 +361,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
