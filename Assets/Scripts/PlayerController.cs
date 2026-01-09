@@ -39,7 +39,17 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed = sprintSpeed;
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                currentSpeed = walkSpeed;
+            }
+
+            else
+            {
+                currentSpeed = sprintSpeed;
+            }
+            
+            
         }
 
         else

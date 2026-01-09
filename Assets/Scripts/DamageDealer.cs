@@ -16,11 +16,23 @@ public class DamageDealer : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        var targetHealth = collision.gameObject.GetComponent<HealthController>();
-
-        if (targetHealth != null)
+        if(transform.parent == null)
         {
-            targetHealth.TakeDamage(10f);
+            return;
+
         }
-    }
+        
+        if(collision.gameObject == transform.parent.gameObject)
+        {
+            return;
+        }
+        
+        if(collision.gameObject.GetComponent<HealthController>())
+        {
+             collision.gameObject.GetComponent<HealthController>().TakeDamage(10f);
+        }
+    
+
+           
+    }            
 }

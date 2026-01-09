@@ -15,7 +15,6 @@ public class OfficialPickupScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
     }
 
     void Update()
@@ -43,10 +42,14 @@ public class OfficialPickupScript : MonoBehaviour
 
     void AttemptToPickup()
     {
+        int layerMask = 1 << 6;
+        layerMask = ~layerMask;
         Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, pickupRange))
+        if (Physics.Raycast(ray, out hit, pickupRange, layerMask))
         {
+            Debug.Log("My Raycast hit: " + hit.collider.name);
+
             if (hit.transform != null && hit.transform.CompareTag("PickUp"))
             {
                 heldObject = hit.transform.gameObject;
