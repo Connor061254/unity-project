@@ -220,6 +220,7 @@ MonoBehaviour:
   holdPosition: {fileID: 5187120718041883579}
   pickupRange: 5
   throwForce: 20
+  heldObject: {fileID: 0}
   dropForce: 2
   mainCamera: {fileID: 4718840995518050974}
 --- !u!1 &7545867135897416538
@@ -343,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6894430665930698308, guid: bb82b37030e7b604cbbdffa983268e5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 6894430665930698308, guid: bb82b37030e7b604cbbdffa983268e5d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -351,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6894430665930698308, guid: bb82b37030e7b604cbbdffa983268e5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.71
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6894430665930698308, guid: bb82b37030e7b604cbbdffa983268e5d, type: 3}
       propertyPath: m_LocalRotation.w

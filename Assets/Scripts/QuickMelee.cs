@@ -35,7 +35,7 @@ public class QuickMelee : MonoBehaviour
 
     void OnMelee(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && GetComponent<OfficialPickupScript>().heldObject != null)
         {
             Melee();
         }

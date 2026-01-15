@@ -5,7 +5,7 @@ public class OfficialPickupScript : MonoBehaviour
     public Transform holdPosition;
     public float pickupRange = 3f;
     public float throwForce = 8f;
-    private GameObject heldObject;
+    public GameObject heldObject;
     private bool canPickup = true;
 
     public float dropForce = 2f;
