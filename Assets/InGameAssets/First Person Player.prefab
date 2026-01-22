@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 8048152483927221352}
   - component: {fileID: 4188589393323862529}
   - component: {fileID: 1223570228991729102}
+  - component: {fileID: -4193458702824205023}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -298,11 +299,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4126959764447674887}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c04f882a1ebaff6459a7b20fc87d2773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuickMelee
+--- !u!114 &-4193458702824205023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9705d14c9bbf64d97adcde788f6598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
