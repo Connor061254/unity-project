@@ -29,7 +29,7 @@ public class DamageDealer : MonoBehaviour
         
         if(collision.gameObject.GetComponent<HealthController>())
         {
-             collision.gameObject.GetComponent<HealthController>().TakeDamage(10f);
+             collision.gameObject.GetComponent<HealthController>().TakeDamage(1f);
         }
     
 

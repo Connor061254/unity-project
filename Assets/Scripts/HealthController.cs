@@ -19,12 +19,15 @@ public class HealthController : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log($"[HealthController] OUCH! I took {damageAmount} damage. Current Time: {Time.time}");
         currentPlayerHealth -= damageAmount;
 
         if(currentPlayerHealth <= 0f)
         {
            Destroy(gameObject);
         }
+
+        Debug.Log($"[HealthController] Health remaining: {currentPlayerHealth}");
 
     
     }

@@ -5,10 +5,14 @@ public class Attack : MonoBehaviour
 {
     private float nextAttackTime = 0f;
     private float range = 2f;
+
+    public float throwForce = 20f;
+
+    public Camera MainCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,11 +37,24 @@ public class Attack : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(attackPoint, 1f);
         nextAttackTime = UnityEngine.Time.time + delay;
 
+        var enemiesHitThisSwing = new System.Collections.Generic.List<HealthController>();
+
+        
+
         foreach (Collider hit in hitColliders)
         {
-            if (hit.gameObject.GetComponent<HealthController>())
+            Debug.Log("I hit: " + hit.name + " on object: " + hit.transform.root.name);
+            var enemy = hit.GetComponentInParent<HealthController>();
+
+            if (enemy != null)
             {
-                hit.gameObject.GetComponent<HealthController>().TakeDamage(10f);
+                if (!enemiesHitThisSwing.Contains(enemy))
+                {
+                    enemy.TakeDamage(10f);
+
+                    enemiesHitThisSwing.Add(enemy);
+                }
+            
             }
         }
     }
@@ -52,6 +69,13 @@ public class Attack : MonoBehaviour
 
     void Throw()
     {
+        var pickupScript = GetComponent<OfficialPickupScript>();
+        pickupScript.heldObject.transform.SetParent(null);
+        pickupScript.heldObject.GetComponent<Rigidbody>().useGravity = true;
+        pickupScript.heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        pickupScript.heldObject.GetComponent<Rigidbody>().AddForce(MainCamera.transform.forward * throwForce, ForceMode.VelocityChange);
         
+        
+
     }
 }
