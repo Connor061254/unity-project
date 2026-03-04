@@ -489,6 +489,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5893273671972008429, guid: 6d126d167b0300d4995c22ae04c4aceb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 395747116870890194}
+    - targetCorrespondingSourceObject: {fileID: 5893273671972008429, guid: 6d126d167b0300d4995c22ae04c4aceb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1125442871587248331}
   m_SourcePrefab: {fileID: 100100000, guid: 6d126d167b0300d4995c22ae04c4aceb, type: 3}
 --- !u!1 &3010477937955845728 stripped
 GameObject:
@@ -509,6 +512,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Look
   playerBody: {fileID: 6116907855491786371}
   mouseSensitivity: 250
+--- !u!114 &1125442871587248331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010477937955845728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37be64b8855e7247907b61f84c33547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighPollingRateFix
 --- !u!20 &4571361485803937252 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5151833884630014569, guid: 6d126d167b0300d4995c22ae04c4aceb, type: 3}
