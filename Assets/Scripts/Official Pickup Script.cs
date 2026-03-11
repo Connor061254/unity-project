@@ -61,8 +61,20 @@ public class OfficialPickupScript : MonoBehaviour
     void PerformPickup()
     {
         heldObject.transform.SetParent(holdPosition);
-        heldObject.transform.localPosition = Vector3.zero;
-        heldObject.transform.localRotation = Quaternion.identity;
+        var itemSettings = heldObject.GetComponent<ItemPickupPosition>();
+        if(itemSettings != null)
+        {
+            heldObject.transform.localPosition = itemSettings.positionOffset;
+            heldObject.transform.localRotation = Quaternion.Euler(itemSettings.rotationOffset);
+        }
+
+        else
+        {
+            heldObject.transform.localPosition = Vector3.zero;
+            heldObject.transform.localRotation = Quaternion.identity;
+        }
+       
+        
         Rigidbody objectRb = heldObject.GetComponent<Rigidbody>();
         objectRb.isKinematic = true;
         objectRb.useGravity = false;
@@ -90,6 +102,7 @@ public class OfficialPickupScript : MonoBehaviour
     {
         if (heldObject != null)
         {
+            StartCoroutine(DropCooldown());
             Rigidbody objectRb = heldObject.GetComponent<Rigidbody>();
             heldObject.transform.SetParent(null);
             objectRb.isKinematic = false;
