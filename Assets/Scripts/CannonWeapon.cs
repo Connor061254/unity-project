@@ -16,7 +16,7 @@ public class CannonWeapon : MonoBehaviour, IWeapon
     {
         // 1. Spawn the cannonball
         GameObject newCannonball = Instantiate(cannonballPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody ballRb = newCannonball.GetComponent<Rigidbody>();
+        var ballRb = newCannonball.GetComponent<Rigidbody>();
         
         if (ballRb != null)
         {
@@ -27,7 +27,7 @@ public class CannonWeapon : MonoBehaviour, IWeapon
         // 2. Apply Recoil to the Player
         // Since the cannon is currently a child of the player's HoldPoint, 
         // GetComponentInParent will find the player's Rigidbody.
-        Rigidbody playerRb = GetComponentInParent<Rigidbody>();
+        var playerRb = GetComponentInParent<CharacterController>();
 
         if (playerRb != null)
         {

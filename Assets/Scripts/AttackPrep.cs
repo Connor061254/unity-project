@@ -29,7 +29,7 @@ public class AttackPrep : MonoBehaviour
             if (weapon != null)
             {
                 weapon.Attack();
-                nextAttackTime = Time.time + 1f; 
+                nextAttackTime = Time.time + 2f; 
             }
         }
     }
