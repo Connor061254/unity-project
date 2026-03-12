@@ -5,11 +5,13 @@ public class CannonWeapon : MonoBehaviour, IWeapon
 {
     [Header("Cannon Setup")]
     public GameObject cannonballPrefab; 
-    public Transform firePoint;         
+    public Transform firePoint;
+
+         
     
     [Header("Firing Settings")]
     public float fireForce = 2000f;     
-    public float recoilForce = 500f; 
+    public float recoilForce = 40f; 
 
     // This is the method the player script will trigger when you press the "Melee" button
     public void Attack()
@@ -27,12 +29,12 @@ public class CannonWeapon : MonoBehaviour, IWeapon
         // 2. Apply Recoil to the Player
         // Since the cannon is currently a child of the player's HoldPoint, 
         // GetComponentInParent will find the player's Rigidbody.
-        var playerRb = GetComponentInParent<CharacterController>();
+        var playerKnockback = GetComponentInParent<KnockBack>();
 
-        if (playerRb != null)
+        if (playerKnockback != null)
         {
             Vector3 recoilDirection = -firePoint.forward;
-            playerRb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+            playerKnockback.AddKnockBack(recoilForce, recoilDirection);
         }
     }
 }
