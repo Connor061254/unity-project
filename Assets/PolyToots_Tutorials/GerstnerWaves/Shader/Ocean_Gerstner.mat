@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ocean_Gerstner
+  m_Shader: {fileID: -6465566751694194690, guid: d246f9a448116714a868ecd703c8807b, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DetailNormals:
+        m_Texture: {fileID: 2800000, guid: 899ab03116c2fc547a6cdf8372be75b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 899ab03116c2fc547a6cdf8372be75b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleReflectedCubemap_af5519bd600f4edfabc6f098fd487406_Cube_1_Cubemap:
+        m_Texture: {fileID: 8900000, guid: b8b3d5011b9664b4faafbea0af0509df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 899ab03116c2fc547a6cdf8372be75b2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Distance: 0
+    - _Edge1: -0.19
+    - _Edge2: 3
+    - _EdgeFoam_Power: 0.5
+    - _Float: 3.68
+    - _Float_1: 2.57
+    - _Frequency: 0.19
+    - _Frequency_1: 0.34
+    - _Frequency_2: 0.27
+    - _Fresnel: 0.05
+    - _Intensity: 0.544
+    - _Length: 1.01
+    - _Normal: 1
+    - _Normal_Power: 0.172
+    - _Normal_Scroll: 0.02
+    - _Normal_Tile: 10
+    - _Peak: 0.73
+    - _Peak_Intensity: 1
+    - _Power: -4.87
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RefractStrength: 0.63
+    - _Smoothness: 0.185
+    - _Speed: 0.37
+    - _Speed_1: 0.37
+    - _Speed_2: -1
+    - _Steepness: 1.8
+    - _Steepness_1: 0.34
+    - _Steepness_2: 1.16
+    - _TexScale: 31.8
+    - _WaveHeight: 0.67
+    - _WaveHeight_1: 0.23
+    - _WaveHeight_2: 0.18
+    m_Colors:
+    - _Colour: {r: 0, g: 0, b: 0, a: 1}
+    - _Colour_Ocean: {r: 0.24964403, g: 0.7411062, b: 0.9622642, a: 1}
+    - _Colour_Peak: {r: 1, g: 1, b: 1, a: 1}
+    - _Dir_Speed: {r: 1, g: 0, b: 0, a: 0}
+    - _Direction: {r: 1, g: 0, b: 0.63, a: 0}
+    - _Direction_1: {r: 0.5, g: 0, b: 0.18, a: 0}
+    - _Direction_2: {r: 1, g: 0, b: -0.33, a: 0}
+    - _Foam_Coloiur: {r: 1, g: 1, b: 1, a: 1}
+    - _InMinMax: {r: -0, g: 1, b: 0, a: 0}
+    - _OutMinMax: {r: -1, g: 1, b: 0, a: 0}
+    - _PeakColour: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColour: {r: 0.8867924, g: 0.8439367, b: 0.59398353, a: 1}
+    - _Vector2: {r: -0.76, g: -1.5, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &2219335012763499229
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
