@@ -38,12 +38,56 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Frequency: 1.09
+    - _Frequency: 0.25
+    - _Frequency_1: 0.35
+    - _Frequency_2: 0.63
+    - _Frequency_3: 0.7
+    - _Frequency_4: 0.8
+    - _Frequency_5: 1.5
+    - _Frequency_6: 2
+    - _Frequency_7: 2.5
+    - _Frequency_8: 1.15
+    - _Intensity: 0.69
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaveHeight: 1.08
-    - _speed: 0.8
-    m_Colors: []
+    - _Steepness: 0.3
+    - _Steepness_1: 0.4
+    - _Steepness_2: 0.4
+    - _Steepness_3: 0.4
+    - _Steepness_4: 0.45
+    - _Steepness_5: 0.5
+    - _Steepness_6: 0.55
+    - _Steepness_7: 0.6
+    - _Steepness_8: 0.65
+    - _WaveHeight: 1
+    - _WaveHeight_1: 0.6
+    - _WaveHeight_2: 0.4
+    - _WaveHeight_3: 0.35
+    - _WaveHeight_4: 0.4
+    - _WaveHeight_5: 0.2
+    - _WaveHeight_6: 0.15
+    - _WaveHeight_7: 0.12
+    - _WaveHeight_8: 0.18
+    - _speed: 1.6
+    - _speed_1: 1.5
+    - _speed_2: 1.3
+    - _speed_3: 1.4
+    - _speed_4: 1.5
+    - _speed_5: 1.7
+    - _speed_6: 1.8
+    - _speed_7: 2
+    - _speed_8: 2.1
+    m_Colors:
+    - _Color: {r: 0.18792273, g: 0.9716981, b: 0.89441407, a: 1}
+    - _Direction: {r: 1, g: 0, b: 0.2, a: 0}
+    - _Direction_1: {r: 0.7, g: 0, b: 0.7, a: 0}
+    - _Direction_2: {r: -0.6, g: 0, b: 0.8, a: 0}
+    - _Direction_3: {r: 0.2, g: 0, b: -1, a: 0}
+    - _Direction_4: {r: -1, g: 0, b: -0.2, a: 0}
+    - _Direction_5: {r: 1, g: 0, b: 0.5, a: 0}
+    - _Direction_6: {r: -0.7, g: 0, b: -0.7, a: 0}
+    - _Direction_7: {r: 0.6, g: 0, b: -1, a: 0}
+    - _Direction_8: {r: 0.9, g: 0, b: -0.4, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4646345915078999763
