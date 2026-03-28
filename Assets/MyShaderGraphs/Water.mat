@@ -38,6 +38,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _FoamScale: 602.7
+    - _Foam_Thickness: 0.16
     - _Frequency: 0.25
     - _Frequency_1: 0.35
     - _Frequency_2: 0.63
@@ -50,6 +52,8 @@ Material:
     - _Intensity: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ShoreFadeDistance: 1.69
+    - _Smoothness: 0.95
     - _Steepness: 0.3
     - _Steepness_1: 0.4
     - _Steepness_2: 0.4
@@ -79,6 +83,7 @@ Material:
     - _speed_8: 2.1
     m_Colors:
     - _Color: {r: 0.18792273, g: 0.9716981, b: 0.89441407, a: 1}
+    - _Deep_Color: {r: 0.29019606, g: 0.78212094, b: 0.945098, a: 1}
     - _Direction: {r: 1, g: 0, b: 0.2, a: 0}
     - _Direction_1: {r: 0.7, g: 0, b: 0.7, a: 0}
     - _Direction_2: {r: -0.6, g: 0, b: 0.8, a: 0}
@@ -88,6 +93,8 @@ Material:
     - _Direction_6: {r: -0.7, g: 0, b: -0.7, a: 0}
     - _Direction_7: {r: 0.6, g: 0, b: -1, a: 0}
     - _Direction_8: {r: 0.9, g: 0, b: -0.4, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Shallow_Color: {r: 0.5129048, g: 0.9622641, b: 0.8788438, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4646345915078999763
