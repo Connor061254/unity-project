@@ -5501,8 +5501,8 @@
     "m_ObjectId": "329ce15d9d0242dca2bdaa6ce66ca907",
     "m_Title": "Gerstner Functions",
     "m_Position": {
-        "x": -3403.999755859375,
-        "y": 2583.999755859375
+        "x": -3404.0,
+        "y": 2584.0
     }
 }
 
@@ -6402,8 +6402,8 @@
     "m_ObjectId": "409912c27f364a1381b6c33fbb1f6969",
     "m_Title": "Depth-Based Shore Mask",
     "m_Position": {
-        "x": -2348.00048828125,
-        "y": 517.0001220703125
+        "x": -2348.0,
+        "y": 517.0
     }
 }
 
@@ -9358,7 +9358,7 @@
     "m_ObjectId": "78dbc8b11fff4518b3340dd6df50d193",
     "m_Title": "Gerstner Waves",
     "m_Position": {
-        "x": -3025.999755859375,
+        "x": -3026.0,
         "y": -3106.0
     }
 }
