@@ -60,7 +60,7 @@ Material:
     - _Intensity: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShoreFadeDistance: 3.5
+    - _ShoreFadeDistance: 1.58
     - _Shore_Intesity: 0.02
     - _Smoothness: 0.95
     - _Steepness: 0.15

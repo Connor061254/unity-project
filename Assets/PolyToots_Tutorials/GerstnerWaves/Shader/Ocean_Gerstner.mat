@@ -67,8 +67,8 @@ Material:
     - _Intensity: 0.544
     - _Length: 1.01
     - _Normal: 1
-    - _Normal_Power: 0.172
-    - _Normal_Scroll: 0.18
+    - _Normal_Power: 0.141
+    - _Normal_Scroll: 0.21
     - _Normal_Tile: 10
     - _Peak: 0.73
     - _Peak_Intensity: 1
