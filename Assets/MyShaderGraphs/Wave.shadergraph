@@ -5633,8 +5633,8 @@
     "m_ObjectId": "14ce6f5cb4324ca9ba82a41021c685c2",
     "m_Title": "Small Waves",
     "m_Position": {
-        "x": -4028.999755859375,
-        "y": -3482.999755859375
+        "x": -4029.0,
+        "y": -3483.0
     }
 }
 
@@ -8456,7 +8456,7 @@
     "m_Title": "Gerstner Functions",
     "m_Position": {
         "x": -3404.0,
-        "y": 2583.999755859375
+        "y": 2584.0
     }
 }
 
@@ -8891,7 +8891,7 @@
     "m_ObjectId": "37d3e972f12540a28cedc7af4a096f7e",
     "m_Title": "Large Waves",
     "m_Position": {
-        "x": -3855.999755859375,
+        "x": -3856.0,
         "y": -791.0
     }
 }
@@ -9832,7 +9832,7 @@
     "m_Title": "Depth-Based Shore Mask",
     "m_Position": {
         "x": -1947.0,
-        "y": 541.9999389648438
+        "y": 542.0
     }
 }
 
@@ -17369,7 +17369,7 @@
     "m_Title": "Medium Waves",
     "m_Position": {
         "x": -3627.0,
-        "y": -1869.9998779296875
+        "y": -1870.0
     }
 }
 
@@ -21419,7 +21419,7 @@
     "m_Title": "Random Wave",
     "m_Position": {
         "x": -3717.0,
-        "y": -3853.999755859375
+        "y": -3854.0
     }
 }
 
@@ -22566,7 +22566,7 @@
     "m_ObjectId": "d486e917be82459bb25c0584d4ec9f81",
     "m_Title": "Medium Waves",
     "m_Position": {
-        "x": -3788.999755859375,
+        "x": -3789.0,
         "y": 377.0
     }
 }
