@@ -28,7 +28,7 @@ public class BoatController : MonoBehaviour
             float turnInput = Input.GetAxis("Horizontal"); // A/D
 
             // Apply forces
-            rb.AddRelativeForce(-Vector3.up * forwardInput * speed * Time.fixedDeltaTime);
+            rb.AddRelativeForce(Vector3.forward * forwardInput * speed * Time.fixedDeltaTime);
             rb.AddTorque(Vector3.up * turnInput * turnSpeed * Time.fixedDeltaTime);
         }
     }
@@ -42,8 +42,15 @@ public class BoatController : MonoBehaviour
         // Disable player's own controller if they have one (e.g. a PlayerController script)
         player.GetComponent<PlayerController>().enabled = false;
 
+        var playerCollider = player.GetComponent<CharacterController>();
+        if (playerCollider != null) 
+        {
+            playerCollider.enabled = false;
+
+        }
+
         // Parent the player and move them to the seat
-        player.transform.SetParent(this.transform);
+        player.transform.SetParent(seatPosition);
         player.transform.position = seatPosition.position;
         player.transform.rotation = seatPosition.rotation;
     }
@@ -54,6 +61,12 @@ public class BoatController : MonoBehaviour
 
         // Re-enable player's controls
         player.GetComponent<PlayerController>().enabled = true;
+
+        var playerCollider = player.GetComponent<CharacterController>();
+        if (playerCollider != null) 
+        {
+            playerCollider.enabled = true;
+        }
 
         // Un-parent the player
         player.transform.SetParent(null);
