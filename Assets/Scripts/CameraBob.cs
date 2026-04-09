@@ -17,6 +17,8 @@ public class CameraBob : MonoBehaviour
 
     private Vector3 defaultPos;
 
+    private Vector3 newPos;
+
     [SerializeField] [Range(1,10)] private float smoothReturnSpeed = 5f;
 
 
@@ -74,7 +76,9 @@ public class CameraBob : MonoBehaviour
         float newY = defaultPos.y + Mathf.Sin(timer) * walkingCameraBobStrength;
         float newX = defaultPos.x + Mathf.Cos(timer/2) * walkingCameraBobStrength;
 
-        transform.localPosition = new Vector3(newX, newY, defaultPos.z);
+        newPos = new Vector3(newX, newY, defaultPos.z);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, Time.deltaTime * smoothReturnSpeed);
+        
     }
 
     void ReturnCameraPos()
