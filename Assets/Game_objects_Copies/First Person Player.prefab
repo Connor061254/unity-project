@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: -4193458702824205023}
   - component: {fileID: 4003133980729570216}
   - component: {fileID: 2266534665991127803}
+  - component: {fileID: -4259688558571720088}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -333,6 +334,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnockBack
   controller: {fileID: 4391535740791429150}
+--- !u!114 &-4259688558571720088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32933b13248983f43ab6351823d8997a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PushPhysicsObjects
+  pushPower: 2
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
