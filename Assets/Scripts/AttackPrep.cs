@@ -35,4 +35,42 @@ public class AttackPrep : MonoBehaviour
     }
     
     // ... your OnThrow and Throw methods go below here! ...
+     void OnThrow(InputValue value)
+    {
+        if(value.isPressed && GetComponent<OfficialPickupScript>().heldObject != null && UnityEngine.Time.time >= nextAttackTime)
+        {
+            Throw();
+        }
+    }
+
+    void Throw()
+    {
+        Debug.Log("Camera is pointing towards: " + MainCamera.transform.forward);
+        var pickupScript = GetComponent<OfficialPickupScript>();
+        var obj = pickupScript.heldObject;
+        var rb = obj.GetComponent<Rigidbody>();
+
+        obj.transform.SetParent(null);
+        rb.useGravity = true;
+        rb.isKinematic = false;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Vector3 targetPoint;
+
+        if(Physics.Raycast(ray, out RaycastHit hit))
+        {
+            targetPoint = hit.point;
+        }
+        else
+        {
+            targetPoint = ray.GetPoint(100f);
+        }
+
+        Vector3 throwDirection = (targetPoint - obj.transform.position).normalized;
+
+        rb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
+    }
 }

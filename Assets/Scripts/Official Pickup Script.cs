@@ -32,11 +32,6 @@ public class OfficialPickupScript : MonoBehaviour
             {
                 Drop();
             }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                Throw();
-            }
         }
     }
 
@@ -98,18 +93,7 @@ public class OfficialPickupScript : MonoBehaviour
         canPickup = true;
     }
 
-    void Throw()
-    {
-        if (heldObject != null)
-        {
-            StartCoroutine(DropCooldown());
-            Rigidbody objectRb = heldObject.GetComponent<Rigidbody>();
-            heldObject.transform.SetParent(null);
-            objectRb.isKinematic = false;
-            objectRb.useGravity = true;
-            objectRb.AddForce(mainCamera.transform.forward * throwForce, ForceMode.VelocityChange);
-            heldObject = null;
-        }
-    }
+    
+    
 }
 
