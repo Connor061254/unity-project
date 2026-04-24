@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,10 +46,19 @@ public class AttackPrep : MonoBehaviour
 
     void Throw()
     {
+        
         Debug.Log("Camera is pointing towards: " + MainCamera.transform.forward);
+
         var pickupScript = GetComponent<OfficialPickupScript>();
         var obj = pickupScript.heldObject;
         var rb = obj.GetComponent<Rigidbody>();
+
+        var weaponScript = obj.GetComponent<RockWeapon>();
+
+        if(weaponScript != null)
+        {
+            weaponScript.lastOwner = this.gameObject;
+        }
 
         obj.transform.SetParent(null);
         rb.useGravity = true;
@@ -60,7 +70,7 @@ public class AttackPrep : MonoBehaviour
         Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Vector3 targetPoint;
 
-        if(Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             targetPoint = hit.point;
         }

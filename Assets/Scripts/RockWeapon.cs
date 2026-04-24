@@ -1,3 +1,4 @@
+using UnityEditor.SettingsManagement;
 using UnityEngine;
 
 public class RockWeapon : MonoBehaviour, IWeapon
@@ -6,6 +7,8 @@ public class RockWeapon : MonoBehaviour, IWeapon
     private float nextAttackTime = 0f;
 
     private float range = 2f;
+
+    public GameObject lastOwner;
    public void Attack()
     {
          float delay = 1f;
