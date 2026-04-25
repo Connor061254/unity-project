@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 public class AttackPrep : MonoBehaviour
 {
     private float nextAttackTime = 0f;
-    public float throwForce = 20f;
-    public Camera MainCamera;
 
     // 1. CREATE THE EMPTY BOX HERE 
     // (Inside the class, but outside of any methods)
     private OfficialPickupScript pickupScript; 
+
+    public Camera MainCamera;
 
     void Start()
     {
@@ -35,40 +35,13 @@ public class AttackPrep : MonoBehaviour
         }
     }
     
-    // ... your OnThrow and Throw methods go below here! ...
      void OnThrow(InputValue value)
     {
         if(value.isPressed && GetComponent<OfficialPickupScript>().heldObject != null && UnityEngine.Time.time >= nextAttackTime)
         {
-            Throw();
-        }
-    }
 
-    void Throw()
-    {
-        
-        Debug.Log("Camera is pointing towards: " + MainCamera.transform.forward);
-
-        var pickupScript = GetComponent<OfficialPickupScript>();
-        var obj = pickupScript.heldObject;
-        var rb = obj.GetComponent<Rigidbody>();
-
-        var weaponScript = obj.GetComponent<RockWeapon>();
-
-        if(weaponScript != null)
-        {
-            weaponScript.lastOwner = this.gameObject;
-        }
-
-        obj.transform.SetParent(null);
-        rb.useGravity = true;
-        rb.isKinematic = false;
-
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        Vector3 targetPoint;
+         Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+         Vector3 targetPoint;
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
@@ -78,9 +51,14 @@ public class AttackPrep : MonoBehaviour
         {
             targetPoint = ray.GetPoint(100f);
         }
+            IWeaponThrow throwWeapon = pickupScript.heldObject.GetComponent<IWeaponThrow>();
 
-        Vector3 throwDirection = (targetPoint - obj.transform.position).normalized;
+            if (throwWeapon != null)
+            {
+                throwWeapon.ThrowAttack(this.gameObject, targetPoint);
+            }
 
-        rb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
+            pickupScript.heldObject = null;
+        }
     }
 }

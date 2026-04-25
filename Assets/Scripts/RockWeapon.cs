@@ -1,7 +1,7 @@
 using UnityEditor.SettingsManagement;
 using UnityEngine;
 
-public class RockWeapon : MonoBehaviour, IWeapon
+public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 {
 
     private float nextAttackTime = 0f;
@@ -9,6 +9,9 @@ public class RockWeapon : MonoBehaviour, IWeapon
     private float range = 2f;
 
     public GameObject lastOwner;
+
+    private float throwForce = 4;
+
    public void Attack()
     {
          float delay = 1f;
@@ -36,5 +39,42 @@ public class RockWeapon : MonoBehaviour, IWeapon
             
             }
         }
+    }
+
+    public void ThrowAttack(GameObject thrower, Vector3 targetPoint)
+    {   
+        lastOwner = thrower;
+
+        var rb = GetComponent<Rigidbody>();
+
+        transform.SetParent(null);
+       
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+
+        Vector3 throwDirection = (targetPoint - transform.position).normalized;
+
+        rb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!lastOwner)
+        {
+            return;
+        }
+        if(collision.gameObject == lastOwner)
+        {
+            return;
+        }
+        if (collision.gameObject.GetComponent<HealthController>())
+        {
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(10f);
+        }
+
+        lastOwner = null;
     }
 }

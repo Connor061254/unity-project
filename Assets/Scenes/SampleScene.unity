@@ -553,7 +553,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6919489}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &6919493
 Camera:
   m_ObjectHideFlags: 0
@@ -23683,6 +23683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88168967e5b8fd2499cebc67d3e82968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
+  lastOwner: {fileID: 0}
 --- !u!114 &1014559112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38672,8 +38673,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015502626, y: -0, z: -0.030949473, w: 0.99940073}
-  m_LocalPosition: {x: -12.676, y: 1.219382, z: -39.987}
+  m_LocalRotation: {x: 0.017579522, y: -0, z: -0.027884131, w: 0.9994566}
+  m_LocalPosition: {x: -12.676, y: 1.1651397, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
