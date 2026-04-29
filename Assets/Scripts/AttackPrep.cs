@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,11 @@ public class AttackPrep : MonoBehaviour
     private OfficialPickupScript pickupScript; 
 
     public Camera MainCamera;
+    public bool isAiming = false;
+
+    private float aimStartTime = 0f;
+
+    public float powerMultiplier;
 
     void Start()
     {
@@ -19,11 +25,46 @@ public class AttackPrep : MonoBehaviour
         pickupScript = GetComponent<OfficialPickupScript>();
     }
 
-    void OnMelee(InputValue value)
+    void Update()
     {
-        // 3. USE THE BOX HERE
-        // Notice we just say 'pickupScript.heldObject' instead of using GetComponent
-        if (value.isPressed && pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
+        
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAiming = true;
+
+            aimStartTime = Time.time;
+        }
+
+        if (context.canceled)
+        {
+            isAiming = false;
+
+            powerMultiplier = 0;
+        }
+    }
+
+    public void OnPrimaryAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (isAiming)
+            {
+                Throw();
+            }
+            else
+            {
+                Melee();
+            }
+        }
+    }
+
+    public void Melee()
+    {
+        if (pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
             IWeapon weapon = pickupScript.heldObject.GetComponent<IWeapon>();
 
@@ -35,9 +76,12 @@ public class AttackPrep : MonoBehaviour
         }
     }
     
-     void OnThrow(InputValue value)
+    public void Throw()
     {
-        if(value.isPressed && GetComponent<OfficialPickupScript>().heldObject != null && UnityEngine.Time.time >= nextAttackTime)
+        powerMultiplier = Time.time - aimStartTime;
+
+        powerMultiplier = Mathf.Clamp(powerMultiplier, 0.5f, 3f);
+        if(pickupScript.heldObject != null && UnityEngine.Time.time >= nextAttackTime)
         {
 
          Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));

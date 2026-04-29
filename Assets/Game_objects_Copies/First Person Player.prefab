@@ -290,7 +290,6 @@ GameObject:
   - component: {fileID: 7524277906128006799}
   - component: {fileID: 8048152483927221352}
   - component: {fileID: 4188589393323862529}
-  - component: {fileID: -4193458702824205023}
   - component: {fileID: 4003133980729570216}
   - component: {fileID: 2266534665991127803}
   - component: {fileID: -4259688558571720088}
@@ -460,37 +459,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 04fbe973434f1f04cb622ef4e6232fd6, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4126959764447674887}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: 
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c8dd72f2-0eec-4e92-83ad-39ced7ae61fb
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a26900db-885f-4839-80ed-db24146d65bc
+    m_ActionName: 'Player/Jump[/Keyboard/minus]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4003133980729570216}
+        m_TargetAssemblyTypeName: AttackPrep, Assembly-CSharp
+        m_MethodName: OnPrimaryAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1c97d067-8c1b-42b9-b8c2-f82415f83a10
+    m_ActionName: 'Player/Melee[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4003133980729570216}
+        m_TargetAssemblyTypeName: AttackPrep, Assembly-CSharp
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: babebba5-f243-45a4-86ac-8978c88dc7aa
+    m_ActionName: 'Player/Throw[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f9f6ab2-a630-4c54-a4ae-ce93b8e772f3
+    m_ActionName: New action map1/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &-4193458702824205023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126959764447674887}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c9705d14c9bbf64d97adcde788f6598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Attack
-  throwForce: 20
-  MainCamera: {fileID: 7250295545125707245}
 --- !u!114 &4003133980729570216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,8 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1844ab6475c834f8fddb1e27d28169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackPrep
-  throwForce: 20
   MainCamera: {fileID: 7250295545125707245}
+  isAiming: 0
 --- !u!114 &2266534665991127803
 MonoBehaviour:
   m_ObjectHideFlags: 0

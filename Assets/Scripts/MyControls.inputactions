@@ -136,7 +136,7 @@
                     "name": "",
                     "id": "0f49004e-1393-49cf-9f65-4abc2831fa13",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Throw",

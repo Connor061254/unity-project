@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.SettingsManagement;
 using UnityEngine;
 
@@ -10,9 +11,11 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
     public GameObject lastOwner;
 
+
     private float throwForce = 4;
 
-   public void Attack()
+
+    public void Attack()
     {
          float delay = 1f;
         Vector3 attackPoint = transform.position + (transform.forward * range);
@@ -45,6 +48,12 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
     {   
         lastOwner = thrower;
 
+        throwForce = thrower.GetComponent<AttackPrep>().powerMultiplier;
+
+        float baseThrowForce = 20f;
+
+        float finalThrowForce = throwForce * baseThrowForce;
+
         var rb = GetComponent<Rigidbody>();
 
         transform.SetParent(null);
@@ -57,7 +66,7 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
         Vector3 throwDirection = (targetPoint - transform.position).normalized;
 
-        rb.AddForce(throwDirection * throwForce, ForceMode.VelocityChange);
+        rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
     }
 
     void OnCollisionEnter(Collision collision)
