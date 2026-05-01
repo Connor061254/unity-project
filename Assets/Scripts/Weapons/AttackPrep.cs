@@ -66,12 +66,13 @@ public class AttackPrep : MonoBehaviour
     {
         if (pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
+             float cooldown = pickupScript.heldObject.GetComponent<RockWeapon>().attackCooldown;
             IWeapon weapon = pickupScript.heldObject.GetComponent<IWeapon>();
 
             if (weapon != null)
             {
                 weapon.Attack();
-                nextAttackTime = Time.time + 2f; 
+                nextAttackTime = Time.time + cooldown; 
             }
         }
     }

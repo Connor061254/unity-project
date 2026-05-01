@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor.SettingsManagement;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
 
     private float throwForce = 4;
+
+    public float attackCooldown = 2f;
 
 
     public void Attack()
@@ -72,6 +75,8 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
     void OnCollisionEnter(Collision collision)
     {
+         float damage = GetComponent<DamageDealer>().damageNumber;
+
         if (!lastOwner)
         {
             return;
@@ -82,7 +87,7 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         }
         if (collision.gameObject.GetComponent<HealthController>())
         {
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(10f);
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
         }
 
         lastOwner = null;

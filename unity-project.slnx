@@ -28,8 +28,8 @@
   <Project Path="glTFast.csproj" />
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Unity.AI.Image.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.ProBuilder.Csg.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
   <Project Path="Unity.Polybrush.csproj" />
   <Project Path="Unity.InputSystem.csproj" />
