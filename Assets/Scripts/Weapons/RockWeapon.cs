@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor.SettingsManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 {
@@ -16,6 +17,14 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
     private float throwForce = 4;
 
     public float attackCooldown = 2f;
+
+    public AnimationCurve damageCurve;
+
+    public float minimumEffectiveDistance = 2f;
+
+    public float thrownDistanceReducer = 0.3f;
+
+    private Vector3 myThrowPosition;
 
 
     public void Attack()
@@ -76,6 +85,19 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
     void OnCollisionEnter(Collision collision)
     {
          float damage = GetComponent<DamageDealer>().damageNumber;
+         float speed = this.gameObject.GetComponent<Rigidbody>().linearVelocity.magnitude;
+
+         float curveMultiplier = damageCurve.Evaluate(speed);
+         float thrownDamage = curveMultiplier * damage;
+
+         float distanceTraveled = Vector3.Distance(myThrowPosition, transform.position);
+
+         if(distanceTraveled < minimumEffectiveDistance)
+        {
+            thrownDamage = thrownDamage * thrownDistanceReducer;
+        }
+
+         Debug.Log("Speed: " + speed + " | Multiplier: " + curveMultiplier + " | Damage: " + thrownDamage);
 
         if (!lastOwner)
         {
@@ -87,9 +109,14 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         }
         if (collision.gameObject.GetComponent<HealthController>())
         {
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(thrownDamage);
         }
 
         lastOwner = null;
+    }
+
+    public void SetThrowPosition(Vector3 position)
+    {
+        myThrowPosition = position;
     }
 }

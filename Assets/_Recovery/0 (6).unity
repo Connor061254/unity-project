@@ -2479,39 +2479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
   lastOwner: {fileID: 0}
   attackCooldown: 0.88
-  damageCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.09951477
-      inSlope: 0.000087187414
-      outSlope: 0.000087187414
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 1
-    - serializedVersion: 3
-      time: 9.969451
-      value: 0.9957334
-      inSlope: 0.03319668
-      outSlope: 0.03319668
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.1686833
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20.007193
-      value: 1.4968145
-      inSlope: 0.005736625
-      outSlope: 0.005736625
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.3474016
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &104683550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23431,12 +23398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
   lastOwner: {fileID: 0}
   attackCooldown: 1.42
-  damageCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1004429461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24066,39 +24027,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
   lastOwner: {fileID: 0}
   attackCooldown: 2
-  damageCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.10144043
-      inSlope: 0.011067037
-      outSlope: 0.011067037
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.53457975
-    - serializedVersion: 3
-      time: 5.002786
-      value: 0.99879926
-      inSlope: -0.010468336
-      outSlope: -0.010468336
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18485507
-      outWeight: 0.35478875
-    - serializedVersion: 3
-      time: 10.0083885
-      value: 1.4947662
-      inSlope: -0.005392299
-      outSlope: -0.005392299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.4119505
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &1014559112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39091,8 +39019,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.023791062, y: -0, z: -0.029942755, w: 0.9992685}
-  m_LocalPosition: {x: -12.676, y: 1.2408415, z: -39.987}
+  m_LocalRotation: {x: -0.0058435644, y: -0, z: 0.0212838, w: 0.99975646}
+  m_LocalPosition: {x: -12.676, y: 1.2350318, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:

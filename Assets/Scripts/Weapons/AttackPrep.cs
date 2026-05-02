@@ -18,6 +18,8 @@ public class AttackPrep : MonoBehaviour
 
     public float powerMultiplier;
 
+    public Vector3 throwPosition;
+
     void Start()
     {
         // 2. FILL THE BOX HERE 
@@ -79,6 +81,12 @@ public class AttackPrep : MonoBehaviour
     
     public void Throw()
     {
+        var rockScript = pickupScript.GetComponent<RockWeapon>();
+
+        if (rockScript != null)
+        {
+            rockScript.SetThrowPosition(pickupScript.heldObject.transform.position);
+        }
         powerMultiplier = Time.time - aimStartTime;
 
         powerMultiplier = Mathf.Clamp(powerMultiplier, 0.5f, 3f);
