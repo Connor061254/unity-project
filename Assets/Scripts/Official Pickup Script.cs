@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class OfficialPickupScript : MonoBehaviour
@@ -11,6 +12,8 @@ public class OfficialPickupScript : MonoBehaviour
     public float dropForce = 2f;
     Rigidbody rb;
     public Camera mainCamera;
+
+    private InteractableItem currentTarget;
 
     void Start()
     {
@@ -34,7 +37,36 @@ public class OfficialPickupScript : MonoBehaviour
             }
         }
     }
+    void FixedUpdate()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, pickupRange))
+        {
+                var hitItem = hit.collider.GetComponent<InteractableItem>();
+                
+                if(hitItem != null)
+                {
+                    if(currentTarget != hitItem)
+                    {
+                        if(currentTarget != null) currentTarget.HidePrompt();
 
+                        currentTarget = hitItem;
+                        currentTarget.ShowPrompt();
+
+                    }
+                }
+                else
+                {
+                    if(currentTarget != null)
+                    {
+                        currentTarget.HidePrompt();
+                        currentTarget = null;
+                    }
+                }
+        
+        }
+    }
     void AttemptToPickup()
     {
         int layerMask = 1 << 6;

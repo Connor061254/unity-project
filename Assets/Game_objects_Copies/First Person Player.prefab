@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5961238400371374262}
   m_Layer: 6
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -546,6 +546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackPrep
   MainCamera: {fileID: 7250295545125707245}
   isAiming: 0
+  powerMultiplier: 0
+  throwPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2266534665991127803
 MonoBehaviour:
   m_ObjectHideFlags: 0
