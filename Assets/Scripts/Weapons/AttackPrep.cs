@@ -81,7 +81,7 @@ public class AttackPrep : MonoBehaviour
     
     public void Throw()
     {
-        var rockScript = pickupScript.GetComponent<RockWeapon>();
+        var rockScript = pickupScript.heldObject.GetComponent<RockWeapon>();
 
         if (rockScript != null)
         {
@@ -89,7 +89,7 @@ public class AttackPrep : MonoBehaviour
         }
         powerMultiplier = Time.time - aimStartTime;
 
-        powerMultiplier = Mathf.Clamp(powerMultiplier, 0.5f, 3f);
+        powerMultiplier = Mathf.Clamp(powerMultiplier, 0.5f, 2f);
         if(pickupScript.heldObject != null && UnityEngine.Time.time >= nextAttackTime)
         {
 

@@ -20,9 +20,9 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
     public AnimationCurve damageCurve;
 
-    public float minimumEffectiveDistance = 2f;
+    public float minimumEffectiveDistance = 3f;
 
-    public float thrownDistanceReducer = 0.3f;
+    public float thrownDistanceReducer = 0.4f;
 
     private Vector3 myThrowPosition;
 
@@ -63,7 +63,7 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
         throwForce = thrower.GetComponent<AttackPrep>().powerMultiplier;
 
-        float baseThrowForce = 20f;
+        float baseThrowForce = 15f;
 
         float finalThrowForce = throwForce * baseThrowForce;
 
@@ -78,6 +78,10 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
 
         Vector3 throwDirection = (targetPoint - transform.position).normalized;
+
+        throwDirection += Vector3.up * 0.5f;
+
+        throwDirection.Normalize();
 
         rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
     }
