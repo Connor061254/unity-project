@@ -4,7 +4,7 @@ using UnityEngine;
 public class OfficialPickupScript : MonoBehaviour
 {
     public Transform holdPosition;
-    public float pickupRange = 3f;
+    public float pickupRange = 2f;
     public float throwForce = 8f;
     public GameObject heldObject;
     private bool canPickup = true;
