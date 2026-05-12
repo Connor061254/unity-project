@@ -5,29 +5,29 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float maxPlayerHealth = 100f;
     [SerializeField] private float currentPlayerHealth = 100f;
 
-    public Healthbar myHealthBar;
+    private GameObject myHealthBar;
 
+    private HealthbarUI healthScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        myHealthBar = GameObject.FindWithTag("HealthUI");
+        healthScript = myHealthBar.GetComponent<HealthbarUI>();
         currentPlayerHealth = maxPlayerHealth;
-        myHealthBar.SetMaxHealth(maxPlayerHealth);
+        healthScript.SetMaxHealth(maxPlayerHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20f);
-        }
+
     }
 
     public void TakeDamage(float damageAmount)
     {
         Debug.Log($"[HealthController] OUCH! I took {damageAmount} damage. Current Time: {Time.time}");
         currentPlayerHealth -= damageAmount;
-        myHealthBar.SetHealth(currentPlayerHealth);
+        healthScript.SetHealth(currentPlayerHealth);
 
         if(currentPlayerHealth <= 0f)
         {

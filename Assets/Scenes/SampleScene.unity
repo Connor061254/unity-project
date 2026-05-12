@@ -4188,7 +4188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxPlayerHealth: 100
   currentPlayerHealth: 100
-  myHealthBar: {fileID: 0}
 --- !u!136 &183947732
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13691,8 +13690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.10000038, y: 0.49982}
-  m_SizeDelta: {x: 13, y: 12}
+  m_AnchoredPosition: {x: 1.8999939, y: 0}
+  m_SizeDelta: {x: 19.9, y: 19.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &626952331
 MonoBehaviour:
@@ -15797,7 +15796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxPlayerHealth: 100
   currentPlayerHealth: 100
-  myHealthBar: {fileID: 0}
 --- !u!136 &656868874
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23514,7 +23512,7 @@ GameObject:
   - component: {fileID: 1004326389}
   m_Layer: 5
   m_Name: Health_Bar
-  m_TagString: Untagged
+  m_TagString: HealthUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23538,8 +23536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50.9083, y: 8.186707}
+  m_AnchoredPosition: {x: 0, y: 9.6}
+  m_SizeDelta: {x: 266, y: 15.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004326388
 MonoBehaviour:
@@ -37108,8 +37106,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.33849907, y: 0.19200134}
-  m_SizeDelta: {x: 0.6768, y: 0.3839}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653850634
 MonoBehaviour:
@@ -39536,8 +39534,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.010414462, y: -0, z: -0.007699311, w: 0.99991614}
-  m_LocalPosition: {x: -12.676, y: 1.3258338, z: -39.987}
+  m_LocalRotation: {x: -0.012350602, y: -0, z: 0.018188057, w: 0.9997583}
+  m_LocalPosition: {x: -12.676, y: 1.3500665, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40320,8 +40318,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.4998169}
-  m_SizeDelta: {x: 2, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847065425
 MonoBehaviour:
