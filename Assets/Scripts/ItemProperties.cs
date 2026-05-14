@@ -4,6 +4,8 @@ public class ItemProperties : MonoBehaviour
 {
 
     public float meleeSpeedMultiplier = 1f;
+
+    public ItemData referenceData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

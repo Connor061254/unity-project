@@ -2492,6 +2492,7 @@ GameObject:
   - component: {fileID: 104683549}
   - component: {fileID: 104683548}
   - component: {fileID: 104683554}
+  - component: {fileID: 104683555}
   m_Layer: 0
   m_Name: Small_Rock_Weapon
   m_TagString: PickUp
@@ -2696,6 +2697,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   popUpCanvas: {fileID: 2130597475}
+--- !u!114 &104683555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104683546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333e38cfa3c314647bd0586c5cf0b9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemProperties
+  meleeSpeedMultiplier: 1
+  referenceData: {fileID: 11400000, guid: 8ba464eab7577e9468100eef60b4b6f2, type: 2}
 --- !u!1 &107291866
 GameObject:
   m_ObjectHideFlags: 0
@@ -39534,8 +39549,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.012350602, y: -0, z: 0.018188057, w: 0.9997583}
-  m_LocalPosition: {x: -12.676, y: 1.3500665, z: -39.987}
+  m_LocalRotation: {x: -0.0008018299, y: -0, z: 0.0030867911, w: 0.99999493}
+  m_LocalPosition: {x: -12.676, y: 1.2713671, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
