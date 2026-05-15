@@ -9,6 +9,8 @@ public class OfficialPickupScript : MonoBehaviour
     public GameObject heldObject;
     private bool canPickup = true;
 
+    public ItemData itemInfo;
+
     public float dropForce = 2f;
     Rigidbody rb;
     public Camera mainCamera;
@@ -80,6 +82,13 @@ public class OfficialPickupScript : MonoBehaviour
             if (hit.transform != null && hit.transform.CompareTag("PickUp"))
             {
                 heldObject = hit.transform.gameObject;
+                itemInfo = heldObject.GetComponent<ItemProperties>().referenceData;
+                var inventory = this.gameObject.GetComponent<InventoryManager>();
+                if(inventory != null)
+                {
+                    bool wasPickedUp = inventory.AddItem(itemInfo);
+
+                }
                 PerformPickup();
             }
         }
