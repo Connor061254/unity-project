@@ -119,6 +119,9 @@ public class OfficialPickupScript : MonoBehaviour
     void Drop()
     {
         StartCoroutine(DropCooldown());
+        var inventory = this.gameObject.GetComponent<InventoryManager>();
+        itemInfo = heldObject.GetComponent<ItemProperties>().referenceData;
+        inventory.RemoveItem(itemInfo);
         heldObject.transform.SetParent(null);
         Rigidbody objectRb = heldObject.GetComponent<Rigidbody>();
         objectRb.isKinematic = false;
