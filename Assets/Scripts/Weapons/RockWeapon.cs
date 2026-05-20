@@ -13,6 +13,8 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
     public GameObject lastOwner;
 
+    private ItemData itemInfo;
+
 
     private float throwForce = 4;
 
@@ -59,6 +61,13 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
     public void ThrowAttack(GameObject thrower, Vector3 targetPoint)
     {   
+        var inventory = thrower.GetComponent<InventoryManager>();
+        var itemProp = this.gameObject.GetComponent<ItemProperties>();
+
+        itemInfo = itemProp.referenceData;
+
+        inventory.RemoveItem(itemInfo);
+        
         lastOwner = thrower;
 
         throwForce = thrower.GetComponent<AttackPrep>().powerMultiplier;

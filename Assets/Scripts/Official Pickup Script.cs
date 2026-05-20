@@ -82,14 +82,27 @@ public class OfficialPickupScript : MonoBehaviour
             if (hit.transform != null && hit.transform.CompareTag("PickUp"))
             {
                 heldObject = hit.transform.gameObject;
-                itemInfo = heldObject.GetComponent<ItemProperties>().referenceData;
+
+                var itemProp = heldObject.GetComponent<ItemProperties>();
                 var inventory = this.gameObject.GetComponent<InventoryManager>();
-                if(inventory != null)
+
+                if(inventory != null && itemProp != null)
                 {
+                    itemInfo = itemProp.referenceData;
+                    
                     bool wasPickedUp = inventory.AddItem(itemInfo);
 
+                    if (wasPickedUp)
+                    {
+                        PerformPickup();
+                    }
+                    else
+                    {
+                        heldObject = null;
+                    }
+
                 }
-                PerformPickup();
+                
             }
         }
     }

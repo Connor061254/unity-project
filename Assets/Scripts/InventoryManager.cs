@@ -18,4 +18,9 @@ public class InventoryManager : MonoBehaviour
 
         return true;
     }
+
+    public void RemoveItem(ItemData itemToRemove)
+    {
+        itemList.Remove(itemToRemove);
+    }
 }
