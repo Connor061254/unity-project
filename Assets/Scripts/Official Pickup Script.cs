@@ -17,6 +17,8 @@ public class OfficialPickupScript : MonoBehaviour
 
     private InteractableItem currentTarget;
 
+    public GameObject currentHeldObject;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,16 +26,15 @@ public class OfficialPickupScript : MonoBehaviour
 
     void Update()
     {
-        if (heldObject == null && canPickup)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
+        
+        if (Input.GetKeyDown(KeyCode.E))
             {
                 AttemptToPickup();
             }
-        }
+    
         else if (heldObject != null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 Drop();
             }
@@ -94,6 +95,10 @@ public class OfficialPickupScript : MonoBehaviour
 
                     if (wasPickedUp)
                     {
+                        if(currentHeldObject != null)
+                        {
+                            currentHeldObject.SetActive(false);
+                        }
                         PerformPickup();
                     }
                     else
@@ -109,6 +114,7 @@ public class OfficialPickupScript : MonoBehaviour
 
     void PerformPickup()
     {
+        currentHeldObject = heldObject;
         heldObject.transform.SetParent(holdPosition);
         var itemSettings = heldObject.GetComponent<ItemPickupPosition>();
         if(itemSettings != null)
@@ -141,6 +147,7 @@ public class OfficialPickupScript : MonoBehaviour
         objectRb.useGravity = true;
         objectRb.AddForce(mainCamera.transform.forward * dropForce, ForceMode.VelocityChange);
         heldObject = null;
+        currentHeldObject = null;
     }
 
     System.Collections.IEnumerator DropCooldown()

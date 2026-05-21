@@ -63,6 +63,9 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
     {   
         var inventory = thrower.GetComponent<InventoryManager>();
         var itemProp = this.gameObject.GetComponent<ItemProperties>();
+        var pickupScript = thrower.GetComponent<OfficialPickupScript>();
+
+        pickupScript.currentHeldObject = null;
 
         itemInfo = itemProp.referenceData;
 
