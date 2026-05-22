@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: 
   itemIcon: {fileID: 0}
   itemDescription: 
+  itemGameObject: {fileID: 2136080160460368405, guid: 236e883d45d065641b264061b2dc25a6, type: 3}

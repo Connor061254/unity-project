@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Medium Rock
   itemIcon: {fileID: 0}
   itemDescription: 
+  itemGameObject: {fileID: 7000902175494337365, guid: 177c082349569a84293d121fa5c1fd39, type: 3}
