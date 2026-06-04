@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    private Animator animator;
+
     Vector3 velocity;
     bool isGrounded;
 
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         currentSpeed = walkSpeed;
+        animator = GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
@@ -59,19 +63,34 @@ public class PlayerController : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(x, 0f, z).normalized;
+
+        bool isMoving = movement.magnitude > 0.1f;
         
-        Vector3 move = transform.right * x + transform.forward * z;
+             Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * currentSpeed * Time.deltaTime);
+            controller.Move(move * currentSpeed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+            velocity.y += gravity * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
+
+        if (isMoving && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            animator.SetBool("isWalking", true);
 
+            float animationMultiplier = currentSpeed / walkSpeed;
+            animator.SetFloat("animSpeed", animationMultiplier);
         }
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
     
     // This function draws a helpful visual sphere in the Scene view
