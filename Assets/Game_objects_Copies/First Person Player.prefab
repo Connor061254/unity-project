@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 2266534665991127803}
   - component: {fileID: -4259688558571720088}
   - component: {fileID: -5104404039204356579}
+  - component: {fileID: -1880979058205074442}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -513,6 +514,31 @@ MonoBehaviour:
   space: 10
   objectToDelete: {fileID: 0}
   objectToSpawn: {fileID: 0}
+--- !u!114 &-1880979058205074442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
