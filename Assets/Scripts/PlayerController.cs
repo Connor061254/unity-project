@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     public float walkSpeed = 9f;
 
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    [SerializeField] private Camera playerCamera;
+
+    [SerializeField] private AudioListener playerListener;
     private Animator animator;
 
     Vector3 velocity;
@@ -35,6 +39,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         isGrounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -103,4 +111,23 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireSphere(groundcheck.position, groundCheckRadius);
         }
     }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (!IsOwner)
+        {
+            if(playerCamera != null)
+            {
+                playerCamera.enabled = false;
+            }
+
+            if (playerListener != null)
+            {
+                playerListener.enabled = false;
+            }
+        }
+    }
+    
 }

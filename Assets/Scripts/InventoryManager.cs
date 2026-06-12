@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour

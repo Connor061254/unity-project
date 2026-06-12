@@ -10,23 +10,42 @@ public class Look : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float y = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
 
-        xRotation -= y;
+        if(Cursor.lockState == CursorLockMode.Locked)
+        {
+             float x = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float y = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= y;
+
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         
 
-        playerBody.Rotate(Vector3.up * x);
+            playerBody.Rotate(Vector3.up * x);
+        }
+       
     }
 }

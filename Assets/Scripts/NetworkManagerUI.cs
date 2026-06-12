@@ -10,12 +10,14 @@ public class NetworkManagerUI : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("The UI Script has officially started!");
         serverButton.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartServer();
         });
         hostButton.onClick.AddListener(() =>
         {
+            Debug.Log("The Host button was successfully clicked!");
             NetworkManager.Singleton.StartHost();
         });
         clientButton.onClick.AddListener(() =>
@@ -24,4 +26,14 @@ public class NetworkManagerUI : MonoBehaviour
         });
 
     }
+
+    void Update()
+{
+    // If we press the 'H' key on the keyboard...
+    if (Input.GetKeyDown(KeyCode.H))
+    {
+        Debug.Log("Keyboard Bypass: Starting Host!");
+        NetworkManager.Singleton.StartHost();
+    }
+}
 }
