@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class Look : MonoBehaviour
+public class Look : NetworkBehaviour
 {
     public Transform playerBody;
     public float mouseSensitivity = 500f;
@@ -17,6 +18,8 @@ public class Look : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!IsOwner) return;
+        
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             if (Cursor.lockState == CursorLockMode.Locked)
