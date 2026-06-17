@@ -39447,8 +39447,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0058052773, y: -0, z: -0.0051582917, w: 0.9999699}
-  m_LocalPosition: {x: -12.676, y: 1.3239113, z: -39.987}
+  m_LocalRotation: {x: -0.0053174295, y: -0, z: -0.003884825, w: 0.99997836}
+  m_LocalPosition: {x: -12.676, y: 1.416905, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47063,6 +47063,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2144821756}
     m_Modifications:
+    - target: {fileID: -7511519521167159098, guid: 0129e1ab7f5ee394995b6f9be1606fa7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2424077339
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511519521167159098, guid: 0129e1ab7f5ee394995b6f9be1606fa7, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511519521167159098, guid: 0129e1ab7f5ee394995b6f9be1606fa7, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 3483146569
+      objectReference: {fileID: 0}
     - target: {fileID: 861280741283854689, guid: 0129e1ab7f5ee394995b6f9be1606fa7, type: 3}
       propertyPath: m_Camera
       value: 

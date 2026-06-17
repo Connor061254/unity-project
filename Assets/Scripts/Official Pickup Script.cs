@@ -1,7 +1,8 @@
 using UnityEditor;
 using UnityEngine;
+using Unity.Netcode;
 
-public class OfficialPickupScript : MonoBehaviour
+public class OfficialPickupScript : NetworkBehaviour
 {
     public Transform holdPosition;
     public float pickupRange = 2f;
@@ -26,6 +27,7 @@ public class OfficialPickupScript : MonoBehaviour
 
     void Update()
     {
+        if(!IsOwner) return;
         
         if (Input.GetKeyDown(KeyCode.E))
             {
@@ -82,12 +84,13 @@ public class OfficialPickupScript : MonoBehaviour
 
             if (hit.transform != null && hit.transform.CompareTag("PickUp"))
             {
+                NetworkObject networkObject = hit.transform.GetComponent<NetworkObject>();
                 heldObject = hit.transform.gameObject;
 
                 var itemProp = heldObject.GetComponent<ItemProperties>();
                 var inventory = this.gameObject.GetComponent<InventoryManager>();
 
-                if(inventory != null && itemProp != null)
+                if(inventory != null && itemProp != null && networkObject != null)
                 {
                     itemInfo = itemProp.referenceData;
                     
@@ -95,11 +98,7 @@ public class OfficialPickupScript : MonoBehaviour
 
                     if (wasPickedUp)
                     {
-                        if(currentHeldObject != null)
-                        {
-                            currentHeldObject.SetActive(false);
-                        }
-                        PerformPickup();
+                        RequestPickUpServerRpc(NetworkObject.NetworkObjectId);
                     }
                     else
                     {
@@ -109,13 +108,41 @@ public class OfficialPickupScript : MonoBehaviour
                 }
                 
             }
+
+            
+        }
+    }
+    [ServerRpc]   
+     void RequestPickUpServerRpc(ulong itemId, ServerRpcParams rpcParams = default)
+    {
+        if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
+        {
+            item.TrySetParent(holdPosition);
+
+            item.ChangeOwnership(rpcParams.Receive.SenderClientId);
+
+            PerformPickUpClientRpc(itemId);
+        }
+    }
+    [ClientRpc]
+    void PerformPickUpClientRpc(ulong itemId)
+    {
+        if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
+        {
+            heldObject = item.gameObject;
+
+             if(currentHeldObject != null)
+                        {
+                            currentHeldObject.SetActive(false);
+                        }
+                        
+                        PerformPickup();
         }
     }
 
     void PerformPickup()
     {
         currentHeldObject = heldObject;
-        heldObject.transform.SetParent(holdPosition);
         var itemSettings = heldObject.GetComponent<ItemPickupPosition>();
         if(itemSettings != null)
         {
@@ -141,13 +168,50 @@ public class OfficialPickupScript : MonoBehaviour
         var inventory = this.gameObject.GetComponent<InventoryManager>();
         itemInfo = heldObject.GetComponent<ItemProperties>().referenceData;
         inventory.RemoveItem(itemInfo);
-        heldObject.transform.SetParent(null);
-        Rigidbody objectRb = heldObject.GetComponent<Rigidbody>();
-        objectRb.isKinematic = false;
-        objectRb.useGravity = true;
-        objectRb.AddForce(mainCamera.transform.forward * dropForce, ForceMode.VelocityChange);
-        heldObject = null;
-        currentHeldObject = null;
+
+        NetworkObject networkObject = heldObject.GetComponent<NetworkObject>();
+        if(networkObject != null)
+        {
+            RequestDropServerRpc(networkObject.NetworkObjectId, mainCamera.transform.forward);
+        }   
+
+    }
+
+    [ServerRpc]
+    void RequestDropServerRpc(ulong itemId, Vector3 dropDirection, ServerRpcParams rpcparams = default)
+    {
+        if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
+        {
+            item.TryRemoveParent();
+
+            item.RemoveOwnership();
+
+            PerformDropClientRpc(itemId, dropDirection);
+        }
+    }
+
+    [ClientRpc]
+    void PerformDropClientRpc(ulong itemId, Vector3 dropDirection)
+    {
+        
+        if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
+        {
+            GameObject droppedItem = item.gameObject;
+            
+            Rigidbody objectRb = droppedItem.GetComponent<Rigidbody>();
+            if(objectRb != null)
+            {
+                objectRb.isKinematic = false;
+                objectRb.useGravity = true;
+                objectRb.AddForce(dropDirection * dropForce, ForceMode.VelocityChange);
+            }
+
+            if(heldObject == droppedItem)
+            {
+                heldObject = null;
+                currentHeldObject = null;
+            }
+        }
     }
 
     System.Collections.IEnumerator DropCooldown()
