@@ -103,6 +103,11 @@ public class OfficialPickupScript : NetworkBehaviour
                     heldObject = networkObject.gameObject;
                 }
 
+                if(heldObject.GetComponent<SpecialAbility>() != null)
+                {
+                    PassIdentity();
+                }
+
                 if (heldObject != null)
                 {
                     var itemProp = heldObject.GetComponent<ItemProperties>();
@@ -246,6 +251,13 @@ public class OfficialPickupScript : NetworkBehaviour
                 currentHeldObject = null;
             }
         }
+    }
+
+    public void PassIdentity()
+    {
+        CharacterType identity = this.GetComponent<Identification>().type;
+
+        heldObject.GetComponent<SpecialAbility>().InitalizeRock(identity);
     }
 
     System.Collections.IEnumerator DropCooldown()
