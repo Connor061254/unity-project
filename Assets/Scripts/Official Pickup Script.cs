@@ -206,7 +206,12 @@ public class OfficialPickupScript : NetworkBehaviour
         if(networkObject != null)
         {
             RequestDropServerRpc(networkObject.NetworkObjectId, mainCamera.transform.forward);
-        }   
+        }
+
+        if (heldObject.GetComponent<SpecialAbility>())
+        {
+            heldObject.GetComponent<SpecialAbility>().ReduceSpeed();
+        }
     }
 
     [ServerRpc]

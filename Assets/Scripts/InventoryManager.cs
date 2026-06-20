@@ -71,6 +71,10 @@ public class InventoryManager : MonoBehaviour
 
        if(pickupScript.currentHeldObject != null)
         {
+            if (pickupScript.currentHeldObject.GetComponent<SpecialAbility>())
+            {
+                pickupScript.currentHeldObject.GetComponent<SpecialAbility>().ReduceSpeed();
+            }
              Destroy(pickupScript.currentHeldObject);
         }
       
@@ -85,6 +89,11 @@ public class InventoryManager : MonoBehaviour
         heldItem.transform.localPosition = Vector3.zero;
 
         heldItem.transform.localRotation = Quaternion.identity;
+
+        if (objectToSpawn.GetComponent<SpecialAbility>())
+        {
+            objectToSpawn.GetComponent<SpecialAbility>().increaseSpeed();
+        }
 
         pickupScript.heldObject = heldItem;
         pickupScript.currentHeldObject = heldItem;

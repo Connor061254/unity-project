@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -11,6 +14,8 @@ public enum AbilityType
 public class SpecialAbility : MonoBehaviour
 {
     private AbilityType currentAbility = AbilityType.none;
+
+    [SerializeField] private float specialRockSpeedBuff = 4f;
     public AbilityType GetAbilityType(CharacterType character)
     {
         return character switch
@@ -28,6 +33,11 @@ public class SpecialAbility : MonoBehaviour
     public void InitalizeRock(CharacterType character)
     {
         currentAbility = GetAbilityType(character);
+
+        if(currentAbility == AbilityType.speedIncrease)
+        {
+            increaseSpeed();
+        }
     }
     public void Ability()
     {
@@ -36,10 +46,6 @@ public class SpecialAbility : MonoBehaviour
         {
             case AbilityType.splitshot:
             SplitShot();
-            break;
-
-            case AbilityType.speedIncrease:
-            increaseSpeed();
             break;
 
             case AbilityType.bleeder:
@@ -53,9 +59,24 @@ public class SpecialAbility : MonoBehaviour
         
     }
 
-    private void increaseSpeed()
+    public void increaseSpeed()
     {
-        
+        GameObject parent = transform.parent.gameObject;
+        float speed = parent.GetComponent<PlayerController>().currentSpeed;
+
+        parent.GetComponent<PlayerController>().currentSpeed = speed + specialRockSpeedBuff;
+
+    }
+
+    public void ReduceSpeed()
+    {
+        if(currentAbility == AbilityType.speedIncrease)
+        {
+            GameObject parent = transform.parent.gameObject;
+            float speed = parent.GetComponent<PlayerController>().currentSpeed;
+
+            parent.GetComponent<PlayerController>().currentSpeed = speed - specialRockSpeedBuff;
+        }
     }
 
     private void Bleeder()
