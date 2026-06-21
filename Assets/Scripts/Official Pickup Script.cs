@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.VisualScripting;
 
 public class OfficialPickupScript : NetworkBehaviour
 {
@@ -17,6 +18,8 @@ public class OfficialPickupScript : NetworkBehaviour
 
     private InteractableItem currentTarget;
     public GameObject currentHeldObject;
+
+    [SerializeField]private PlayerController playerController;
 
     void Start() { }
 
@@ -260,9 +263,13 @@ public class OfficialPickupScript : NetworkBehaviour
 
     public void PassIdentity()
     {
+        playerController = this.GetComponent<PlayerController>();
         CharacterType identity = this.GetComponent<Identification>().type;
 
-        heldObject.GetComponent<SpecialAbility>().InitalizeRock(identity);
+        if(heldObject != null && heldObject.GetComponent<SpecialAbility>() != null)
+        {
+            heldObject.GetComponent<SpecialAbility>().InitalizeRock(identity, playerController);
+        }
     }
 
     System.Collections.IEnumerator DropCooldown()

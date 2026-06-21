@@ -15,6 +15,7 @@ public class SpecialAbility : MonoBehaviour
 {
     private AbilityType currentAbility = AbilityType.none;
 
+    private PlayerController playerController;
     [SerializeField] private float specialRockSpeedBuff = 4f;
     public AbilityType GetAbilityType(CharacterType character)
     {
@@ -30,8 +31,9 @@ public class SpecialAbility : MonoBehaviour
         };
     }
 
-    public void InitalizeRock(CharacterType character)
+    public void InitalizeRock(CharacterType character, PlayerController player)
     {
+        playerController = player;
         currentAbility = GetAbilityType(character);
 
         if(currentAbility == AbilityType.speedIncrease)
@@ -61,21 +63,17 @@ public class SpecialAbility : MonoBehaviour
 
     public void increaseSpeed()
     {
-        GameObject parent = transform.parent.gameObject;
-        float speed = parent.GetComponent<PlayerController>().currentSpeed;
-
-        parent.GetComponent<PlayerController>().currentSpeed = speed + specialRockSpeedBuff;
-
+        if(playerController != null)
+        {
+            playerController.currentSpeed += specialRockSpeedBuff;
+        }
     }
 
     public void ReduceSpeed()
     {
         if(currentAbility == AbilityType.speedIncrease)
         {
-            GameObject parent = transform.parent.gameObject;
-            float speed = parent.GetComponent<PlayerController>().currentSpeed;
-
-            parent.GetComponent<PlayerController>().currentSpeed = speed - specialRockSpeedBuff;
+            playerController.currentSpeed += specialRockSpeedBuff;
         }
     }
 

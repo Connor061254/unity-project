@@ -90,9 +90,12 @@ public class InventoryManager : MonoBehaviour
 
         heldItem.transform.localRotation = Quaternion.identity;
 
-        if (objectToSpawn.GetComponent<SpecialAbility>())
+        if (heldItem.GetComponent<SpecialAbility>() != null)
         {
-            objectToSpawn.GetComponent<SpecialAbility>().increaseSpeed();
+            PlayerController playerController = GetComponent<PlayerController>();
+            CharacterType identity = GetComponent<Identification>().type;
+
+            heldItem.GetComponent<SpecialAbility>().InitalizeRock(identity, playerController);
         }
 
         pickupScript.heldObject = heldItem;

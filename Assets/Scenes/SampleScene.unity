@@ -19206,6 +19206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3536997962444e46a7535a5d81052ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialAbility
+  specialRockSpeedBuff: 4
 --- !u!1 &812585580
 GameObject:
   m_ObjectHideFlags: 0
@@ -39481,8 +39482,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0052727223, y: -0, z: -0.010500953, w: 0.999931}
-  m_LocalPosition: {x: -12.676, y: 1.1329583, z: -39.987}
+  m_LocalRotation: {x: 0.0067270827, y: -0, z: 0.008557534, w: 0.99994075}
+  m_LocalPosition: {x: -12.676, y: 1.1217567, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
