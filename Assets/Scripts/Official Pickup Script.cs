@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using Unity.Netcode;
 using Unity.VisualScripting;
+using System;
 
 public class OfficialPickupScript : NetworkBehaviour
 {
@@ -195,7 +196,13 @@ public class OfficialPickupScript : NetworkBehaviour
 
     void Drop()
     {
-        StartCoroutine(DropCooldown());
+        StartCoroutine(DropCooldown()); 
+        
+        if (heldObject.GetComponent<SpecialAbility>())
+        {
+            heldObject.GetComponent<SpecialAbility>().ReduceSpeed();
+        }
+        
         var inventory = this.gameObject.GetComponent<InventoryManager>();
         
         var itemProp = heldObject.GetComponent<ItemProperties>();
@@ -211,10 +218,7 @@ public class OfficialPickupScript : NetworkBehaviour
             RequestDropServerRpc(networkObject.NetworkObjectId, mainCamera.transform.forward);
         }
 
-        if (heldObject.GetComponent<SpecialAbility>())
-        {
-            heldObject.GetComponent<SpecialAbility>().ReduceSpeed();
-        }
+       
     }
 
     [ServerRpc]

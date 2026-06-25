@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6993d7d7dd0a4f8662a8c69cd53da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
 --- !u!114 &2230260778600968397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b16101369979049bbc2b19fe6bdec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   holdPosition: {fileID: 4597305284723869706}
   pickupRange: 5
   throwForce: 20
@@ -358,6 +359,7 @@ MonoBehaviour:
   dropForce: 2
   mainCamera: {fileID: 7250295545125707245}
   currentHeldObject: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!114 &7524277906128006799
 MonoBehaviour:
   m_ObjectHideFlags: 0

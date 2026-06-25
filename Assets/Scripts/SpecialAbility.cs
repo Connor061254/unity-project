@@ -16,7 +16,7 @@ public class SpecialAbility : MonoBehaviour
     private AbilityType currentAbility = AbilityType.none;
 
     private PlayerController playerController;
-    [SerializeField] private float specialRockSpeedBuff = 4f;
+    [SerializeField] private float specialRockSpeedBuff = 2f;
     public AbilityType GetAbilityType(CharacterType character)
     {
         return character switch
@@ -65,7 +65,7 @@ public class SpecialAbility : MonoBehaviour
     {
         if(playerController != null)
         {
-            playerController.currentSpeed += specialRockSpeedBuff;
+            playerController.itemSpeedBuff = specialRockSpeedBuff;
         }
     }
 
@@ -73,7 +73,7 @@ public class SpecialAbility : MonoBehaviour
     {
         if(currentAbility == AbilityType.speedIncrease)
         {
-            playerController.currentSpeed -= specialRockSpeedBuff;
+            playerController.itemSpeedBuff = 0f;
         }
     }
 

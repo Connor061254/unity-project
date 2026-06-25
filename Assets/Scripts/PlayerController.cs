@@ -10,6 +10,8 @@ public class PlayerController : NetworkBehaviour
     public float sprintSpeed = 18f;
 
     public float currentSpeed = 0f;
+
+    public float itemSpeedBuff = 0f;
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
 
@@ -53,12 +55,12 @@ public class PlayerController : NetworkBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                currentSpeed = walkSpeed;
+                currentSpeed = walkSpeed + itemSpeedBuff;
             }
 
             else
             {
-                currentSpeed = sprintSpeed;
+                currentSpeed = sprintSpeed + itemSpeedBuff;
             }
             
             
@@ -66,7 +68,7 @@ public class PlayerController : NetworkBehaviour
 
         else
         {
-            currentSpeed = walkSpeed;
+            currentSpeed = walkSpeed + itemSpeedBuff;
         }
 
         float x = Input.GetAxis("Horizontal");
