@@ -71,20 +71,35 @@ public class InventoryManager : MonoBehaviour
 
        if(pickupScript.currentHeldObject != null)
         {
-            if (pickupScript.currentHeldObject.GetComponent<SpecialAbility>())
+            if (pickupScript.currentHeldObject.GetComponent<SpecialAbility>() != null)
             {
                 pickupScript.currentHeldObject.GetComponent<SpecialAbility>().ReduceSpeed();
             }
-             Destroy(pickupScript.currentHeldObject);
+             
+            Destroy(pickupScript.currentHeldObject);
+
+            pickupScript.heldObject = null;
+            pickupScript.currentHeldObject = null;
         }
       
 
         ItemData targetItem = inventorySlots[slotIndex];
+
+        if(targetItem == null || targetItem.itemGameObject == null)
+        {
+            return;
+        }
+       
         objectToSpawn = targetItem.itemGameObject;
 
         GameObject heldItem = Instantiate(objectToSpawn, spawnPosition);
-        heldItem.GetComponent<Rigidbody>().useGravity = false;
-        heldItem.GetComponent<Rigidbody>().isKinematic = true;
+
+        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
+       
 
         heldItem.transform.localPosition = Vector3.zero;
 
