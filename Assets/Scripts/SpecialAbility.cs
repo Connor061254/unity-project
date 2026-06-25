@@ -73,7 +73,7 @@ public class SpecialAbility : MonoBehaviour
     {
         if(currentAbility == AbilityType.speedIncrease)
         {
-            playerController.currentSpeed += specialRockSpeedBuff;
+            playerController.currentSpeed -= specialRockSpeedBuff;
         }
     }
 
