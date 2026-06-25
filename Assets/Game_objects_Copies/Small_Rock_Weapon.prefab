@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3799499952728231229}
   - component: {fileID: -7511519521167159098}
   - component: {fileID: -1001943033942160589}
+  - component: {fileID: -5414013227199573279}
   m_Layer: 0
   m_Name: Small_Rock_Weapon
   m_TagString: PickUp
@@ -309,6 +310,19 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-5414013227199573279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918039828549773319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3536997962444e46a7535a5d81052ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialAbility
+  specialRockSpeedBuff: 4
 --- !u!1 &5994741639879745927
 GameObject:
   m_ObjectHideFlags: 0
