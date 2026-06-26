@@ -671,6 +671,8 @@ MonoBehaviour:
   walkingCameraBobStrength: 0.1
   runningCameraBobFrequancy: 14
   runningCameraBobStrength: 0.1
+  movementSpeedBuffApply: 1
+  movementSpeedBuff: 2
   smoothReturnSpeed: 4.96
 --- !u!1001 &990818436743393980
 PrefabInstance:

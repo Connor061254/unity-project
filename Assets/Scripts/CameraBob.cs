@@ -11,9 +11,9 @@ public class CameraBob : MonoBehaviour
 
     [SerializeField] private float runningCameraBobStrength;
 
-    [SerializeField] private float movementSpeedBuffApply = 2f;
+    [SerializeField] private float movementSpeedBuffApply = 1f;
 
-    [SerializeField] private float movementSpeedBuff = 1f;
+    [SerializeField] private float movementSpeedBuff = 2f;
 
     private float timer = 0f;
 
@@ -88,6 +88,7 @@ public class CameraBob : MonoBehaviour
         {
             movementSpeedBuffApply = 1f;
         }
+
         timer += Time.deltaTime * (walkingCameraBobFrequancy * movementSpeedBuffApply);
         float newY = defaultPos.y + Mathf.Sin(timer) * (walkingCameraBobStrength * movementSpeedBuffApply);
         float newX = defaultPos.x + Mathf.Cos(timer/2) * (walkingCameraBobStrength * movementSpeedBuffApply);
