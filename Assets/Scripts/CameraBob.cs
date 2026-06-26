@@ -11,6 +11,10 @@ public class CameraBob : MonoBehaviour
 
     [SerializeField] private float runningCameraBobStrength;
 
+    [SerializeField] private float movementSpeedBuffApply = 2f;
+
+    [SerializeField] private float movementSpeedBuff = 1f;
+
     private float timer = 0f;
 
     private float runTimer = 0f;
@@ -18,6 +22,8 @@ public class CameraBob : MonoBehaviour
     private Vector3 defaultPos;
 
     private Vector3 newPos;
+
+    private OfficialPickupScript ops;
 
     [SerializeField] [Range(1,10)] private float smoothReturnSpeed = 5f;
 
@@ -28,7 +34,8 @@ public class CameraBob : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       defaultPos = transform.localPosition;
+       defaultPos = transform.localPosition; 
+       ops = transform.parent.GetComponent<OfficialPickupScript>();
     }
 
     // Update is called once per frame
@@ -72,9 +79,18 @@ public class CameraBob : MonoBehaviour
 
     void StartCameraBob()
     {
-        timer += Time.deltaTime * walkingCameraBobFrequancy;
-        float newY = defaultPos.y + Mathf.Sin(timer) * walkingCameraBobStrength;
-        float newX = defaultPos.x + Mathf.Cos(timer/2) * walkingCameraBobStrength;
+        if( ops.heldObject != null && ops.heldObject.GetComponent<SpecialAbility>() != null && transform.parent.GetComponent<Identification>().type == CharacterType.TubbsMcGee)
+        {
+            
+            movementSpeedBuffApply = movementSpeedBuff;
+        }
+        else
+        {
+            movementSpeedBuffApply = 1f;
+        }
+        timer += Time.deltaTime * (walkingCameraBobFrequancy * movementSpeedBuffApply);
+        float newY = defaultPos.y + Mathf.Sin(timer) * (walkingCameraBobStrength * movementSpeedBuffApply);
+        float newX = defaultPos.x + Mathf.Cos(timer/2) * (walkingCameraBobStrength * movementSpeedBuffApply);
 
         newPos = new Vector3(newX, newY, defaultPos.z);
         transform.localPosition = Vector3.Lerp(transform.localPosition, newPos, Time.deltaTime * smoothReturnSpeed);
@@ -92,9 +108,17 @@ public class CameraBob : MonoBehaviour
 
     void RunCameraBob()
     {
-        runTimer += Time.deltaTime * runningCameraBobFrequancy;
-        float newY = defaultPos.y + Mathf.Sin(runTimer) * runningCameraBobStrength;
-        float newX = defaultPos.x + Mathf.Cos(runTimer/2) * runningCameraBobStrength;
+         if(ops.heldObject != null && ops.heldObject.GetComponent<SpecialAbility>() != null && transform.parent.GetComponent<Identification>().type == CharacterType.TubbsMcGee)
+        {
+            movementSpeedBuffApply = movementSpeedBuff;
+        }
+        else
+        {
+            movementSpeedBuffApply = 1f;
+        }
+        runTimer += Time.deltaTime * (runningCameraBobFrequancy * movementSpeedBuffApply);
+        float newY = defaultPos.y + Mathf.Sin(runTimer) * (runningCameraBobStrength * movementSpeedBuffApply);
+        float newX = defaultPos.x + Mathf.Cos(runTimer/2) * (runningCameraBobStrength * movementSpeedBuffApply);
 
         transform.localPosition = new Vector3(newX, newY, defaultPos.z);
     }
