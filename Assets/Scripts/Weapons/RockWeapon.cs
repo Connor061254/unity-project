@@ -43,13 +43,20 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         {
             Debug.Log("I hit: " + hit.name + " on object: " + hit.transform.root.name);
             var enemy = hit.GetComponentInParent<HealthController>();
+            var player = hit;
             float damage = GetComponent<DamageDealer>().damageNumber;
 
             if (enemy != null)
             {
                 if (!enemiesHitThisSwing.Contains(enemy))
                 {
+                    if(GetComponent<SpecialAbility>() != null)
+                    {
+                        player.GetComponent<EffectsManager>().DelayedDamage();
+                    }
                     enemy.TakeDamage(damage);
+
+                    
 
                     enemiesHitThisSwing.Add(enemy);
                 }
