@@ -43,19 +43,21 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         {
             Debug.Log("I hit: " + hit.name + " on object: " + hit.transform.root.name);
             var enemy = hit.GetComponentInParent<HealthController>();
-            var player = hit;
             float damage = GetComponent<DamageDealer>().damageNumber;
 
             if (enemy != null)
             {
-                if (!enemiesHitThisSwing.Contains(enemy))
+                if (!enemiesHitThisSwing.Contains(enemy) && transform.parent.gameObject.GetComponent<Identification>().type == CharacterType.CutlassKate)
                 {
                     if(GetComponent<SpecialAbility>() != null)
                     {
-                        player.GetComponent<EffectsManager>().DelayedDamage();
+                        enemy.GetComponent<EffectsManager>().StartBleed();
                     }
-                    enemy.TakeDamage(damage);
-
+                    else
+                    {
+                        enemy.TakeDamage(damage);
+                    }
+                    
                     
 
                     enemiesHitThisSwing.Add(enemy);
@@ -129,9 +131,13 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         {
             return;
         }
-        if (collision.gameObject.GetComponent<HealthController>())
+        if (collision.gameObject.GetComponent<HealthController>() && lastOwner.gameObject.GetComponent<Identification>().type == CharacterType.CutlassKate)
         {
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(thrownDamage);
+           collision.gameObject.GetComponent<EffectsManager>().StartBleed();
+        }
+        else
+        {
+             collision.gameObject.GetComponent<HealthController>().TakeDamage(thrownDamage);
         }
 
         lastOwner = null;

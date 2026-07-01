@@ -25,7 +25,12 @@ public class EffectsManager : MonoBehaviour
         
     }
 
-    public IEnumerator DelayedDamage()
+    public void StartBleed()
+    {
+        StartCoroutine(DelayedDamage());
+    }
+
+    private IEnumerator DelayedDamage()
     {
         if(this.gameObject == null) yield break;
 

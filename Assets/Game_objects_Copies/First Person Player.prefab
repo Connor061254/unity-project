@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6993d7d7dd0a4f8662a8c69cd53da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
 --- !u!114 &2230260778600968397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a684a5c830a38a40bde70658b5a4090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
+  damagePerTick: 5
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
