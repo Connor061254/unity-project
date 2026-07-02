@@ -104,6 +104,11 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         throwDirection.Normalize();
 
         rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
+
+        if( GetComponent<SpecialAbility>() != null && thrower.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
+        {
+            GetComponent<SpecialAbility>().SplitShotTimer();
+        }
     }
 
     void OnCollisionEnter(Collision collision)

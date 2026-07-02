@@ -98,7 +98,7 @@ public class SpecialAbility : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator SplitShotTimer()
+    public IEnumerator SplitShotTimer()
     {
         yield return new WaitForSeconds(waitTime);
         SplitShot();
