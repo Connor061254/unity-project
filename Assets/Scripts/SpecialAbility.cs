@@ -1,8 +1,5 @@
-using System;
-using System.Runtime.Serialization;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public enum AbilityType
 {
@@ -17,6 +14,16 @@ public class SpecialAbility : MonoBehaviour
 
     private PlayerController playerController;
     [SerializeField] private float specialRockSpeedBuff = 2f;
+
+    [SerializeField] private float waitTime = 2f;
+
+    [SerializeField] private float smallRocksCount;
+
+    [SerializeField] private GameObject smallRockPrefab;
+
+    [SerializeField] private float spreadForce;
+
+    private Rigidbody rockRb;
     public AbilityType GetAbilityType(CharacterType character)
     {
         return character switch
@@ -56,9 +63,45 @@ public class SpecialAbility : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        rockRb = GetComponent<Rigidbody>();
+    }
+
     private void SplitShot()
     {
-        
+
+        Vector3 spawnPosition = transform.position;
+        Quaternion spawnRotation = transform.rotation;
+
+        Vector3 inheritedVelocity = rockRb.linearVelocity;
+
+        for (int i = 0; i < smallRocksCount; i++)
+        {
+            GameObject smallRock = Instantiate(smallRockPrefab, spawnPosition, spawnRotation);
+            Rigidbody smallRockRb = smallRockPrefab.GetComponent<Rigidbody>();
+
+            if (smallRockRb != null)
+            {
+                Vector3 randomSpread = new Vector3( 
+                    Random.Range(-1f, 1f),
+                    Random.Range(0.2f, 1f),
+                    Random.Range(-1f, 1f)
+                ).normalized * spreadForce;
+                
+                smallRockRb.linearVelocity = inheritedVelocity + randomSpread;
+            }
+
+            
+        }
+
+        Destroy(gameObject);
+    }
+
+    IEnumerator SplitShotTimer()
+    {
+        yield return new WaitForSeconds(waitTime);
+        SplitShot();
     }
 
     public void increaseSpeed()
