@@ -107,7 +107,7 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
 
         if( GetComponent<SpecialAbility>() != null && thrower.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
         {
-            GetComponent<SpecialAbility>().SplitShotTimer();
+            StartCoroutine(GetComponent<SpecialAbility>().SplitShotTimer());
         }
     }
 
