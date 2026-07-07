@@ -1,16 +1,15 @@
-using System;
-using Unity.VisualScripting;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
+
+public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 {
 
     private float nextAttackTime = 0f;
 
     private float range = 2f;
 
-    public GameObject lastOwner;
+    public NetworkObject lastOwner;
 
     private ItemData itemInfo;
 
@@ -67,47 +66,57 @@ public class RockWeapon : MonoBehaviour, IWeapon, IWeaponThrow
         }
     }
 
-    public void ThrowAttack(GameObject thrower, Vector3 targetPoint)
+    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint)
     {   
-        var inventory = thrower.GetComponent<InventoryManager>();
-        var itemProp = this.gameObject.GetComponent<ItemProperties>();
-        var pickupScript = thrower.GetComponent<OfficialPickupScript>();
+        PerformThrowRpc(thrower, targetPoint);
+    }
 
-        pickupScript.currentHeldObject = null;
-
-        itemInfo = itemProp.referenceData;
-
-        inventory.RemoveItem(itemInfo);
-        
-        lastOwner = thrower;
-
-        throwForce = thrower.GetComponent<AttackPrep>().powerMultiplier;
-
-        float baseThrowForce = 15f;
-
-        float finalThrowForce = throwForce * baseThrowForce;
-
-        var rb = GetComponent<Rigidbody>();
-
-        transform.SetParent(null);
-       
-        rb.useGravity = true;
-        rb.isKinematic = false;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-
-        Vector3 throwDirection = (targetPoint - transform.position).normalized;
-
-        throwDirection += Vector3.up * 0.3f;
-
-        throwDirection.Normalize();
-
-        rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
-
-        if( GetComponent<SpecialAbility>() != null && thrower.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint)
+    {
+        if(thrower.TryGet(out NetworkObject throwerObj))
         {
-            GetComponent<SpecialAbility>().SplitShotTimer();
+            var inventory = throwerObj.GetComponent<InventoryManager>();
+            var itemProp = this.gameObject.GetComponent<ItemProperties>();
+            var pickupScript = throwerObj.GetComponent<OfficialPickupScript>();
+
+            pickupScript.currentHeldObject = null;
+
+            itemInfo = itemProp.referenceData;
+
+            inventory.RemoveItem(itemInfo);
+        
+            lastOwner = throwerObj;
+            
+
+            throwForce = throwerObj.GetComponent<AttackPrep>().powerMultiplier;
+
+            float baseThrowForce = 15f;
+
+            float finalThrowForce = throwForce * baseThrowForce;
+
+            var rb = GetComponent<Rigidbody>();
+
+            this.NetworkObject.TryRemoveParent();
+       
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+
+            Vector3 throwDirection = (targetPoint - transform.position).normalized;
+
+            throwDirection += Vector3.up * 0.3f;
+
+            throwDirection.Normalize();
+
+            rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
+
+            if( GetComponent<SpecialAbility>() != null && throwerObj.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
+            {
+                GetComponent<SpecialAbility>().SplitShotTimer();
+            }
         }
     }
 
