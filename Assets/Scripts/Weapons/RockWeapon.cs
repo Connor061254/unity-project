@@ -113,10 +113,10 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
             rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
 
-            if( GetComponent<SpecialAbility>() != null && throwerObj.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
-            {
-                GetComponent<SpecialAbility>().SplitShotTimer();
-            }
+            if (GetComponent<SpecialAbility>() != null && throwerObj.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
+        {
+            StartCoroutine(GetComponent<SpecialAbility>().SplitShotTimer());
+        }
         }
     }
 
