@@ -79,7 +79,7 @@ public class SpecialAbility : MonoBehaviour
         for (int i = 0; i < smallRocksCount; i++)
         {
             GameObject smallRock = Instantiate(smallRockPrefab, spawnPosition, spawnRotation);
-            Rigidbody smallRockRb = smallRockPrefab.GetComponent<Rigidbody>();
+            Rigidbody smallRockRb = smallRock.GetComponent<Rigidbody>();
 
             if (smallRockRb != null)
             {
