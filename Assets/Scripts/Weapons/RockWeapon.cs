@@ -1,3 +1,4 @@
+using Mono.CSharp;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -66,19 +67,21 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
         }
     }
 
-    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint)
+    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint, Vector3 myThrowPosition)
     {   
-        PerformThrowRpc(thrower, targetPoint);
+        PerformThrowRpc(thrower, targetPoint, myThrowPosition);
     }
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint)
+    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint, Vector3 position)
     {
         if(thrower.TryGet(out NetworkObject throwerObj))
         {
             var inventory = throwerObj.GetComponent<InventoryManager>();
             var itemProp = this.gameObject.GetComponent<ItemProperties>();
             var pickupScript = throwerObj.GetComponent<OfficialPickupScript>();
+
+            myThrowPosition = position;
 
             pickupScript.currentHeldObject = null;
 
@@ -98,6 +101,8 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             var rb = GetComponent<Rigidbody>();
 
             this.NetworkObject.TryRemoveParent();
+
+            if(TryGetComponent<Collider>(out var rockCollider)) rockCollider.enabled = true;
        
             rb.useGravity = true;
             rb.isKinematic = false;
@@ -113,6 +118,8 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
             rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
 
+            pickupScript.ClearHeldObjectOnClients(throwerObj);
+
             if (GetComponent<SpecialAbility>() != null && throwerObj.GetComponent<Identification>().type == CharacterType.BeanstalkBill)
         {
             StartCoroutine(GetComponent<SpecialAbility>().SplitShotTimer());
@@ -122,37 +129,37 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
     void OnCollisionEnter(Collision collision)
     {
-         float damage = GetComponent<DamageDealer>().damageNumber;
-         float speed = this.gameObject.GetComponent<Rigidbody>().linearVelocity.magnitude;
+        if(!lastOwner || collision.gameObject == lastOwner) return;
 
-         float curveMultiplier = damageCurve.Evaluate(speed);
-         float thrownDamage = curveMultiplier * damage;
+        HealthController targetHealth = collision.gameObject.GetComponent<HealthController>();
 
-         float distanceTraveled = Vector3.Distance(myThrowPosition, transform.position);
+        if(targetHealth != null)
+        {
+            float damage = GetComponent<DamageDealer>().damageNumber;
+            float speed = this.gameObject.GetComponent<Rigidbody>().linearVelocity.magnitude;
 
-         if(distanceTraveled < minimumEffectiveDistance)
-        {
-            thrownDamage = thrownDamage * thrownDistanceReducer;
-        }
+            float curveMultiplier = damageCurve.Evaluate(speed);
+            float thrownDamage = curveMultiplier * damage;
 
-         Debug.Log("Speed: " + speed + " | Multiplier: " + curveMultiplier + " | Damage: " + thrownDamage);
+            float distanceTraveled = Vector3.Distance(myThrowPosition, transform.position);
 
-        if (!lastOwner)
-        {
-            return;
+            if(distanceTraveled < minimumEffectiveDistance)
+            {
+                thrownDamage = thrownDamage * thrownDistanceReducer;
+            }
+
+            Debug.Log("Speed: " + speed + " | Multiplier: " + curveMultiplier + " | Damage: " + thrownDamage);
+
+            if (lastOwner.gameObject.GetComponent<Identification>().type == CharacterType.CutlassKate)
+            {
+                collision.gameObject.GetComponent<EffectsManager>().StartBleed();
+            }
+            else
+            {
+                targetHealth.TakeDamage(thrownDamage);
+            }
         }
-        if(collision.gameObject == lastOwner)
-        {
-            return;
-        }
-        if (collision.gameObject.GetComponent<HealthController>() && lastOwner.gameObject.GetComponent<Identification>().type == CharacterType.CutlassKate)
-        {
-           collision.gameObject.GetComponent<EffectsManager>().StartBleed();
-        }
-        else
-        {
-             collision.gameObject.GetComponent<HealthController>().TakeDamage(thrownDamage);
-        }
+        
 
         lastOwner = null;
     }

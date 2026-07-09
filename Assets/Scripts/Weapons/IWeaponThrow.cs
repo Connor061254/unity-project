@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IWeaponThrow 
 {
-     void ThrowAttack(NetworkObject thrower, Vector3 targetPoint);
+     void ThrowAttack(NetworkObject thrower, Vector3 targetPoint, Vector3 throwPosition);
 }

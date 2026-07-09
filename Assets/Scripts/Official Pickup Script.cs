@@ -1,8 +1,6 @@
-using UnityEditor;
 using UnityEngine;
 using Unity.Netcode;
-using Unity.VisualScripting;
-using System;
+
 
 public class OfficialPickupScript : NetworkBehaviour
 {
@@ -124,19 +122,6 @@ public class OfficialPickupScript : NetworkBehaviour
 
                         if (wasPickedUp)
                         {
-                            Rigidbody[] allRbs = heldObject.GetComponentsInChildren<Rigidbody>();
-                            foreach (Rigidbody r in allRbs)
-                            {
-                                r.isKinematic = true;
-                                r.useGravity = false;
-                            }
-
-                            Collider[] allCols = heldObject.GetComponentsInChildren<Collider>();
-                            foreach (Collider c in allCols)
-                            {
-                                c.enabled = false;
-                            }
-                            
                             RequestPickUpServerRpc(networkObject.NetworkObjectId);
                         }
                         else
@@ -154,7 +139,19 @@ public class OfficialPickupScript : NetworkBehaviour
     {
         if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
         {
-            // DELETED the SetParent code here. We only need to give the player ownership!
+             Rigidbody[] allRbs = item.gameObject.GetComponentsInChildren<Rigidbody>();
+                            foreach (Rigidbody r in allRbs)
+                            {
+                                r.isKinematic = true;
+                                r.useGravity = false;
+                            }
+
+                            Collider[] allCols = item.gameObject.GetComponentsInChildren<Collider>();
+                            foreach (Collider c in allCols)
+                            {
+                                c.enabled = false;
+                            }
+
             item.ChangeOwnership(rpcParams.Receive.SenderClientId);
             PerformPickUpClientRpc(itemId);
         }
@@ -258,6 +255,27 @@ public class OfficialPickupScript : NetworkBehaviour
 
             // Setting these to null instantly tells LateUpdate() to stop holding the item
             if(heldObject == droppedItem)
+            {
+                heldObject = null;
+                currentHeldObject = null;
+            }
+        }
+    }
+
+    public void ClearHeldObjectOnClients(NetworkObjectReference itemRef)
+    {
+        NotiftyClientsOfThrowRpc(itemRef);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+     private void NotiftyClientsOfThrowRpc(NetworkObjectReference itemRef)
+    {
+        if(itemRef.TryGet(out NetworkObject item))
+        {
+            foreach(var r in item.GetComponentsInChildren<Rigidbody>()) r.isKinematic = false;
+            foreach(var c in item.GetComponentsInChildren<Collider>()) c.enabled = true;
+
+            if (heldObject == item.gameObject)
             {
                 heldObject = null;
                 currentHeldObject = null;

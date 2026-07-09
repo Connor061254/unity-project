@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -108,7 +109,10 @@ public class AttackPrep : MonoBehaviour
 
             if (throwWeapon != null)
             {
-                throwWeapon.ThrowAttack(this.gameObject, targetPoint);
+                NetworkObject netObj = GetComponent<NetworkObject>();
+
+                Vector3 startPos = pickupScript.heldObject.transform.position;
+                throwWeapon.ThrowAttack(netObj, targetPoint, startPos);
             }
 
             pickupScript.heldObject = null;
