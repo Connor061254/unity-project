@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 
 // The cannon signs the IWeapon contract
-public class CannonWeapon : MonoBehaviour, IWeapon 
+public class CannonWeapon : NetworkBehaviour, IWeapon 
 {
     [Header("Cannon Setup")]
     public GameObject cannonballPrefab; 
@@ -16,8 +17,20 @@ public class CannonWeapon : MonoBehaviour, IWeapon
     // This is the method the player script will trigger when you press the "Melee" button
     public void Attack()
     {
-        // 1. Spawn the cannonball
+       PerformShootCannonRpc();
+    }
+
+    [Rpc(SendTo.Server)]
+    private void PerformShootCannonRpc()
+    {
         GameObject newCannonball = Instantiate(cannonballPrefab, firePoint.position, firePoint.rotation);
+        NetworkObject netObj = newCannonball.GetComponent<NetworkObject>();
+
+        if(netObj != null)
+        {
+            netObj.Spawn();
+        }
+        
         var ballRb = newCannonball.GetComponent<Rigidbody>();
         
         if (ballRb != null)
