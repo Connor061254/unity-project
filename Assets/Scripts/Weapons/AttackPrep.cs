@@ -21,6 +21,8 @@ public class AttackPrep : MonoBehaviour
 
     public Vector3 throwPosition;
 
+    private float cooldown;
+
     void Start()
     {
         // 2. FILL THE BOX HERE 
@@ -69,7 +71,15 @@ public class AttackPrep : MonoBehaviour
     {
         if (pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
-             float cooldown = pickupScript.heldObject.GetComponent<RockWeapon>().attackCooldown;
+            if (pickupScript.heldObject.GetComponent<RockWeapon>())
+            {
+                cooldown = pickupScript.heldObject.GetComponent<RockWeapon>().attackCooldown;
+            }
+            else
+            {
+                cooldown = 2f;
+            }
+             
             IWeapon weapon = pickupScript.heldObject.GetComponent<IWeapon>();
 
             if (weapon != null)

@@ -99,6 +99,7 @@ public class OfficialPickupScript : NetworkBehaviour
             if (hit.transform != null && hit.transform.CompareTag("PickUp"))
             {
                 NetworkObject networkObject = hit.transform.GetComponentInParent<NetworkObject>();
+                CannonWeapon weaponScript = hit.transform.GetComponent<CannonWeapon>();
                 
                 if (networkObject != null)
                 {
@@ -108,6 +109,10 @@ public class OfficialPickupScript : NetworkBehaviour
                 if(heldObject.GetComponent<SpecialAbility>() != null)
                 {
                     PassIdentity();
+                }
+                if(weaponScript != null)
+                {
+                    weaponScript.SetupWeaponOwner(GetComponent<KnockBack>());
                 }
 
                 if (heldObject != null)
