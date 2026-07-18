@@ -24,6 +24,12 @@ public class SpecialAbility : NetworkBehaviour
 
     [SerializeField] private float spreadForce;
 
+    private NetworkObject throwableNetObj;
+
+    private Vector3 heldPosition;
+
+    
+
     private Rigidbody rockRb;
     public AbilityType GetAbilityType(CharacterType character)
     {
@@ -73,6 +79,8 @@ public class SpecialAbility : NetworkBehaviour
     {
         if (!IsServer) return;
 
+        Debug.Log($"[SplitShot] Timer finished! Attempting to spawn {smallRocksCount} small rocks.");
+
         Vector3 spawnPosition = transform.position;
         Quaternion spawnRotation = transform.rotation;
 
@@ -80,6 +88,7 @@ public class SpecialAbility : NetworkBehaviour
 
         for (int i = 0; i < smallRocksCount; i++)
         {
+            Debug.Log($"[SplitShot] Spawning small rock index: {i}");
             GameObject smallRock = Instantiate(smallRockPrefab, spawnPosition, spawnRotation);
             NetworkObject netObj = smallRock.GetComponent<NetworkObject>();
             Rigidbody smallRockRb = smallRock.GetComponent<Rigidbody>();

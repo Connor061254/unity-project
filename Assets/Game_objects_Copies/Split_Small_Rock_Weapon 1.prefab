@@ -673,6 +673,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   specialRockSpeedBuff: 4
   waitTime: 2
-  smallRocksCount: 5
+  smallRocksCount: 6
   smallRockPrefab: {fileID: 6879643508856299384}
   spreadForce: 1.5

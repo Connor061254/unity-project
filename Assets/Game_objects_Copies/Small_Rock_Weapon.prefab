@@ -325,8 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialAbility
   ShowTopMostFoldoutHeaderGroup: 1
   specialRockSpeedBuff: 4
-  waitTime: 0.5
-  smallRocksCount: 0
+  waitTime: 2
+  smallRocksCount: 6
   smallRockPrefab: {fileID: 6879643508856299384, guid: 299c5ea3012599946b1ea210af59471d, type: 3}
   spreadForce: 0
 --- !u!1 &5994741639879745927
