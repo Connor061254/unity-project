@@ -342,13 +342,12 @@ GameObject:
   - component: {fileID: 4812021047831599912}
   - component: {fileID: 7762295685191610119}
   - component: {fileID: 7061984641554554670}
+  - component: {fileID: 5667911044822793799}
   - component: {fileID: 3725273589127469425}
   - component: {fileID: 6940108955143847320}
   - component: {fileID: 2911655055063801717}
   - component: {fileID: 8142367078018235341}
-  - component: {fileID: 5667911044822793799}
   - component: {fileID: 3937602456781208408}
-  - component: {fileID: 8807864787225527709}
   - component: {fileID: 4603150187426987243}
   - component: {fileID: 6725563716346787211}
   m_Layer: 0
@@ -467,6 +466,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageMultiplier: 9
   damageNumber: 0
+--- !u!114 &5667911044822793799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879643508856299384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 3653141142
+  InScenePlacedSourceGlobalObjectIdHash: 3483146569
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &3725273589127469425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88168967e5b8fd2499cebc67d3e82968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
+  ShowTopMostFoldoutHeaderGroup: 1
   lastOwner: {fileID: 0}
   attackCooldown: 0.88
   damageCurve:
@@ -570,31 +595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemProperties
   meleeSpeedMultiplier: 1
   referenceData: {fileID: 11400000, guid: 8ba464eab7577e9468100eef60b4b6f2, type: 2}
---- !u!114 &5667911044822793799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879643508856299384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3653141142
-  InScenePlacedSourceGlobalObjectIdHash: 3483146569
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
 --- !u!114 &3937602456781208408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,23 +641,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &8807864787225527709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879643508856299384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3536997962444e46a7535a5d81052ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpecialAbility
-  specialRockSpeedBuff: 4
-  waitTime: 2
-  smallRocksCount: 0
-  smallRockPrefab: {fileID: 0}
-  spreadForce: 0
 --- !u!114 &4603150187426987243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,11 +665,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6879643508856299384}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3536997962444e46a7535a5d81052ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialAbility
+  ShowTopMostFoldoutHeaderGroup: 1
   specialRockSpeedBuff: 4
   waitTime: 2
   smallRocksCount: 5

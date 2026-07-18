@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 public enum AbilityType
@@ -8,7 +9,7 @@ public enum AbilityType
     bleeder,
     none
 }
-public class SpecialAbility : MonoBehaviour
+public class SpecialAbility : NetworkBehaviour
 {
     private AbilityType currentAbility = AbilityType.none;
 
@@ -70,6 +71,7 @@ public class SpecialAbility : MonoBehaviour
 
     private void SplitShot()
     {
+        if (!IsServer) return;
 
         Vector3 spawnPosition = transform.position;
         Quaternion spawnRotation = transform.rotation;
@@ -79,8 +81,9 @@ public class SpecialAbility : MonoBehaviour
         for (int i = 0; i < smallRocksCount; i++)
         {
             GameObject smallRock = Instantiate(smallRockPrefab, spawnPosition, spawnRotation);
+            NetworkObject netObj = smallRock.GetComponent<NetworkObject>();
             Rigidbody smallRockRb = smallRock.GetComponent<Rigidbody>();
-
+            netObj.Spawn();
             if (smallRockRb != null)
             {
                 Vector3 randomSpread = new Vector3( 
@@ -95,13 +98,25 @@ public class SpecialAbility : MonoBehaviour
             
         }
 
+        if (NetworkObject != null && NetworkObject.IsSpawned)
+        {
+            NetworkObject.Despawn(true);
+        }
+
         Destroy(gameObject);
+    }
+
+    [Rpc(SendTo.Server)]
+
+    private void PerformSplitShotRpc()
+    {
+        SplitShot();
     }
 
     public IEnumerator SplitShotTimer()
     {
         yield return new WaitForSeconds(waitTime);
-        SplitShot();
+        PerformSplitShotRpc();
     }
 
     public void increaseSpeed()
