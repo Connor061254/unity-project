@@ -47,6 +47,7 @@
   <Project Path="QFSW.QC.Grammar.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
+  <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />
   <Project Path="Unity.Burst.CodeGen.csproj" />
   <Project Path="QFSW.QC.Editor.csproj" />
@@ -65,6 +66,7 @@
   <Project Path="Unity.Multiplayer.Tools.Initialization.csproj" />
   <Project Path="Unity.Networking.Transport.csproj" />
   <Project Path="Unity.VisualScripting.State.csproj" />
+  <Project Path="Unity.AI.Navigation.Updater.csproj" />
   <Project Path="Unity.Multiplayer.Tools.NetVis.Editor.UI.csproj" />
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Netcode.Editor.csproj" />
@@ -72,6 +74,7 @@
   <Project Path="Unity.Networking.Editor.csproj" />
   <Project Path="Unity.Multiplayer.Tools.NetworkSimulator.Runtime.csproj" />
   <Project Path="Unity.Multiplayer.Tools.MetricTestData.csproj" />
+  <Project Path="Unity.AI.Navigation.Editor.csproj" />
   <Project Path="Unity.AppUI.MVVM.csproj" />
   <Project Path="Unity.Netcode.Editor.CodeGen.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
@@ -85,6 +88,7 @@
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.AppUI.Navigation.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
+  <Project Path="Unity.AI.Navigation.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
   <Project Path="sc.stylizedwater3.runtime.csproj" />
   <Project Path="Unity.Mathematics.Editor.csproj" />
