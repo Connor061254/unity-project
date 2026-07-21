@@ -7071,7 +7071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 305062397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floater1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17862,11 +17862,11 @@ GameObject:
   - component: {fileID: 726211160}
   m_Layer: 0
   m_Name: Boat Physics Root
-  m_TagString: Boat
+  m_TagString: Play
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &726211156
 Transform:
   m_ObjectHideFlags: 0
@@ -17889,7 +17889,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726211155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f08c8f00ad522a4c97f9a4ec41d1c25, type: 3}
   m_Name: 
@@ -21344,7 +21344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875387360}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floater3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31352,7 +31352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1350785621}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floater2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34000,7 +34000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1512602876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SeatPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39207,9 +39207,9 @@ GameObject:
   - component: {fileID: 1780490262}
   - component: {fileID: 1780490261}
   - component: {fileID: 1780490265}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boat
-  m_TagString: Untagged
+  m_TagString: Play
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39222,8 +39222,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0158179, y: -0, z: 0.0421618, w: 0.9989856}
-  m_LocalPosition: {x: -12.676, y: 1.3493937, z: -39.987}
+  m_LocalRotation: {x: 0.02427293, y: -0, z: -0.019855276, w: 0.9995082}
+  m_LocalPosition: {x: -12.676, y: 1.2128778, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39251,7 +39251,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -45368,6 +45368,7 @@ GameObject:
   - component: {fileID: 2096361398}
   - component: {fileID: 2096361397}
   - component: {fileID: 2096361396}
+  - component: {fileID: 2096361399}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -45463,6 +45464,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2096361399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096361395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8727689322623b445a81733c38498e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentNetworkmanager
 --- !u!1001 &2107880527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46570,7 +46583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139834462}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floater4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

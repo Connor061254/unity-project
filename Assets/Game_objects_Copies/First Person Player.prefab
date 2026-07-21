@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 7921308051112718055}
   - component: {fileID: 5483992433315347245}
   - component: {fileID: -1132598788095059485}
+  - component: {fileID: 7893754076363200942}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 148006225
+  GlobalObjectIdHash: 1029230242
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -407,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 04fbe973434f1f04cb622ef4e6232fd6, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -636,6 +637,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
   damagePerTick: 5
+--- !u!114 &7893754076363200942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ae6ef2dcbc8cf49b15ed766893b8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayButton
+  ShowTopMostFoldoutHeaderGroup: 1
+  playerCamera: {fileID: 7250295545125707245}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
