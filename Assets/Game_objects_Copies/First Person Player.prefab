@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 5483992433315347245}
   - component: {fileID: -1132598788095059485}
   - component: {fileID: 7893754076363200942}
+  - component: {fileID: -1503362776809900344}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -286,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1029230242
+  GlobalObjectIdHash: 148006225
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxPlayerHealth: 100
   currentPlayerHealth: 100
+  hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
 --- !u!114 &4188589393323862529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,11 +651,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ae6ef2dcbc8cf49b15ed766893b8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayButton
-  ShowTopMostFoldoutHeaderGroup: 1
   playerCamera: {fileID: 7250295545125707245}
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  matchScene: matchScene
+--- !u!114 &-1503362776809900344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101b26708ad3570428d0a6841c5c23b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Points
+  ShowTopMostFoldoutHeaderGroup: 1
+  points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
