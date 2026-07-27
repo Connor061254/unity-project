@@ -54,6 +54,7 @@ public class AttackPrep : MonoBehaviour
 
     public void OnPrimaryAction(InputAction.CallbackContext context)
     {
+        Debug.Log("Input detected! Phase: " + context.phase);
         if (context.performed)
         {
             if (isAiming)
@@ -71,6 +72,7 @@ public class AttackPrep : MonoBehaviour
     {
         if (pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
+            Debug.Log("Melee triggered! Held object is: " + pickupScript.heldObject);
             if (pickupScript.heldObject.GetComponent<RockWeapon>())
             {
                 cooldown = pickupScript.heldObject.GetComponent<RockWeapon>().attackCooldown;
@@ -84,7 +86,7 @@ public class AttackPrep : MonoBehaviour
 
             if (weapon != null)
             {
-                weapon.Attack();
+                weapon.Attack(gameObject);
                 nextAttackTime = Time.time + cooldown; 
             }
         }
@@ -92,6 +94,7 @@ public class AttackPrep : MonoBehaviour
     
     public void Throw()
     {
+         Debug.Log("Throw triggered! Held object is: " + pickupScript.heldObject);
         var rockScript = pickupScript.heldObject.GetComponent<RockWeapon>();
 
         if (rockScript != null)
@@ -122,7 +125,7 @@ public class AttackPrep : MonoBehaviour
                 NetworkObject netObj = GetComponent<NetworkObject>();
 
                 Vector3 startPos = pickupScript.heldObject.transform.position;
-                throwWeapon.ThrowAttack(netObj, targetPoint, startPos);
+                throwWeapon.ThrowAttack(netObj, targetPoint, startPos, powerMultiplier);
             }
 
             pickupScript.heldObject = null;

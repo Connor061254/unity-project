@@ -9,7 +9,7 @@ public class HealthController : NetworkBehaviour
     [SerializeField] private NetworkVariable<float> currentPlayerHealth = new NetworkVariable<float>(100);
 
 
-  private GameObject myHealthBar;
+    private GameObject myHealthBar;
     private HealthbarUI healthScript;
     public GameObject hatPrefab;
 

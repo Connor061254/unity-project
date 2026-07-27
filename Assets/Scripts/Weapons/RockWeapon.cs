@@ -28,7 +28,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
     private Vector3 myThrowPosition;
 
 
-    public void Attack()
+    public void Attack(GameObject attacker)
     {
          float delay = 1f;
         Vector3 attackPoint = transform.position + (transform.forward * range);
@@ -47,9 +47,9 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
             if (enemy != null)
             {
-                if (!enemiesHitThisSwing.Contains(enemy) && transform.parent.gameObject.GetComponent<Identification>().type == CharacterType.CutlassKate)
+                if (!enemiesHitThisSwing.Contains(enemy))
                 {
-                    if(GetComponent<SpecialAbility>() != null)
+                    if(GetComponent<SpecialAbility>() != null && attacker.GetComponent<Identification>().type == CharacterType.CutlassKate)
                     {
                         enemy.GetComponent<EffectsManager>().StartBleed();
                     }
@@ -67,13 +67,13 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
         }
     }
 
-    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint, Vector3 myThrowPosition)
+    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint, Vector3 myThrowPosition, float powerMultiplier)
     {   
-        PerformThrowRpc(thrower, targetPoint, myThrowPosition);
+        PerformThrowRpc(thrower, targetPoint, myThrowPosition, powerMultiplier);
     }
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint, Vector3 position)
+    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint, Vector3 position, float powerMultiplier)
     {
         if(thrower.TryGet(out NetworkObject throwerObj))
         {
@@ -90,13 +90,10 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             inventory.RemoveItem(itemInfo);
         
             lastOwner = throwerObj;
-            
-
-            throwForce = throwerObj.GetComponent<AttackPrep>().powerMultiplier;
 
             float baseThrowForce = 15f;
 
-            float finalThrowForce = throwForce * baseThrowForce;
+            float finalThrowForce = powerMultiplier * baseThrowForce;
 
             var rb = GetComponent<Rigidbody>();
 
@@ -129,7 +126,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
     void OnCollisionEnter(Collision collision)
     {
-        if(!lastOwner || collision.gameObject == lastOwner) return;
+        if(!lastOwner || collision.gameObject == lastOwner.gameObject) return;
 
         HealthController targetHealth = collision.gameObject.GetComponent<HealthController>();
 

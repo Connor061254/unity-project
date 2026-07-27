@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6993d7d7dd0a4f8662a8c69cd53da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
 --- !u!114 &2230260778600968397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,8 +395,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d091ae062ebb049b0dcfa2e7e0fb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  maxPlayerHealth: 100
-  currentPlayerHealth: 100
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  currentPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
   hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
 --- !u!114 &4188589393323862529
 MonoBehaviour:
@@ -410,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 04fbe973434f1f04cb622ef4e6232fd6, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -440,7 +449,19 @@ MonoBehaviour:
     m_ActionId: c8dd72f2-0eec-4e92-83ad-39ced7ae61fb
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4126959764447674887}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a26900db-885f-4839-80ed-db24146d65bc
     m_ActionName: 'Player/Jump[/Keyboard/minus]'
   - m_PersistentCalls:

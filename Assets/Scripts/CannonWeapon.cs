@@ -17,7 +17,7 @@ public class CannonWeapon : NetworkBehaviour, IWeapon
     private KnockBack assingedKnockback;
 
     // This is the method the player script will trigger when you press the "Melee" button
-    public void Attack()
+    public void Attack(GameObject attacker)
     {
         NetworkObject playerNetObj = GetComponentInParent<NetworkObject>();
         if (IsOwner && playerNetObj != null)

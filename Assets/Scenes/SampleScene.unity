@@ -15884,8 +15884,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d091ae062ebb049b0dcfa2e7e0fb57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  maxPlayerHealth: 100
-  currentPlayerHealth: 100
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  currentPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
   hatPrefab: {fileID: 0}
 --- !u!136 &656868874
 CapsuleCollider:
@@ -39151,8 +39160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0062018204, y: -0, z: 0.036216494, w: 0.99932474}
-  m_LocalPosition: {x: -12.676, y: 1.5094055, z: -39.987}
+  m_LocalRotation: {x: -0.0094033275, y: -0, z: 0.027129766, w: 0.9995877}
+  m_LocalPosition: {x: -12.676, y: 1.2460028, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:
