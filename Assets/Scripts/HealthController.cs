@@ -50,8 +50,12 @@ public class HealthController : NetworkBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
-            GetComponent<PlayerController>().enabled = false;
-            GetComponent<Look>().enabled = false;
+            
+            if(TryGetComponent<PlayerController>(out PlayerController playerController) && TryGetComponent<Look>(out Look look))
+            {
+                playerController.enabled = false;
+                look.enabled = false;
+            }
         }
     }
 

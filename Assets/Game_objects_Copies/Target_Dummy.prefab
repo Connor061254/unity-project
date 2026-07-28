@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 7620562606705131106}
   - component: {fileID: 4997670225404700942}
   - component: {fileID: 4432848572077286966}
+  - component: {fileID: 6831106619209783626}
   - component: {fileID: 6796867985397027574}
   - component: {fileID: 5111264047664215919}
-  - component: {fileID: 6831106619209783626}
   - component: {fileID: 2263749080473586142}
   - component: {fileID: 4364607924683585659}
-  - component: {fileID: -4622702201670483977}
   m_Layer: 0
   m_Name: Target_Dummy
   m_TagString: Untagged
@@ -120,34 +119,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6796867985397027574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4425710208243154909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d091ae062ebb049b0dcfa2e7e0fb57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  maxPlayerHealth: 100
-  currentPlayerHealth: 100
-  hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
---- !u!114 &5111264047664215919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4425710208243154909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a684a5c830a38a40bde70658b5a4090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
-  damagePerTick: 5
 --- !u!114 &6831106619209783626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +144,43 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6796867985397027574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425710208243154909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d091ae062ebb049b0dcfa2e7e0fb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthController
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  currentPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
+--- !u!114 &5111264047664215919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425710208243154909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a684a5c830a38a40bde70658b5a4090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectsManager
+  damagePerTick: 5
 --- !u!114 &2263749080473586142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,18 +245,3 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &-4622702201670483977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4425710208243154909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b8c7705d2deeb46bbcf95370081111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetDummySpawn
-  ShowTopMostFoldoutHeaderGroup: 1
-  dummyPrefab: {fileID: 0}
-  dummySpawnPoint: {x: 0, y: 0, z: 0}
