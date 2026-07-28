@@ -1,3 +1,5 @@
+using System.Collections;
+using Mono.CSharp;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -50,12 +52,14 @@ public class HealthController : NetworkBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
-            
+
             if(TryGetComponent<PlayerController>(out PlayerController playerController) && TryGetComponent<Look>(out Look look))
             {
                 playerController.enabled = false;
                 look.enabled = false;
             }
+
+            StartCoroutine(Respawn());
         }
     }
 
@@ -104,4 +108,19 @@ public class HealthController : NetworkBehaviour
         }
     }
     
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(5f);
+
+        GetComponent<Collider>().enabled = true;
+        GetComponent<MeshRenderer>().enabled = true;
+
+        if(TryGetComponent<PlayerController>(out PlayerController component) && TryGetComponent<Look>(out Look lComponent))
+        {
+            component.enabled = true;
+            lComponent.enabled = true;
+        }
+
+        currentPlayerHealth.Value = 100f;
+    }
 }

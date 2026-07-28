@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class CollectHat : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"colission triggered with {collision.gameObject.name}");
-        if (collision.gameObject.GetComponent<PlayerController>())
+        Debug.Log("triggered");
+        if (other.CompareTag("Player"))
         {
-            Debug.Log($"{collision.gameObject.name} has a PlayerController");
-            var playerPoints = collision.gameObject.GetComponent<Points>();
+            Debug.Log("Player found the hat");
+            var playerPoints = other.gameObject.GetComponent<Points>();
 
             ++playerPoints.points.Value;
-            
+
+            Debug.Log("points added");
+
             Destroy(gameObject);
         }
     }
