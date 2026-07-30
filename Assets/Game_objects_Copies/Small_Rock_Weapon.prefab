@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 3799499952728231229}
   - component: {fileID: -1001943033942160589}
   - component: {fileID: -5414013227199573279}
+  - component: {fileID: 1976990442152409532}
   m_Layer: 0
   m_Name: Small_Rock_Weapon
   m_TagString: PickUp
@@ -329,6 +330,23 @@ MonoBehaviour:
   smallRocksCount: 6
   smallRockPrefab: {fileID: 6879643508856299384, guid: 299c5ea3012599946b1ea210af59471d, type: 3}
   spreadForce: 0
+--- !u!114 &1976990442152409532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918039828549773319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkRigidbody
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
 --- !u!1 &5994741639879745927
 GameObject:
   m_ObjectHideFlags: 0
