@@ -1,4 +1,6 @@
+using TMPro;
 using Unity.Netcode;
+using Unity.Netcode.Components; // Added this to access NetworkTransform
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +13,10 @@ public class SimpleBot : NetworkBehaviour
     public Transform weaponHolder;
 
     private bool hasWeapon = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    // NEW: We will store the actual 3D model we want to hold here
+    private Transform heldWeaponTransform;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -22,7 +27,6 @@ public class SimpleBot : NetworkBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!IsServer) return;
@@ -67,7 +71,7 @@ public class SimpleBot : NetworkBehaviour
         }
     }
 
-    void OnTggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(!IsServer) return;
 
@@ -76,31 +80,56 @@ public class SimpleBot : NetworkBehaviour
             Debug.Log("Attack Player");
         }
 
-        if(!hasWeapon)
+        if(hasWeapon == false)
         {
             if(other.TryGetComponent<NetworkObject>(out NetworkObject rockNetObj) && other.TryGetComponent<RockWeapon>(out RockWeapon weapon))
             {
                 Debug.Log("ran into rock");
                 
-                if(other.TryGetComponent(out Rigidbody rockRb))
+                if(other.TryGetComponent(out Rigidbody rockRb)) rockRb.isKinematic = true;
+                if(other.TryGetComponent(out Collider rockCollider)) rockCollider.enabled = false;
+
+                // Server makes the rock a child of the BOT (Legal Network Move)
+                if (rockNetObj.TrySetParent(this.transform, false))
                 {
-                    rockRb.isKinematic = true;
+                    Debug.Log("parented object");
+                    DisableWeaponsPhysicsRpc(rockNetObj);
                 }
-
-                if(other.TryGetComponent(out Collider rockCollider))
+                else
                 {
-                    rockCollider.isTrigger = true;
+                    Debug.Log("no network object");
                 }
-                rockNetObj.TrySetParent(weaponHolder);
-
-                other.transform.localPosition = Vector3.zero;
-                other.transform.localRotation = Quaternion.identity;
-
-                hasWeapon = true;
-                
+                hasWeapon = true;  
             }
+        }
+    }
 
-           
+    [Rpc(SendTo.ClientsAndHost)]
+    void DisableWeaponsPhysicsRpc(NetworkObjectReference networkObject)
+    {
+        if(networkObject.TryGet(out NetworkObject weapon))
+        {
+            if(weapon.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) rigidbody.isKinematic = true;
+            if(weapon.TryGetComponent<Collider>(out Collider collider)) collider.enabled = false;
+
+            // Turn off the NetworkTransform so the server stops fighting our visual position!
+            if (weapon.TryGetComponent<NetworkTransform>(out NetworkTransform netTransform)) netTransform.enabled = false;
+
+            // INSTEAD of parenting, we save the transform reference
+            heldWeaponTransform = weapon.transform;
+        }
+    }
+
+    // NEW: LateUpdate runs AFTER all animations and physics for the frame.
+    // This perfectly snaps the weapon to the hand on everyone's screen.
+    void LateUpdate()
+    {
+        // Notice there is NO "if(!IsServer) return;" here! 
+        // We want this visual snapping to run on all clients.
+        if (heldWeaponTransform != null && weaponHolder != null)
+        {
+            heldWeaponTransform.position = weaponHolder.position;
+            heldWeaponTransform.rotation = weaponHolder.rotation;
         }
     }
 }

@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleBot
   ShowTopMostFoldoutHeaderGroup: 1
   targetPlayer: {fileID: 0}
-  weaponHolder: {fileID: 0}
+  weaponHolder: {fileID: 5982594048569112013}
 --- !u!114 &2120528613511610605
 MonoBehaviour:
   m_ObjectHideFlags: 0
