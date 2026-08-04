@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4940432470187425651}
   m_Layer: 0
   m_Name: Bot
-  m_TagString: Untagged
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleBot
   ShowTopMostFoldoutHeaderGroup: 1
-  targetPlayer: {fileID: 0}
   weaponHolder: {fileID: 5982594048569112013}
 --- !u!114 &2120528613511610605
 MonoBehaviour:

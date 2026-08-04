@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Components; // Added this to access NetworkTransform
 using UnityEngine;
@@ -7,13 +5,9 @@ using UnityEngine.AI;
 
 public class SimpleBot : NetworkBehaviour
 {
-    public Transform targetPlayer;
 
     private Transform currentTarget;
     private NavMeshAgent agent;
-    private Transform targetWeapon;
-
-    private Transform targetBot;
 
     public Transform weaponHolder;
 
@@ -64,6 +58,21 @@ public class SimpleBot : NetworkBehaviour
             }
         }
 
+        GameObject[] allBots = GameObject.FindGameObjectsWithTag("Bot");
+
+        foreach(GameObject bot in allBots)
+        {
+            if (bot == this.gameObject) continue;
+            
+            float distToBot = Vector3.Distance(transform.position, bot.transform.position);
+
+            if(distToBot < closestDistance)
+            {
+                closestDistance = distToBot;
+                bestTarget = bot.transform;
+            }
+        }
+
         if (!hasWeapon)
         {
             DamageDealer[] allWeapons = GameObject.FindObjectsByType<DamageDealer>();
@@ -90,6 +99,11 @@ public class SimpleBot : NetworkBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Attack Player");
+        }
+
+        if (other.CompareTag("Bot"))
+        {
+            Debug.Log("Attack Bot");
         }
 
         if(hasWeapon == false)

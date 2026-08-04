@@ -12,6 +12,7 @@ TagManager:
   - HealthUI
   - Play
   - Hat
+  - Bot
   layers:
   - Default
   - TransparentFX
