@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Components; // Added this to access NetworkTransform
@@ -7,8 +8,12 @@ using UnityEngine.AI;
 public class SimpleBot : NetworkBehaviour
 {
     public Transform targetPlayer;
+
+    private Transform currentTarget;
     private NavMeshAgent agent;
     private Transform targetWeapon;
+
+    private Transform targetBot;
 
     public Transform weaponHolder;
 
@@ -31,44 +36,51 @@ public class SimpleBot : NetworkBehaviour
     {
         if(!IsServer) return;
 
-        if(targetWeapon == null)
-        {
-            FindWeapon();
-            return;
-        }
+        DetermineTarget();
 
-        if (targetPlayer == null)
+        if (currentTarget != null)
         {
-            FindPlayer();
-            return;
-        }
-
-        agent.destination = targetWeapon.position;
-
-        if (hasWeapon)
-        {
-            agent.destination = targetPlayer.position;
+            agent.destination = currentTarget.position;
         }
     }
 
-    void FindPlayer()
+       
+
+    void DetermineTarget()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        Transform bestTarget = null;
+        float closestDistance = Mathf.Infinity;
 
-        if(player != null)
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject player in allPlayers)
         {
-            targetPlayer = player.transform;
+            float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+            if(distToPlayer < closestDistance)
+            {
+                closestDistance = distToPlayer;
+                bestTarget = player.transform;
+            }
         }
-    }
 
-    void FindWeapon()
-    {
-        var weapon = FindAnyObjectByType<RockWeapon>();
-
-        if(weapon != null)
+        if (!hasWeapon)
         {
-            targetWeapon = weapon.transform;
+            DamageDealer[] allWeapons = GameObject.FindObjectsByType<DamageDealer>();
+
+            foreach (DamageDealer weapon in allWeapons)
+            {
+                float distToWeapon = Vector3.Distance(transform.position, weapon.transform.position);
+
+                if(distToWeapon < closestDistance)
+                {
+                    closestDistance = distToWeapon;
+                    bestTarget = weapon.transform;
+                }
+            }
         }
+
+        currentTarget = bestTarget;
     }
 
     void OnTriggerEnter(Collider other)
