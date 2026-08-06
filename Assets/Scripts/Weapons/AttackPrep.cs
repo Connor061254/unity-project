@@ -23,16 +23,50 @@ public class AttackPrep : MonoBehaviour
 
     private float cooldown;
 
+    private TrajectoryPredictor trajectoryPredictor;
+
+    private float baseThrowSpeed = 15f;
+
     void Start()
     {
         // 2. FILL THE BOX HERE 
         // (Unity runs this once as soon as the game starts)
         pickupScript = GetComponent<OfficialPickupScript>();
+
+        trajectoryPredictor = GetComponent<TrajectoryPredictor>();
     }
 
     void Update()
     {
-        
+        if (isAiming && pickupScript != null && pickupScript.heldObject != null)
+        {
+            // 1. Calculate the real-time power multiplier
+            float currentPower = Mathf.Clamp(Time.time - aimStartTime, 0.5f, 2f);
+
+            // 2. Find the target point (mirroring your Throw logic)
+            Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            Vector3 targetPoint;
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                targetPoint = hit.point;
+            }
+            else
+            {
+                targetPoint = ray.GetPoint(100f);
+            }
+
+            // 3. Calculate the velocity vector for the visualizer
+            Vector3 startPos = pickupScript.heldObject.transform.position;
+            Vector3 throwDirection = (targetPoint - startPos).normalized;
+            Vector3 currentVelocity = throwDirection * (baseThrowSpeed * currentPower);
+
+            // 4. Draw the line!
+            if (trajectoryPredictor != null)
+            {
+                trajectoryPredictor.UpdateTrajectory(startPos, currentVelocity);
+            }
+        }
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -49,6 +83,11 @@ public class AttackPrep : MonoBehaviour
             isAiming = false;
 
             powerMultiplier = 0;
+
+            if(trajectoryPredictor != null)
+            {
+                trajectoryPredictor.ClearTrajectory();
+            }
         }
     }
 
@@ -129,6 +168,13 @@ public class AttackPrep : MonoBehaviour
             }
 
             pickupScript.heldObject = null;
+
+            if(trajectoryPredictor != null)
+            {
+                trajectoryPredictor.ClearTrajectory();
+            }
+
+            isAiming = false;
         }
     }
 }
