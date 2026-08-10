@@ -44,9 +44,9 @@ public class AttackPrep : MonoBehaviour
 
             // 3. Calculate the velocity dynamically right NOW
             Vector3 startPos = pickupScript.heldObject.transform.position;
-            Vector3 currentVelocity = CalculateThrowVelocity(startPos, targetPoint, currentPower);
+            Vector3 currentVelocity = CalculateThrowVelocity(currentPower);
 
-            // 4. Draw the line using the active velocity!
+            // 4. Draw the line!
             if (trajectoryPredictor != null)
             {
                 trajectoryPredictor.UpdateTrajectory(startPos, currentVelocity);
@@ -145,7 +145,7 @@ public class AttackPrep : MonoBehaviour
                 Vector3 startPosition = pickupScript.heldObject.transform.position;
                 
                 // Calculate the final velocity at the exact moment of the throw
-                Vector3 finalVelocity = CalculateThrowVelocity(startPosition, targetPosition, powerMultiplier);
+               Vector3 finalVelocity = CalculateThrowVelocity(powerMultiplier);
                 throwWeapon.ThrowAttack(netObj, finalVelocity);
             }
 
@@ -160,19 +160,20 @@ public class AttackPrep : MonoBehaviour
         }
     }
 
-    private Vector3 CalculateThrowVelocity(Vector3 start, Vector3 target, float power)
+    private Vector3 CalculateThrowVelocity(float power)
     {
         // Prevent division by zero if power gets weird
-        float throwSpeed = Mathf.Max(baseThrowSpeed * power, 0.1f); 
+       float currentSpeed = baseThrowSpeed * power;
+
+        // 2. Base the throw entirely on where the player's eyes are looking
+        Vector3 throwDirection = MainCamera.transform.forward;
+
+        // 3. Add a generous, consistent upward arc. 
+        // This ensures a low-power throw arcs nicely over the ground instead of slamming into your toes.
+        throwDirection += Vector3.up * 0.35f; 
         
-        float distance = Vector3.Distance(start, target);
-        float airTime = distance / throwSpeed;
+        throwDirection.Normalize();
 
-        Vector3 displacement = target - start;
-        Vector3 calculatedVelocity = displacement / airTime;
-
-        calculatedVelocity -= 0.5f * Physics.gravity * airTime;
-
-        return calculatedVelocity;
+        return throwDirection * currentSpeed;
     }
 }
