@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using NUnit.Framework;
 using Unity.Netcode;
 using UnityEngine;
@@ -7,32 +6,19 @@ using UnityEngine.InputSystem;
 public class AttackPrep : MonoBehaviour
 {
     private float nextAttackTime = 0f;
-
-    // 1. CREATE THE EMPTY BOX HERE 
-    // (Inside the class, but outside of any methods)
     private OfficialPickupScript pickupScript; 
 
     public Camera MainCamera;
     public bool isAiming = false;
-
     private float aimStartTime = 0f;
-
     public float powerMultiplier;
-
-    public Vector3 throwPosition;
-
     private float cooldown;
-
     private TrajectoryPredictor trajectoryPredictor;
-
-    private float baseThrowSpeed = 15f;
+    private float baseThrowSpeed = 10f;
 
     void Start()
     {
-        // 2. FILL THE BOX HERE 
-        // (Unity runs this once as soon as the game starts)
         pickupScript = GetComponent<OfficialPickupScript>();
-
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
     }
 
@@ -43,7 +29,7 @@ public class AttackPrep : MonoBehaviour
             // 1. Calculate the real-time power multiplier
             float currentPower = Mathf.Clamp(Time.time - aimStartTime, 0.5f, 2f);
 
-            // 2. Find the target point (mirroring your Throw logic)
+            // 2. Find the target point 
             Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             Vector3 targetPoint;
 
@@ -56,12 +42,11 @@ public class AttackPrep : MonoBehaviour
                 targetPoint = ray.GetPoint(100f);
             }
 
-            // 3. Calculate the velocity vector for the visualizer
+            // 3. Calculate the velocity dynamically right NOW
             Vector3 startPos = pickupScript.heldObject.transform.position;
-            Vector3 throwDirection = (targetPoint - startPos).normalized;
-            Vector3 currentVelocity = throwDirection * (baseThrowSpeed * currentPower);
+            Vector3 currentVelocity = CalculateThrowVelocity(startPos, targetPoint, currentPower);
 
-            // 4. Draw the line!
+            // 4. Draw the line using the active velocity!
             if (trajectoryPredictor != null)
             {
                 trajectoryPredictor.UpdateTrajectory(startPos, currentVelocity);
@@ -74,14 +59,12 @@ public class AttackPrep : MonoBehaviour
         if (context.started)
         {
             isAiming = true;
-
             aimStartTime = Time.time;
         }
 
         if (context.canceled)
         {
             isAiming = false;
-
             powerMultiplier = 0;
 
             if(trajectoryPredictor != null)
@@ -93,7 +76,6 @@ public class AttackPrep : MonoBehaviour
 
     public void OnPrimaryAction(InputAction.CallbackContext context)
     {
-        Debug.Log("Input detected! Phase: " + context.phase);
         if (context.performed)
         {
             if (isAiming)
@@ -111,7 +93,6 @@ public class AttackPrep : MonoBehaviour
     {
         if (pickupScript != null && pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
-            Debug.Log("Melee triggered! Held object is: " + pickupScript.heldObject);
             if (pickupScript.heldObject.GetComponent<RockWeapon>())
             {
                 cooldown = pickupScript.heldObject.GetComponent<RockWeapon>().attackCooldown;
@@ -133,38 +114,39 @@ public class AttackPrep : MonoBehaviour
     
     public void Throw()
     {
-         Debug.Log("Throw triggered! Held object is: " + pickupScript.heldObject);
         var rockScript = pickupScript.heldObject.GetComponent<RockWeapon>();
 
         if (rockScript != null)
         {
             rockScript.SetThrowPosition(pickupScript.heldObject.transform.position);
         }
-        powerMultiplier = Time.time - aimStartTime;
-
-        powerMultiplier = Mathf.Clamp(powerMultiplier, 0.5f, 2f);
-        if(pickupScript.heldObject != null && UnityEngine.Time.time >= nextAttackTime)
+        
+        powerMultiplier = Mathf.Clamp(Time.time - aimStartTime, 0.5f, 2f);
+        
+        if(pickupScript.heldObject != null && Time.time >= nextAttackTime)
         {
+            Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            Vector3 targetPosition;
 
-         Ray ray = MainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-         Vector3 targetPoint;
-
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            targetPoint = hit.point;
-        }
-        else
-        {
-            targetPoint = ray.GetPoint(100f);
-        }
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                targetPosition = hit.point;
+            }
+            else
+            {
+                targetPosition = ray.GetPoint(100f);
+            }
+            
             IWeaponThrow throwWeapon = pickupScript.heldObject.GetComponent<IWeaponThrow>();
 
             if (throwWeapon != null)
             {
                 NetworkObject netObj = GetComponent<NetworkObject>();
-
-                Vector3 startPos = pickupScript.heldObject.transform.position;
-                throwWeapon.ThrowAttack(netObj, targetPoint, startPos, powerMultiplier);
+                Vector3 startPosition = pickupScript.heldObject.transform.position;
+                
+                // Calculate the final velocity at the exact moment of the throw
+                Vector3 finalVelocity = CalculateThrowVelocity(startPosition, targetPosition, powerMultiplier);
+                throwWeapon.ThrowAttack(netObj, finalVelocity);
             }
 
             pickupScript.heldObject = null;
@@ -176,5 +158,21 @@ public class AttackPrep : MonoBehaviour
 
             isAiming = false;
         }
+    }
+
+    private Vector3 CalculateThrowVelocity(Vector3 start, Vector3 target, float power)
+    {
+        // Prevent division by zero if power gets weird
+        float throwSpeed = Mathf.Max(baseThrowSpeed * power, 0.1f); 
+        
+        float distance = Vector3.Distance(start, target);
+        float airTime = distance / throwSpeed;
+
+        Vector3 displacement = target - start;
+        Vector3 calculatedVelocity = displacement / airTime;
+
+        calculatedVelocity -= 0.5f * Physics.gravity * airTime;
+
+        return calculatedVelocity;
     }
 }

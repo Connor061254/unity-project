@@ -67,13 +67,13 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
         }
     }
 
-    public void ThrowAttack(NetworkObject thrower, Vector3 targetPoint, Vector3 myThrowPosition, float powerMultiplier)
+    public void ThrowAttack(NetworkObject thrower, Vector3 Velocity)
     {   
-        PerformThrowRpc(thrower, targetPoint, myThrowPosition, powerMultiplier);
+        PerformThrowRpc(thrower, Velocity);
     }
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 targetPoint, Vector3 position, float powerMultiplier)
+    private void PerformThrowRpc(NetworkObjectReference thrower, Vector3 Velocity)
     {
         if(thrower.TryGet(out NetworkObject throwerObj))
         {
@@ -81,7 +81,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             var itemProp = this.gameObject.GetComponent<ItemProperties>();
             var pickupScript = throwerObj.GetComponent<OfficialPickupScript>();
 
-            myThrowPosition = position;
+            //myThrowPosition = position;
 
             pickupScript.currentHeldObject = null;
 
@@ -91,9 +91,9 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
         
             lastOwner = throwerObj;
 
-            float baseThrowForce = 15f;
+            //float baseThrowForce = 15f;
 
-            float finalThrowForce = powerMultiplier * baseThrowForce;
+            //float finalThrowForce = powerMultiplier * baseThrowForce;
 
             var rb = GetComponent<Rigidbody>();
 
@@ -107,13 +107,15 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             rb.angularVelocity = Vector3.zero;
 
 
-            Vector3 throwDirection = (targetPoint - transform.position).normalized;
+            //Vector3 throwDirection = (targetPoint - transform.position).normalized;
 
-            throwDirection += Vector3.up * 0.3f;
+           // throwDirection += Vector3.up * 0.3f;
 
-            throwDirection.Normalize();
+            //throwDirection.Normalize();
 
-            rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
+            //rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
+
+            rb.linearVelocity = Velocity;
 
             pickupScript.ClearHeldObjectOnClients(throwerObj);
 

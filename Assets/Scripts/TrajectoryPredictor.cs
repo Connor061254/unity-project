@@ -13,7 +13,7 @@ public class TrajectoryPredictor : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void UpdateTrajectory(Vector3 startPos, Vector3 initialVelocity)
+    public void UpdateTrajectory(Vector3 startPos, Vector3 Velocity)
     {
         lineRenderer.positionCount = lineSegmentCount;
         Vector3[] trajectoryPoints = new Vector3[lineSegmentCount];
@@ -22,9 +22,9 @@ public class TrajectoryPredictor : MonoBehaviour
         {
             float time = i * timeStep;
 
-            Vector3 positionOffset = initialVelocity * time + 0.5f * Physics.gravity *Mathf.Pow(time, 2);
-
-            trajectoryPoints[i] = startPos + positionOffset;
+            //Vector3 positionOffset = initialVelocity * time + 0.5f * Physics.gravity *Mathf.Pow(time, 2);
+            Vector3 gravityOffset = 0.5f * Physics.gravity * Mathf.Pow(time, 2);
+            trajectoryPoints[i] = startPos + (Velocity * time) + gravityOffset;
         }
 
         lineRenderer.SetPositions(trajectoryPoints);
