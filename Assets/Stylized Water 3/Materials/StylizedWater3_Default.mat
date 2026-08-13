@@ -121,7 +121,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WaveProfile:
-        m_Texture: {fileID: 5393152077581806659, guid: 1ca4610f5bf9e2f4bb39535503a79eeb, type: 2}
+        m_Texture: {fileID: 5393152077581806659, guid: e27c7b10075e3874e9b1dec74f0df7d4, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:

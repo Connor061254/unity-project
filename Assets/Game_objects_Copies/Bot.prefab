@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 2120528613511610605}
   - component: {fileID: 5700237289978757076}
   - component: {fileID: 4940432470187425651}
+  - component: {fileID: -8357845028941813620}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Bot
@@ -303,3 +304,27 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &-8357845028941813620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459109640876377203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d091ae062ebb049b0dcfa2e7e0fb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthController
+  ShowTopMostFoldoutHeaderGroup: 1
+  maxPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  currentPlayerHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 100
+  hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
