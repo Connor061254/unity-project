@@ -12,6 +12,7 @@ public class CollectHat : MonoBehaviour
             var playerPoints = other.gameObject.GetComponent<Points>();
 
             ++playerPoints.points.Value;
+            playerPoints.AddPoints();
 
             Debug.Log("points added");
 
