@@ -522,7 +522,6 @@ MonoBehaviour:
   MainCamera: {fileID: 7250295545125707245}
   isAiming: 0
   powerMultiplier: 0
-  throwPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2266534665991127803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,7 +691,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Points
   ShowTopMostFoldoutHeaderGroup: 1
+  teamName: 0
   points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  team1Points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  team2Points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  team3Points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  team4Points:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  team5Points:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0

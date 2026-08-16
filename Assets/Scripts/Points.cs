@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class Points : NetworkBehaviour
 {
+    [SerializeField] private TeamName teamName;
+    public NetworkVariable<int> points = new NetworkVariable<int>(0);
+    public NetworkVariable<int> team1Points = new NetworkVariable<int>();
+    public NetworkVariable<int> team2Points = new NetworkVariable<int>();
+    public NetworkVariable<int> team3Points = new NetworkVariable<int>();
+    public NetworkVariable<int> team4Points = new NetworkVariable<int>();
+    public NetworkVariable<int> team5Points = new NetworkVariable<int>();
 
-    private TeamName teamName;
-   public NetworkVariable<int> points = new NetworkVariable<int>(0);
-   public NetworkVariable<int> team1Points = new NetworkVariable<int>();
-   public NetworkVariable<int> team2Points = new NetworkVariable<int>();
-   public NetworkVariable<int> team3Points = new NetworkVariable<int>();
-   public NetworkVariable<int> team4Points = new NetworkVariable<int>();
-   public NetworkVariable<int> team5Points = new NetworkVariable<int>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Update()
+    {
+        CheckForWin();
+    } 
     public override void OnNetworkSpawn()
     {
         if (IsOwner)
@@ -74,24 +78,63 @@ public class Points : NetworkBehaviour
         switch (teamName)
         {
             case TeamName.team1:
-            team1Points.Value--;
+            team1Points.Value -= points.Value;
             break;
 
             case TeamName.team2:
-            team2Points.Value--;
+            team2Points.Value -= points.Value;
             break;
 
             case TeamName.team3:
-            team3Points.Value--;
+            team3Points.Value -= points.Value;
             break;
 
             case TeamName.team4:
-            team4Points.Value--;
+            team4Points.Value -= points.Value;
             break;
 
             case TeamName.team5:
-            team5Points.Value--;
+            team5Points.Value -= points.Value;
             break;
+        }
     }
+
+    private void CheckForWin()
+    {
+        switch (team1Points.Value)
+        {
+            case 15:
+            //Temporary (need to add an endscreen showing who won)
+            NetworkManager.Singleton.Shutdown();
+            break;
+        }
+        switch (team2Points.Value)
+        {
+            case 15:
+            //Temporary (need to add an endscreen showing who won)
+            NetworkManager.Singleton.Shutdown();
+            break;
+        }
+         switch (team3Points.Value)
+        {
+            case 15:
+            //Temporary (need to add an endscreen showing who won)
+            NetworkManager.Singleton.Shutdown();
+            break;
+        }
+         switch (team4Points.Value)
+        {
+            case 15:
+            //Temporary (need to add an endscreen showing who won)
+            NetworkManager.Singleton.Shutdown();
+            break;
+        }
+         switch (team5Points.Value)
+        {
+            case 15:
+            //Temporary (need to add an endscreen showing who won)
+            NetworkManager.Singleton.Shutdown();
+            break;
+        }
     }
 }

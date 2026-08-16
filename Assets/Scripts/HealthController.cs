@@ -88,7 +88,8 @@ public class HealthController : NetworkBehaviour
                 DropHatsServerSide(transform.position, hatsToDrop);
             }
             
-            getPoints.points.Value = 0; // Server changes points directly
+            getPoints.points.Value = 0;
+            getPoints.RemovePoints();
         }
     }
 
