@@ -1,5 +1,4 @@
 using System.Collections;
-using Mono.CSharp;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -35,6 +34,14 @@ public class HealthController : NetworkBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.Comma))
+        {
+            currentPlayerHealth.Value = 0;
+        }
+    }
+
     public override void OnNetworkDespawn()
     {
         // Always unsubscribe when destroyed to prevent memory leaks
@@ -50,8 +57,15 @@ public class HealthController : NetworkBehaviour
         // If health hits 0, trigger the local death visuals
         if (newValue <= 0 && previousValue > 0)
         {
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<Collider>().enabled = false;
+            var getPoints = GetComponent<Points>();
+            getPoints.RemovePoints(); 
+
+            if(GetComponent<MeshRenderer>() && GetComponent<Collider>().enabled)
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+                GetComponent<Collider>().enabled = false;
+            }
+            
 
             if(TryGetComponent<PlayerController>(out PlayerController playerController) && TryGetComponent<Look>(out Look look))
             {
@@ -89,7 +103,6 @@ public class HealthController : NetworkBehaviour
             }
             
             getPoints.points.Value = 0;
-            getPoints.RemovePoints();
         }
     }
 

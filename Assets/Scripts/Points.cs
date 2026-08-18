@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Points : NetworkBehaviour
@@ -29,6 +30,7 @@ public class Points : NetworkBehaviour
     private void RequestAddPointRpc()
     {
         points.Value = 1;
+        AddPoints();
     }
 
     [Rpc(SendTo.Server)]
@@ -97,6 +99,8 @@ public class Points : NetworkBehaviour
             team5Points.Value -= points.Value;
             break;
         }
+
+        points.Value = 0;
     }
 
     private void CheckForWin()
