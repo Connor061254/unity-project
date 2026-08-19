@@ -38,7 +38,7 @@ public class HealthController : NetworkBehaviour
     {
         if (Input.GetKey(KeyCode.Comma))
         {
-            currentPlayerHealth.Value = 0;
+            TakeDamage(100f);
         }
     }
 
@@ -102,7 +102,7 @@ public class HealthController : NetworkBehaviour
                 DropHatsServerSide(transform.position, hatsToDrop);
             }
             
-            getPoints.points.Value = 0;
+            getPoints.RemovePoints();
         }
     }
 
@@ -135,6 +135,10 @@ public class HealthController : NetworkBehaviour
             lComponent.enabled = true;
         }
 
-        currentPlayerHealth.Value = 100f;
+        if (IsServer)
+        {
+             currentPlayerHealth.Value = 100f;
+        }
+       
     }
 }
