@@ -31,6 +31,10 @@ public class Points : NetworkBehaviour
     {
         points.Value = 1;
         AddPoints();
+
+        var hat = GetComponent<StackHats>();
+
+        hat.RequestStackHatsRpc();
     }
 
     [Rpc(SendTo.Server)]
@@ -68,6 +72,10 @@ public class Points : NetworkBehaviour
             team5Points.Value++;
             break;
         }
+
+       var hat = GetComponent<StackHats>();
+
+       hat.RequestStackHatsRpc();
     }
 
     public void RemovePoints()

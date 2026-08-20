@@ -1,10 +1,17 @@
 using Unity.InferenceEngine;
+using Unity.Netcode;
 using UnityEngine;
 
-public class CollectHat : MonoBehaviour
-{
+public class CollectHat : NetworkBehaviour
+{ 
+    [SerializeField] private Transform hatPosition;
+
+    [SerializeField] private GameObject hatPrefab;
+
      private void OnTriggerEnter(Collider other)
     {
+        if (!IsServer) return;
+
         Debug.Log("triggered");
         if (other.CompareTag("Player"))
         {

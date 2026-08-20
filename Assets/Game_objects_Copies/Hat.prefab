@@ -198,3 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb664c713ce3f064f8d6461c2bc04985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectHat
+  ShowTopMostFoldoutHeaderGroup: 1
+  hatPosition: {fileID: 459955441556044222, guid: cb4265347fe2e9d4d9e0600899a50c6e, type: 3}
+  hatPrefab: {fileID: 2913694054910756132}
