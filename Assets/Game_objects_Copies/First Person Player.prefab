@@ -178,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 848237842109702481}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.87, z: -0.047}
+  m_LocalPosition: {x: 0.064, y: 0.87, z: -0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,7 +893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StackHats
   ShowTopMostFoldoutHeaderGroup: 1
   hatPosition: {fileID: 7053047136996084302}
-  hatPrefab: {fileID: 2913694054910756132, guid: 1485e9365002f5346b6fa6e2bd90519a, type: 3}
+  hatPrefab: {fileID: 7182466383449568951, guid: 61f9025d355eb7245b82b8a8227de39f, type: 3}
+  distanceBetweenHatsMultiplier: 0.2
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0

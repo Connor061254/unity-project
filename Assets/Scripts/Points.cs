@@ -1,3 +1,4 @@
+using Unity.AppUI.UI;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class Points : NetworkBehaviour
     } 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner)
+        if (IsOwner && IsLocalPlayer)
         {
             RequestAddPointRpc();
         }
@@ -31,10 +32,6 @@ public class Points : NetworkBehaviour
     {
         points.Value = 1;
         AddPoints();
-
-        var hat = GetComponent<StackHats>();
-
-        hat.RequestStackHatsRpc();
     }
 
     [Rpc(SendTo.Server)]
@@ -73,9 +70,13 @@ public class Points : NetworkBehaviour
             break;
         }
 
-       var hat = GetComponent<StackHats>();
+        var hat = GetComponent<StackHats>();
 
-       hat.RequestStackHatsRpc();
+        if(hat != null)
+        {
+             hat.RequestStackHatsRpc();
+        }
+      
     }
 
     public void RemovePoints()
