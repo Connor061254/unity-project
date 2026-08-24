@@ -204,6 +204,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   hatPosition: {fileID: 459955441556044222, guid: cb4265347fe2e9d4d9e0600899a50c6e, type: 3}
   hatPrefab: {fileID: 2913694054910756132}
+  moveSpeed: 1
 --- !u!54 &4750639662673881921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,5 +300,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.25
+  m_Radius: 4.32
   m_Center: {x: 0, y: 0, z: 0}
