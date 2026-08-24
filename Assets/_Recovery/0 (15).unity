@@ -15965,8 +15965,6 @@ MonoBehaviour:
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 100
   hatPrefab: {fileID: 0}
-  outwardForce: 3
-  upwardForce: 5
 --- !u!136 &656868874
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -33567,7 +33565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2543100919
+  GlobalObjectIdHash: 2505761838
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -39237,7 +39235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3735094678
+  GlobalObjectIdHash: 2253916738
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -39293,8 +39291,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780490258}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.026324049, y: -0, z: 0.008789813, w: 0.99961483}
-  m_LocalPosition: {x: -12.676, y: 1.0968055, z: -39.987}
+  m_LocalRotation: {x: 0.02766108, y: -0, z: -0.0030182947, w: 0.9996128}
+  m_LocalPosition: {x: -12.676, y: 1.3866243, z: -39.987}
   m_LocalScale: {x: 2.896, y: 1, z: 1.446}
   m_ConstrainProportionsScale: 0
   m_Children:

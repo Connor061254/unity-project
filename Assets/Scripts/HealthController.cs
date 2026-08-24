@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthController : NetworkBehaviour
@@ -13,6 +14,10 @@ public class HealthController : NetworkBehaviour
     private GameObject myHealthBar;
     private HealthbarUI healthScript;
     public GameObject hatPrefab;
+
+    public float outwardForce = 3f;
+
+    public float upwardForce = 5f;
 
     // Use OnNetworkSpawn instead of Start
     public override void OnNetworkSpawn()
@@ -40,6 +45,10 @@ public class HealthController : NetworkBehaviour
         {
             TakeDamage(100f);
         }
+        if (Input.GetKey(KeyCode.Period))
+        {
+            GetComponent<Points>().points.Value++;
+        }
     }
 
     public override void OnNetworkDespawn()
@@ -57,9 +66,6 @@ public class HealthController : NetworkBehaviour
         // If health hits 0, trigger the local death visuals
         if (newValue <= 0 && previousValue > 0)
         {
-            var getPoints = GetComponent<Points>();
-            getPoints.RemovePoints(); 
-
             if(GetComponent<MeshRenderer>() && GetComponent<Collider>().enabled)
             {
                 GetComponent<MeshRenderer>().enabled = false;
@@ -101,6 +107,10 @@ public class HealthController : NetworkBehaviour
             {
                 DropHatsServerSide(transform.position, hatsToDrop);
             }
+            else
+            {
+                Debug.Log("no points");
+            }
             
             getPoints.RemovePoints();
         }
@@ -109,16 +119,24 @@ public class HealthController : NetworkBehaviour
     // Notice there's no RPC tag here, because we only call this from inside the damage RPC (which is already on the server)
     private void DropHatsServerSide(Vector3 dropPosition, int amountOfHats)
     {
+        Debug.Log("hat drop called");
         for (int i = 0; i < amountOfHats; i++)
         {
+            Debug.Log("enough points");
             Vector3 randomOffset = new Vector3(
                 Random.Range(-1f, 1f),
                 1f,
                 Random.Range(-1f, 1f)
             );
 
+            float randomX = Random.Range(-1f,1f);
+            float randomZ = Random.Range(-1f,1f);
+            Vector3 sproutDirection = new Vector3(randomX * outwardForce, upwardForce, randomZ * outwardForce);
+
             GameObject spawnedhat = Instantiate(hatPrefab, dropPosition + randomOffset, Quaternion.identity);
             spawnedhat.GetComponent<NetworkObject>().Spawn();
+
+            spawnedhat.GetComponent<Rigidbody>().AddForce(sproutDirection, ForceMode.Impulse);
         }
     }
     

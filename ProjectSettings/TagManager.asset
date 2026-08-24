@@ -13,6 +13,7 @@ TagManager:
   - Play
   - Hat
   - Bot
+  - Dummy
   layers:
   - Default
   - TransparentFX

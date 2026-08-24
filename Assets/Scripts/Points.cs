@@ -24,6 +24,11 @@ public class Points : NetworkBehaviour
         {
             RequestAddPointRpc();
         }
+        // temp
+        if (transform.CompareTag("Dummy"))
+        {
+            RequestAddPointRpc();
+        }
         
     }
 

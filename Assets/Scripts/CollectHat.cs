@@ -13,7 +13,7 @@ public class CollectHat : NetworkBehaviour
 
     private bool isCollected = false;
 
-    [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private float moveSpeed = 10f;
 
      private void OnTriggerEnter(Collider other)
     {
@@ -45,7 +45,7 @@ public class CollectHat : NetworkBehaviour
     private IEnumerator FlyToPlayerAndDestory(Transform playerTransform)
     {
         float timer = 0;
-        float timeToWait = 1f;
+        float timeToWait = 0.8f;
 
         while (timer < timeToWait)
         {
