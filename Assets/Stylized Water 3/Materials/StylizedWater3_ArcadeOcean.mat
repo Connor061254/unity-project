@@ -210,11 +210,11 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HorizonDistance: 7.7
-    - _IntersectionClipping: 0.583
-    - _IntersectionDistortion: 0.47
-    - _IntersectionFalloff: 0.45
+    - _IntersectionClipping: 1
+    - _IntersectionDistortion: 0.44
+    - _IntersectionFalloff: 0.353
     - _IntersectionFoamOn: 1
-    - _IntersectionLength: 0.16
+    - _IntersectionLength: 1.87
     - _IntersectionRippleDist: 64
     - _IntersectionRippleSpeed: 1
     - _IntersectionRippleStrength: 1
