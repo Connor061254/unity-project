@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1803903248410310164}
   - component: {fileID: 9181440005000909567}
   - component: {fileID: 5961238400371374262}
+  - component: {fileID: 7551014964992040474}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -153,6 +154,21 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   playerBody: {fileID: 6116907855491786371}
   mouseSensitivity: 500
+--- !u!114 &7551014964992040474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387089801516849645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826bfd2bcf45f8544ac649c0b978a9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraSway
+  swayAmaount: 2
+  maxSway: 5
+  returnSpeed: 10
 --- !u!1 &848237842109702481
 GameObject:
   m_ObjectHideFlags: 0
