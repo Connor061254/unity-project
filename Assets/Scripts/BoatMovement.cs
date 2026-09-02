@@ -1,4 +1,5 @@
 // BoatController.cs - Attach this to your BOAT
+using Unity.Netcode;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -23,13 +24,10 @@ public class BoatController : MonoBehaviour
         // Only move if a player is controlling the boat
         if (isBeingControlled)
         {
-            // Get input
-            float forwardInput = Input.GetAxis("Vertical"); // W/S
-            float turnInput = Input.GetAxis("Horizontal"); // A/D
-
-            // Apply forces
-            rb.AddRelativeForce(Vector3.forward * forwardInput * speed * Time.fixedDeltaTime);
-            rb.AddTorque(Vector3.up * turnInput * turnSpeed * Time.fixedDeltaTime);
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(Vector3.right * 20f * Time.deltaTime);
+            }
         }
     }
 
@@ -50,7 +48,7 @@ public class BoatController : MonoBehaviour
         }
 
         // Parent the player and move them to the seat
-        player.transform.SetParent(seatPosition);
+        player.GetComponent<NetworkObject>().TrySetParent(seatPosition);
         player.transform.position = seatPosition.position;
         player.transform.rotation = seatPosition.rotation;
     }
