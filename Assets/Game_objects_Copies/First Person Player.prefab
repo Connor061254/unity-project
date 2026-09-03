@@ -241,8 +241,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6116907855491786371}
   - component: {fileID: 4391535740791429150}
-  - component: {fileID: 6926487338783668087}
   - component: {fileID: -1880979058205074442}
+  - component: {fileID: 6926487338783668087}
   - component: {fileID: 7728396941068247948}
   - component: {fileID: 3281925576719215717}
   - component: {fileID: 2230260778600968397}
@@ -313,19 +313,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6926487338783668087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4126959764447674887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba130f433619d6f46a8ba4acdeff89c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 7250295545125707245}
 --- !u!114 &-1880979058205074442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +338,20 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6926487338783668087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba130f433619d6f46a8ba4acdeff89c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  mainCamera: {fileID: 7250295545125707245}
 --- !u!114 &7728396941068247948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +720,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4126959764447674887}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87ae6ef2dcbc8cf49b15ed766893b8e2, type: 3}
   m_Name: 

@@ -1,13 +1,15 @@
 // PlayerInteraction.cs - Attach this to your PLAYER
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class CheckForBoat : NetworkBehaviour
 {
     public Camera mainCamera;
-    private BoatController currentBoat;
+    private MovementForBoat currentBoat;
 
     void Update()
     {
+        if(!IsOwner) return;
         // Check if we are trying to board or exit a boat
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -17,8 +19,11 @@ public class PlayerInteraction : MonoBehaviour
             }
             else // If we ARE on a boat, exit it
             {
-                currentBoat.ExitBoat();
-                currentBoat = null; // We are no longer on a boat
+                currentBoat.RequestExitBoatRpc();
+                currentBoat.LocalExitBoat();
+                GetComponent<PlayerController>().enabled = true;
+                GetComponent<playerCrouch>().enabled = true;
+                currentBoat = null;
             }
         }
     }
@@ -31,12 +36,12 @@ public class PlayerInteraction : MonoBehaviour
         // Look for a boat within 5 units
         if (Physics.Raycast(ray, out hit, 5f) && hit.transform.CompareTag("Boat"))
         {
-            // Get the boat's controller script and tell it to start
-            BoatController boat = hit.transform.GetComponent<BoatController>();
+            var boat = hit.transform.GetComponent<MovementForBoat>();
             if (boat != null)
             {
                 currentBoat = boat;
-                // We pass this player GameObject to the boat so it knows who is driving
+              
+                currentBoat.RequestBoardBoatRpc();
                 currentBoat.BoardBoat(this.gameObject);
             }
         }
