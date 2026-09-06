@@ -175,7 +175,7 @@ Material:
     - _DisableDepthTexture: 0
     - _DistanceFoamTiling: 0.2
     - _DistanceNormalsOn: 1
-    - _DistanceNormalsTiling: 0.35500005
+    - _DistanceNormalsTiling: 0.45500007
     - _DstBlend: 0
     - _EdgeFade: 32
     - _EnableDirectionalCaustics: 1
@@ -235,7 +235,7 @@ Material:
     - _NormalSpeed: 0.09999969
     - _NormalStrength: 0.128
     - _NormalSubSpeed: -0.6
-    - _NormalSubTiling: 0.5
+    - _NormalSubTiling: 0.42000008
     - _NormalTiling: 0.16000009
     - _OcclusionStrength: 1
     - _PlanarReflectionsEnabled: 0
@@ -337,7 +337,7 @@ Material:
     - _FoamTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _HorizonColor: {r: 0.50953066, g: 5.8970256, b: 6.3541465, a: 0}
     - _IntersectionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _NormalTiling: {r: 0.04, g: 0.04, b: 0, a: 0}
+    - _NormalTiling: {r: 0.040000014, g: 0.040000014, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShallowColor: {r: 0, g: 3.2837167, b: 3.2193303, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
