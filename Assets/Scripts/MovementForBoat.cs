@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MovementForBoat : NetworkBehaviour
 {
@@ -92,6 +93,16 @@ public class MovementForBoat : NetworkBehaviour
         {
             player.GetComponent<PlayerController>().enabled = false;
             player.GetComponent<playerCrouch>().enabled = false;
+            player.GetComponentInChildren<CameraBob>().enabled = false;
+
+            Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), true);
+
+            var netAnimator = player.GetComponent<OwnerNetworkAnimator>();
+
+            if (netAnimator)
+            {
+                netAnimator.Animator.SetBool("StopAnimation", true);
+            }
         }
     }
 
@@ -100,13 +111,25 @@ public class MovementForBoat : NetworkBehaviour
         if (isControllingBoat.Value && IsOwner)
         {
             player.transform.position = seatPosition.position;
-
-            player.transform.rotation = seatPosition.rotation;
         }
     }
 
     public void LocalExitBoat()
     {
+        player.transform.position = seatPosition.position + (transform.up * 2f);
+        
+        Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), false);
+
+         var netAnimator = player.GetComponent<OwnerNetworkAnimator>();
+
+        if (netAnimator)
+        {
+            netAnimator.Animator.SetBool("StopAnimation", false);
+        }
+       
         player = null;
+
+       
+        
     }
 }
