@@ -90,7 +90,7 @@ public class PlayerController : NetworkBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
-        if (isMoving && isGrounded)
+        if (isMoving && isGrounded && animator)
         {
             animator.SetBool("isWalking", true);
 
