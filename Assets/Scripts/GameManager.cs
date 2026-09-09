@@ -1,24 +1,51 @@
+using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
+    private int[] teamsPlayerCount = new int[5];
 
-    public GameObject player;
-    public Transform spawnPoint;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void AssignOnePlayer(ulong clientId, int teamIndex)
     {
-        spawn();
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out NetworkClient client))
+        {
+            PlayerDataBackpack playerData = client.PlayerObject.GetComponent<PlayerDataBackpack>();
+
+            if(playerData != null)
+            {
+                playerData.TeamIndex.Value = teamIndex;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void AssignSoloPlayer(List<ulong> soloPlayers)
     {
-        
+        foreach (ulong clientId in soloPlayers)
+        {
+            int availableTeam = FindTeamWithSpace();
+
+            if(availableTeam != -1)
+            {
+                AssignOnePlayer(clientId, availableTeam);
+            }
+            else
+            {
+                Debug.LogWarning($"Uh oh! All teams are full. Couldn't place Client {clientId}.");
+            }
+        }
     }
 
-    void spawn()
+    private int FindTeamWithSpace()
     {
-        Instantiate(player, spawnPoint.position, Quaternion.identity);
+        for (int i = 0; i < 5; i++)
+        {
+            if (teamsPlayerCount[i] < 3)
+            {
+                teamsPlayerCount[i]++;
+                return i;
+            }
+        }
+        return -1;
     }
 }

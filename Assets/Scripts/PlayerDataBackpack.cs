@@ -10,8 +10,13 @@ public class PlayerDataBackpack : NetworkBehaviour
     public GameObject tallPiratePrefab;
 
     private NetworkObject currentLobbyChamp;
+
     public NetworkVariable<int> SelectedChampIndex = new NetworkVariable<int>(
         0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
+    );
+
+    public NetworkVariable<int> TeamIndex = new NetworkVariable<int>(-1,
+    NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
     );
 
     public override void OnNetworkSpawn()
