@@ -16,6 +16,11 @@ TagManager:
   - Dummy
   - SpawnPoint
   - Manager
+  - Team0Spawn
+  - Team1Spawn
+  - Team2Spawn
+  - Team3Spawn
+  - Team4Spawn
   layers:
   - Default
   - TransparentFX

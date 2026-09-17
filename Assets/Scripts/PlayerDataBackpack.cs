@@ -66,4 +66,27 @@ public class PlayerDataBackpack : NetworkBehaviour
             currentLobbyChamp.SpawnWithOwnership(OwnerClientId);
         }
     }
+
+    public void SpawnAvatarInGame(Vector3 SpawnPoint)
+    {
+        if (!IsServer) return;
+
+        GameObject prefabToSpawn = null;
+        int champIndex = SelectedChampIndex.Value;
+
+        switch (champIndex)
+        {
+            case 0: prefabToSpawn = fatPiratePrefab; break;
+            case 1: prefabToSpawn = tallPiratePrefab; break;
+            case 2: prefabToSpawn = womanPiratePrefab; break;
+        }
+
+        if(prefabToSpawn != null)
+        {
+            GameObject newAvatar = Instantiate(prefabToSpawn, SpawnPoint, Quaternion.identity);
+            NetworkObject netObj = newAvatar.GetComponent<NetworkObject>();
+
+            netObj.SpawnWithOwnership(OwnerClientId);
+        }
+    }
 }
