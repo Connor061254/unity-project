@@ -34,6 +34,11 @@ public class PlayerDataBackpack : NetworkBehaviour
         RequestChangeChampRpc(newValue);
     }
 
+    public void SelectChampion(int championIndex)
+    {
+        RequestChangeChampRpc(championIndex);
+    }
+
     [Rpc(SendTo.Server)]
     private void RequestChangeChampRpc(int requestedChamp)
     {

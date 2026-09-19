@@ -32,6 +32,7 @@ public class Attack : MonoBehaviour
 
     void Melee()
     {
+        
         float delay = 1f;
         Vector3 attackPoint = transform.position + (transform.forward * range);
         Collider[] hitColliders = Physics.OverlapSphere(attackPoint, 1f);

@@ -21,6 +21,7 @@ TagManager:
   - Team2Spawn
   - Team3Spawn
   - Team4Spawn
+  - Crosshair
   layers:
   - Default
   - TransparentFX
