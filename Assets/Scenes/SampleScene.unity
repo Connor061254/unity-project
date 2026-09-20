@@ -13191,6 +13191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788060fa7637e4b45ac2a2ba97264581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChampionSelectionUI
+  healthUI: {fileID: 2125224336}
+  crossHairUI: {fileID: 427605540}
 --- !u!1001 &603445010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45186,6 +45188,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120813722}
   m_Mesh: {fileID: -5495902117074765545, guid: 201d124e68ec40e4fbeb56daafb026a5, type: 3}
+--- !u!1 &2125224336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2271636689049957941, guid: 521a7bffed4ca584384d23bdb8e0967e, type: 3}
+  m_PrefabInstance: {fileID: 4729607381056430490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2127683479
 GameObject:
   m_ObjectHideFlags: 0
@@ -46478,23 +46485,23 @@ PrefabInstance:
       objectReference: {fileID: 4535016}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7532039
+      value: 1.7762108
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999488
+      value: 0.99995077
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.005118757
+      value: -0.0046986407
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008726421
+      value: 0.0087264385
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00011060932
+      value: -0.0005413938
       objectReference: {fileID: 0}
     - target: {fileID: 7065851927478998173, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_Layer

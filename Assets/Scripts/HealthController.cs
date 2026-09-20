@@ -22,11 +22,14 @@ public class HealthController : NetworkBehaviour
     // Use OnNetworkSpawn instead of Start
     public override void OnNetworkSpawn()
     {
-        myHealthBar = GameObject.FindWithTag("HealthUI");
-        healthScript = myHealthBar.GetComponent<HealthbarUI>();
-        
-        healthScript.SetMaxHealth(maxPlayerHealth.Value);
-        healthScript.SetHealth(currentPlayerHealth.Value);
+        healthScript = FindAnyObjectByType<HealthbarUI>(FindObjectsInactive.Include);
+
+        if(healthScript != null)
+        {
+            myHealthBar = healthScript.gameObject; 
+            healthScript.SetMaxHealth(maxPlayerHealth.Value);
+            healthScript.SetHealth(currentPlayerHealth.Value);
+        }
 
         // This is the magic alarm clock! 
         // Anytime the server changes health, run the UpdateHealthUI function automatically.

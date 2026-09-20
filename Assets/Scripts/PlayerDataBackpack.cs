@@ -18,23 +18,7 @@ public class PlayerDataBackpack : NetworkBehaviour
     public NetworkVariable<int> TeamIndex = new NetworkVariable<int>(-1,
     NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
     );
-
-    public override void OnNetworkSpawn()
-    {
-        SelectedChampIndex.OnValueChanged += OnChampSelectionChanged;
-    }
-
-    public override void OnNetworkDespawn()
-    {
-        SelectedChampIndex.OnValueChanged -= OnChampSelectionChanged;
-    }
-
-    private void OnChampSelectionChanged(int previousValue, int newValue)
-    {
-        RequestChangeChampRpc(newValue);
-    }
-
-    public void SelectChampion(int championIndex)
+        public void SelectChampion(int championIndex)
     {
         RequestChangeChampRpc(championIndex);
     }

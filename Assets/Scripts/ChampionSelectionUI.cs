@@ -1,25 +1,27 @@
 using UnityEngine;
 using Unity.Netcode;
 using System.Xml.Serialization;
+using System.Collections;
 
 public class ChampionSelectionUI : MonoBehaviour
 {
+
+    public GameObject healthUI;
+
+    public GameObject crossHairUI;
     public void SelectTallPirate()
     {
-        SelectChampion(1);
-        StartIsland();
+       StartCoroutine(StartIslandAndSelect(1));
     }
 
     public void SelectFatPirate()
     {
-        SelectChampion(0);
-        StartIsland();
+        StartCoroutine(StartIslandAndSelect(0));
     }
 
     public void SelectWomenPirate()
     {
-        SelectChampion(2);
-        StartIsland();
+        StartCoroutine(StartIslandAndSelect(2));
     }
 
     private void SelectChampion(int championIndex)
@@ -42,13 +44,25 @@ public class ChampionSelectionUI : MonoBehaviour
         }
     }
 
+    private IEnumerator StartIslandAndSelect(int championIndex)
+    {
+        StartIsland();
+
+        while (NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject() == null)
+        {
+            yield return null;
+        }
+
+        SelectChampion(championIndex);
+        
+        gameObject.SetActive(false);
+    }
+
     private void StartIsland()
     {
-        gameObject.SetActive(false);
-
         NetworkManager.Singleton.StartHost();
 
-        GameObject.FindGameObjectWithTag("HealthUI").SetActive(true);
-        GameObject.FindGameObjectWithTag("CrossHair").SetActive(true);
+        if(healthUI != null) healthUI.SetActive(true);
+        if(crossHairUI != null) crossHairUI.SetActive(true);
     }
 }
