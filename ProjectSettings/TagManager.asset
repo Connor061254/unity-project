@@ -22,6 +22,7 @@ TagManager:
   - Team3Spawn
   - Team4Spawn
   - Crosshair
+  - FX Block Zone
   layers:
   - Default
   - TransparentFX
