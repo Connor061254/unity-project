@@ -22,6 +22,7 @@
   <Project Path="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
   <Project Path="Unity.PerformanceTesting.Editor.csproj" />
   <Project Path="UnityEngine.TestRunner.csproj" />
+  <Project Path="Unity.Splines.csproj" />
   <Project Path="Unity.AppUI.Redux.csproj" />
   <Project Path="Unity.Burst.csproj" />
   <Project Path="Unity.Multiplayer.Tools.NetworkProfiler.Editor.csproj" />
@@ -49,11 +50,14 @@
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />
+  <Project Path="DistantLands.Cozy.Editor.csproj" />
   <Project Path="Unity.Burst.CodeGen.csproj" />
   <Project Path="QFSW.QC.Editor.csproj" />
+  <Project Path="DistantLands.Cozy.Runtime.csproj" />
   <Project Path="Unity.Multiplayer.Tools.Common.csproj" />
   <Project Path="Unity.Polybrush.Editor.csproj" />
   <Project Path="Unity.VisualScripting.Flow.csproj" />
+  <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />

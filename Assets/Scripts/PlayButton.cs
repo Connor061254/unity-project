@@ -1,13 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayButton : MonoBehaviour
+public class PlayButton : NetworkBehaviour
 {
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private string matchScene = "matchScene";
+
+    private GameObject gameManager;
 
     void Update()
     {
@@ -15,6 +18,11 @@ public class PlayButton : MonoBehaviour
         {
             AttemptToPressPlay();
         }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     void AttemptToPressPlay()
@@ -35,7 +43,7 @@ public class PlayButton : MonoBehaviour
             Debug.Log($"ray hit {hit.transform.gameObject}");
             if (hit.transform.CompareTag("Play"))
             {
-                RequestMatchTransfer();
+                CreateTeams();
             }
             else
             {
@@ -48,56 +56,25 @@ public class PlayButton : MonoBehaviour
         }
     }
 
-    void RequestMatchTransfer()
+    void CreateTeams()
     {
-        // Spawns a temporary persistent object to run the coroutine safely
-        GameObject runner = new GameObject("HostResetRunner");
-        DontDestroyOnLoad(runner);
-        runner.AddComponent<HostResetRunner>().StartReset(matchScene);
-    }
-}
+        List<ulong> allPlayers = new List<ulong>();
 
-// Separate helper class that won't get destroyed during NetworkManager.Shutdown()
-public class HostResetRunner : MonoBehaviour
-{
-    public void StartReset(string sceneName)
-    {
-        StartCoroutine(ConnectToServerRoutine(sceneName));
+        foreach(ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            allPlayers.Add(clientId);
+        }
+            
+        gameManager.GetComponent<GameManager>().AssignSoloPlayer(allPlayers);
+
+        StartDemoMatch();
     }
 
-    private IEnumerator ConnectToServerRoutine(string sceneName)
+    public void StartDemoMatch()
     {
-        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
-        {
-            Debug.Log("Shutting down current host...");
-            NetworkManager.Singleton.Shutdown();
-        }
+        if (!IsServer) return;
 
-        // Wait until NetworkManager has fully finished shutting down
-        while (NetworkManager.Singleton != null && NetworkManager.Singleton.IsListening)
-        {
-            yield return null;
-        }
-
-        Debug.Log($"Loading local scene: {sceneName}");
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-        if (NetworkManager.Singleton != null)
-        {
-            Debug.Log("Starting host in new scene!");
-            NetworkManager.Singleton.StartHost();
-        }
-        else
-        {
-            Debug.LogError("NetworkManager missing in new scene! Ensure it has DontDestroyOnLoad attached.");
-        }
-
-        // Destroy this helper runner object now that the process is finished
-        Destroy(gameObject);
+        NetworkManager.Singleton.SceneManager.LoadScene("matchScene", LoadSceneMode.Single);
     }
+
 }

@@ -18,20 +18,9 @@ public class PlayerDataBackpack : NetworkBehaviour
     public NetworkVariable<int> TeamIndex = new NetworkVariable<int>(-1,
     NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
     );
-
-    public override void OnNetworkSpawn()
+        public void SelectChampion(int championIndex)
     {
-        SelectedChampIndex.OnValueChanged += OnChampSelectionChanged;
-    }
-
-    public override void OnNetworkDespawn()
-    {
-        SelectedChampIndex.OnValueChanged -= OnChampSelectionChanged;
-    }
-
-    private void OnChampSelectionChanged(int previousValue, int newValue)
-    {
-        RequestChangeChampRpc(newValue);
+        RequestChangeChampRpc(championIndex);
     }
 
     [Rpc(SendTo.Server)]
@@ -64,6 +53,29 @@ public class PlayerDataBackpack : NetworkBehaviour
             GameObject fatPirate = Instantiate(prefabToSpawn, startPosition, Quaternion.identity);
             currentLobbyChamp = fatPirate.GetComponent<NetworkObject>();
             currentLobbyChamp.SpawnWithOwnership(OwnerClientId);
+        }
+    }
+
+    public void SpawnAvatarInGame(Vector3 SpawnPoint)
+    {
+        if (!IsServer) return;
+
+        GameObject prefabToSpawn = null;
+        int champIndex = SelectedChampIndex.Value;
+
+        switch (champIndex)
+        {
+            case 0: prefabToSpawn = fatPiratePrefab; break;
+            case 1: prefabToSpawn = tallPiratePrefab; break;
+            case 2: prefabToSpawn = womanPiratePrefab; break;
+        }
+
+        if(prefabToSpawn != null)
+        {
+            GameObject newAvatar = Instantiate(prefabToSpawn, SpawnPoint, Quaternion.identity);
+            NetworkObject netObj = newAvatar.GetComponent<NetworkObject>();
+
+            netObj.SpawnWithOwnership(OwnerClientId);
         }
     }
 }

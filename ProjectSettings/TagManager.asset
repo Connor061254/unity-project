@@ -15,6 +15,14 @@ TagManager:
   - Bot
   - Dummy
   - SpawnPoint
+  - Manager
+  - Team0Spawn
+  - Team1Spawn
+  - Team2Spawn
+  - Team3Spawn
+  - Team4Spawn
+  - Crosshair
+  - FX Block Zone
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    private void AssignSoloPlayer(List<ulong> soloPlayers)
+    public void AssignSoloPlayer(List<ulong> soloPlayers)
     {
         foreach (ulong clientId in soloPlayers)
         {
