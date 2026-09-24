@@ -136,6 +136,11 @@ public class OfficialPickupScript : NetworkBehaviour
                     }
                 }
             }
+
+            if(hit.transform != null && hit.transform.CompareTag("Chest"))
+            {
+                hit.transform.GetComponent<Chest>().OpenChest();
+            }
         }
     }
 
