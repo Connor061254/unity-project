@@ -23,6 +23,7 @@ TagManager:
   - Team4Spawn
   - Crosshair
   - FX Block Zone
+  - Chest
   layers:
   - Default
   - TransparentFX

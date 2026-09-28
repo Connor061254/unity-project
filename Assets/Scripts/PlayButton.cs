@@ -74,6 +74,11 @@ public class PlayButton : NetworkBehaviour
     {
         if (!IsServer) return;
 
+         var player = GameObject.FindGameObjectWithTag("Player");
+
+        var networkPlayerObject = player.GetComponent<NetworkObject>();
+        networkPlayerObject.Despawn();
+
         NetworkManager.Singleton.SceneManager.LoadScene("matchScene", LoadSceneMode.Single);
     }
 

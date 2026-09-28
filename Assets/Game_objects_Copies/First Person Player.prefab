@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 7507840857806248457}
   - component: {fileID: 3448816866019188061}
   - component: {fileID: -1640613662332111556}
+  - component: {fileID: 5366087651012502095}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -919,6 +920,18 @@ MonoBehaviour:
   hatPosition: {fileID: 7053047136996084302}
   hatPrefab: {fileID: 7182466383449568951, guid: 61f9025d355eb7245b82b8a8227de39f, type: 3}
   distanceBetweenHatsMultiplier: 0.2
+--- !u!114 &5366087651012502095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b35d794e4a93469967bbd0a54e2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
