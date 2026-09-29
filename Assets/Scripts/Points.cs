@@ -1,6 +1,4 @@
-using Unity.AppUI.UI;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Points : NetworkBehaviour

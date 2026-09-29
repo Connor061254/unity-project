@@ -24,6 +24,7 @@ TagManager:
   - Crosshair
   - FX Block Zone
   - Chest
+  - Main Camera
   layers:
   - Default
   - TransparentFX

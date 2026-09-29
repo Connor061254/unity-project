@@ -171,3 +171,4 @@ Material:
     - _MoonColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
