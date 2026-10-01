@@ -10,7 +10,17 @@ public class MatchGameManager : NetworkBehaviour
 
     private int clientsLoaded = 0;
 
+    public float delayBeforeEvent = 600f;
+
+    public NetworkVariable<double> eventTime = new NetworkVariable<double>();
+
     public NetworkVariable<int> countDown= new NetworkVariable<int>(5);
+
+    private bool hasEventTriggered = false;
+
+    public Transform specialHatTransform;
+
+    public GameObject specialHat;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void OnNetworkSpawn()
     {
@@ -31,6 +41,21 @@ public class MatchGameManager : NetworkBehaviour
     void Start()
     {
         lockMovementRpc();
+    }
+
+    void Update()
+    {
+        if(eventTime.Value == 0 || hasEventTriggered == false) return;
+
+        if(NetworkManager.Singleton.ServerTime.Time >= eventTime.Value)
+        {
+            hasEventTriggered = true;
+
+            if (IsServer)
+            {
+                TriggerSpecialHatEvent();
+            }
+        }
     }
 
     void OnClientLoadedScene(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
@@ -64,6 +89,12 @@ public class MatchGameManager : NetworkBehaviour
             if (player.IsOwner)
             {
                 player.matchStarted = true;
+
+                if (IsServer)
+                {
+                     eventTime.Value = NetworkManager.Singleton.ServerTime.Time + delayBeforeEvent;
+                }
+               
                 break;
             }
         }
@@ -82,5 +113,13 @@ public class MatchGameManager : NetworkBehaviour
                 break;
             }
         }
+    }
+
+    void TriggerSpecialHatEvent()
+    {
+        GameObject eventHat = Instantiate(specialHat, specialHatTransform.position, Quaternion.identity);
+
+        NetworkObject networkObject = eventHat.GetComponent<NetworkObject>();
+        networkObject.Spawn();
     }
 }
