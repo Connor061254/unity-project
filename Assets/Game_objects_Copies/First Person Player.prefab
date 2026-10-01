@@ -328,10 +328,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
   GlobalObjectIdHash: 148006225
   InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
+  m_InScenePlaced: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
@@ -373,6 +375,7 @@ MonoBehaviour:
   itemSpeedBuff: 0
   gravity: -15.32
   jumpHeight: 3
+  matchStarted: 1
   controller: {fileID: 4391535740791429150}
   groundcheck: {fileID: 4907645124831204908}
   groundDistance: 0.4

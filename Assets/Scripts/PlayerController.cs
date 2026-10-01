@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class PlayerController : NetworkBehaviour
     public float itemSpeedBuff = 0f;
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
+
+    public bool matchStarted = true;
 
     public CharacterController controller;
 
@@ -35,13 +38,14 @@ public class PlayerController : NetworkBehaviour
     {
         currentSpeed = walkSpeed;
         animator = GetComponentInChildren<Animator>();
+        Debug.Log($"the bool matchStarted is {matchStarted}");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsOwner)
+        if (!IsOwner || matchStarted == false)
         {
             return;
         }

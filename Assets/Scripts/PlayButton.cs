@@ -12,6 +12,8 @@ public class PlayButton : NetworkBehaviour
 
     private GameObject gameManager;
 
+    private PlayerController player;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -74,8 +76,8 @@ public class PlayButton : NetworkBehaviour
     {
         if (!IsServer) return;
 
-         var player = GameObject.FindGameObjectWithTag("Player");
-
+        var player = GameObject.FindGameObjectWithTag("Player");
+        
         var networkPlayerObject = player.GetComponent<NetworkObject>();
         networkPlayerObject.Despawn();
 
