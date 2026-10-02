@@ -4,6 +4,8 @@ using UnityEngine;
 public class BillBoardUI : NetworkBehaviour
 {
     private Transform mainCameraTransform;
+
+    private Vector3 offset = new Vector3(0,1.5f,0);
     // Start is called once before the first execution of Update after the MonoBehaviour is create
 
     // Update is called once per frame
@@ -23,6 +25,8 @@ public class BillBoardUI : NetworkBehaviour
              
         }
 
-       transform.LookAt(transform.position + mainCameraTransform.forward);
+        transform.position = transform.parent.position + offset;
+
+        transform.LookAt(transform.position + mainCameraTransform.forward);
     }
 }

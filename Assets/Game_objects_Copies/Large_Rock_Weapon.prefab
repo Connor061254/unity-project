@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2339171358227267107}
   - component: {fileID: 983892186540476567}
   - component: {fileID: 566754419597894810}
+  - component: {fileID: -7271416278423690781}
   - component: {fileID: 8752476930665150316}
   - component: {fileID: 4508003512603947312}
   - component: {fileID: 3392815433750188720}
@@ -132,6 +133,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageMultiplier: 9
   damageNumber: 0
+--- !u!114 &-7271416278423690781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136080160460368405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2645806959
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &8752476930665150316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88168967e5b8fd2499cebc67d3e82968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
+  ShowTopMostFoldoutHeaderGroup: 1
   lastOwner: {fileID: 0}
   attackCooldown: 2
   damageCurve:
