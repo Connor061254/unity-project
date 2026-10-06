@@ -20808,6 +20808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ec286d8205e5e41ab46d3097882270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
+  ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 0}
 --- !u!114 &858744458
 MonoBehaviour:
@@ -31865,6 +31866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillBoardUI
   ShowTopMostFoldoutHeaderGroup: 1
+  offset: {x: 0, y: 0.3, z: 0}
 --- !u!114 &1395172393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46760,23 +46762,23 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 343e9ebae18bc0f48811edac300d64d0, type: 2}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5038314
+      value: 1.5635097
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9983773
+      value: 0.9999194
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0556632
+      value: -0.0068647517
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008712707
+      value: 0.008726165
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.008276808
+      value: -0.00615324
       objectReference: {fileID: 0}
     - target: {fileID: 7065851927478998173, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_Layer

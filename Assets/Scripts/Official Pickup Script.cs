@@ -64,8 +64,17 @@ public class OfficialPickupScript : NetworkBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, pickupRange))
         {
+            Debug.Log("Raycast hit object" + hit.collider.gameObject.name);
             var hitItem = hit.collider.GetComponentInParent<InteractableItem>();
-            
+           
+           if (hitItem == null)
+            {
+                Debug.Log("Failed to find THe Interactable script");
+            }
+            else
+            {
+                Debug.Log("Success found the interactable script");
+            }
             if(hitItem != null)
             {
                 if(currentTarget != hitItem)

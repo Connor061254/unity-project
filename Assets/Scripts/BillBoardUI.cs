@@ -5,7 +5,9 @@ public class BillBoardUI : NetworkBehaviour
 {
     private Transform mainCameraTransform;
 
-    private Vector3 offset = new Vector3(0,1.5f,0);
+    private Transform position;
+
+    public Vector3 offset = new Vector3(0,0.3f,0);
     // Start is called once before the first execution of Update after the MonoBehaviour is create
 
     // Update is called once per frame
@@ -25,8 +27,21 @@ public class BillBoardUI : NetworkBehaviour
              
         }
 
-        transform.position = transform.parent.position + offset;
+        if (position != null)
+        {
+            transform.position = position.position + offset;
 
-        transform.LookAt(transform.position + mainCameraTransform.forward);
+            transform.LookAt(transform.position + mainCameraTransform.forward);
+        }
+        else
+        {
+            Debug.Log("object position is null");
+        }
+    }
+        
+
+    public void GetObjectPosition(Transform objecttransform)
+    {
+        position = objecttransform;
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2195320061832571982
 RectTransform:
   m_ObjectHideFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillBoardUI
   ShowTopMostFoldoutHeaderGroup: 1
+  offset: {x: 0, y: 0.3, z: 0}
 --- !u!1 &6716415831342588744
 GameObject:
   m_ObjectHideFlags: 0

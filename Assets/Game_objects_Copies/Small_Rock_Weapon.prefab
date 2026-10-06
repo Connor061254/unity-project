@@ -41,7 +41,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3873839327046370551}
+  - {fileID: 959393302748980053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 39.245, y: -86.664, z: -109.923}
 --- !u!33 &1525346884156722906
@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ec286d8205e5e41ab46d3097882270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
-  popUpCanvas: {fileID: 8693011491400474111}
+  ShowTopMostFoldoutHeaderGroup: 1
+  popUpCanvas: {fileID: 4625496516015176285}
 --- !u!114 &3799499952728231229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +350,7 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
---- !u!1001 &3149691386833938617
+--- !u!1001 &1380112317587148571
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -359,7 +360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1426234394814875458, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3108513208
+      value: 2630690738
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_Pivot.x
@@ -403,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0999963
+      value: -1.2803757
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -423,11 +424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.8500023
+      value: 0.3378899
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.690001
+      value: 0.36149132
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -445,18 +446,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickUp_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5987030222322038086, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
---- !u!224 &3873839327046370551 stripped
+--- !u!224 &959393302748980053 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
-  m_PrefabInstance: {fileID: 3149691386833938617}
+  m_PrefabInstance: {fileID: 1380112317587148571}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8693011491400474111 stripped
+--- !u!1 &4625496516015176285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5987030222322038086, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
-  m_PrefabInstance: {fileID: 3149691386833938617}
+  m_PrefabInstance: {fileID: 1380112317587148571}
   m_PrefabAsset: {fileID: 0}
