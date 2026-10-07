@@ -99,7 +99,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
             this.NetworkObject.TryRemoveParent();
 
-            if(TryGetComponent<Collider>(out var rockCollider)) rockCollider.enabled = true;
+            if(this.gameObject.TryGetComponentInChildren<Collider>(out var rockCollider)) rockCollider.enabled = true;
        
             rb.useGravity = true;
             rb.isKinematic = false;

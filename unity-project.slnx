@@ -28,7 +28,6 @@
   <Project Path="Unity.InferenceEngine.Editor.Visualizer.csproj" />
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Csg.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.Netcode.Runtime.csproj" />
   <Project Path="QFSW.QC.Extras.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
@@ -77,6 +76,7 @@
   <Project Path="Unity.Multiplayer.Tools.NetworkSimulator.Runtime.csproj" />
   <Project Path="Unity.Multiplayer.Tools.MetricTestData.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.AppUI.MVVM.csproj" />
   <Project Path="Unity.Netcode.Editor.CodeGen.csproj" />
   <Project Path="Unity.Multiplayer.Tools.Adapters.Ngo1WithUtp2.csproj" />
