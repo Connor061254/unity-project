@@ -267,7 +267,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkRigidbodyBaseExpanded: 0
   UseRigidBodyForMotion: 0
-  AutoUpdateKinematicState: 1
+  AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 1
 --- !u!114 &7845779565780562730
 MonoBehaviour:
@@ -342,6 +342,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2524589664087202480}
     m_Modifications:
+    - target: {fileID: 1426234394814875458, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2553581786
+      objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -373,6 +377,14 @@ PrefabInstance:
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -421,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 2195320061832571982, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029686776278704013, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: offset.y
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 5987030222322038086, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_Name
