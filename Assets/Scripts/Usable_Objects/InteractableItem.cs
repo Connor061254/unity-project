@@ -4,7 +4,9 @@ using UnityEngine;
 public class InteractableItem : NetworkBehaviour
 {
     public GameObject popUpCanvas;
-  public void ShowPrompt()
+
+    public GameObject openCanvas;
+  public void ShowPopUpPrompt()
     {
         Debug.Log("showPrompt is running!");
         if (popUpCanvas != null)
@@ -15,11 +17,31 @@ public class InteractableItem : NetworkBehaviour
         }
     }
 
+    public void ShowOpenPrompt()
+    {
+         Debug.Log("showOpenPrompt is running!");
+        if (openCanvas != null)
+        {
+            Debug.Log("opencanvas is being set to active");
+            openCanvas.GetComponent<BillBoardUI>().GetObjectPosition(gameObject.transform);
+            openCanvas.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("OpenCanvas is null");
+        }
+    }
+
     public void HidePrompt()
     {
         if (popUpCanvas != null)
         {
             popUpCanvas.SetActive(false);
+        }
+
+        if(openCanvas != null)
+        {
+            openCanvas.SetActive(false);
         }
     }
 
@@ -35,8 +57,15 @@ public class InteractableItem : NetworkBehaviour
             {
                  popUpCanvas.transform.SetParent(null);
                  popUpCanvas.SetActive(false);
+
             }
                 
+        }
+
+        if(openCanvas != null)
+        {
+            openCanvas.transform.SetParent(null);
+            openCanvas.SetActive(false);
         }
 
         if (IsServer)

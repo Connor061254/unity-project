@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class BillBoardUI : NetworkBehaviour
+public class BillBoardUI : MonoBehaviour
 {
     private Transform mainCameraTransform;
 

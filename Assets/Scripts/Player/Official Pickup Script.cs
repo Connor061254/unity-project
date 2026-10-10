@@ -82,7 +82,15 @@ public class OfficialPickupScript : NetworkBehaviour
                     if(currentTarget != null) currentTarget.HidePrompt();
 
                     currentTarget = hitItem;
-                    currentTarget.ShowPrompt();
+                    if (currentTarget.transform.CompareTag("Chest"))
+                    {
+                        currentTarget.ShowOpenPrompt();
+                    }
+                    else
+                    {
+                        currentTarget.ShowPopUpPrompt();
+                    }
+                    
                 }
             }
             else
@@ -92,6 +100,14 @@ public class OfficialPickupScript : NetworkBehaviour
                     currentTarget.HidePrompt();
                     currentTarget = null;
                 }
+            }
+        }
+        else
+        {
+            if(currentTarget != null)
+            {
+                currentTarget.HidePrompt();
+                currentTarget = null;
             }
         }
     }

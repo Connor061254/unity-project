@@ -26,6 +26,9 @@ public class Chest : NetworkBehaviour
         NetworkObject netObj = spawnedItem.GetComponent<NetworkObject>();
 
         netObj.Spawn();
+
+        NetworkObject networkObject = gameObject.GetComponent<NetworkObject>();
+        networkObject.Despawn();
     }
 
 }

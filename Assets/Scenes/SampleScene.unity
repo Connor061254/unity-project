@@ -46762,23 +46762,23 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 343e9ebae18bc0f48811edac300d64d0, type: 2}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8105583
+      value: 1.8136878
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99921304
+      value: 0.9997476
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.02168553
+      value: -0.017908173
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00872
+      value: 0.008724665
       objectReference: {fileID: 0}
     - target: {fileID: 6930079544841169302, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.032047216
+      value: -0.010394482
       objectReference: {fileID: 0}
     - target: {fileID: 7065851927478998173, guid: b5e0cfd309fab4847bc8c4b8cc95f904, type: 3}
       propertyPath: m_Layer

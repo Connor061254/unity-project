@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.Netcode;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : NetworkBehaviour
 {
     public ItemData[] inventorySlots = new ItemData[10];
     public int space = 10;
@@ -76,7 +77,8 @@ public class InventoryManager : MonoBehaviour
                 pickupScript.currentHeldObject.GetComponent<SpecialAbility>().ReduceSpeed();
             }
              
-            Destroy(pickupScript.currentHeldObject);
+             NetworkObject networkObject = pickupScript.currentHeldObject.GetComponent<NetworkObject>();
+             networkObject.Despawn();
 
             pickupScript.heldObject = null;
             pickupScript.currentHeldObject = null;
@@ -93,6 +95,9 @@ public class InventoryManager : MonoBehaviour
         objectToSpawn = targetItem.itemGameObject;
 
         GameObject heldItem = Instantiate(objectToSpawn, spawnPosition);
+
+        NetworkObject netObj = heldItem.GetComponent<NetworkObject>();
+        netObj.Spawn();
 
         if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {

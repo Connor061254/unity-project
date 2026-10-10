@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 052888f839e9826448a499bdbb6f569a, type: 3}
-  m_Name: Pocket_Cannon
+  m_Name: Log Large
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Pocket_Cannon
+  itemName: 
   itemIcon: {fileID: 0}
   itemDescription: 
-  itemGameObject: {fileID: 8748674794308019479, guid: 6c53b9a9ebebe614fa5f137e8f23686b, type: 3}
+  itemGameObject: {fileID: 3809912117865626255, guid: 47b1c31871660c54090abe5e25de029e, type: 3}

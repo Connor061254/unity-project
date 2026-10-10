@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - popUpCanvas: {instanceID: 0}
+  - popUpCanvas: {fileID: 5987030222322038086, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+  - openCanvas: {fileID: 5987030222322038086, guid: 9356e4fff874f6847a20861ffdab0bf3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
