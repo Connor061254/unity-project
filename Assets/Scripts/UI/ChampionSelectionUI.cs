@@ -1,41 +1,53 @@
 using UnityEngine;
 using Unity.Netcode;
-using System.Xml.Serialization;
-using System.Collections;
+using System.Threading.Tasks;
+using Netcode.Transports.Facepunch;
+using Steamworks;
 
 public class ChampionSelectionUI : MonoBehaviour
 {
-
+    private FacepunchTransport transport;
     public GameObject healthUI;
-
-    public GameObject crossHairUI;
-    public void SelectTallPirate()
+    public GameObject crossHairUI;  
+    
+    private void Start()
     {
-       StartCoroutine(StartIslandAndSelect(1));
+        transport = NetworkManager.Singleton.GetComponent<FacepunchTransport>();
     }
 
-    public void SelectFatPirate()
-    {
-        StartCoroutine(StartIslandAndSelect(0));
-    }
+    public void SelectTallPirate() => _ = HandleCharacterSelectionAsync(1);
+    public void SelectFatPirate() => _ = HandleCharacterSelectionAsync(0);
+    public void SelectWomenPirate() => _ = HandleCharacterSelectionAsync(2);
 
-    public void SelectWomenPirate()
+    private async Task HandleCharacterSelectionAsync(int championIndex)
     {
-        StartCoroutine(StartIslandAndSelect(2));
+        // Only try to start a new host lobby if we aren't already connected as a client
+        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
+        {
+            bool success = await StartIslandAsync();
+            if (!success) return; 
+        }
+
+        // Wait for Netcode to spawn the local player object
+        while (NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject() == null)
+        {
+            await Task.Yield(); 
+        }
+
+        SelectChampion(championIndex);
+        
+        // Turn on gameplay UI
+        if(healthUI != null) healthUI.SetActive(true);
+        if(crossHairUI != null) crossHairUI.SetActive(true);
+        
+        // Hide this selection screen
+        gameObject.SetActive(false);
     }
 
     private void SelectChampion(int championIndex)
     {
-        if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsClient)
-        {
-            return;
-        }
-
         NetworkObject playerObject = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
-        if (playerObject == null)
-        {
-            return;
-        }
+        if (playerObject == null) return;
 
         PlayerDataBackpack playerData = playerObject.GetComponent<PlayerDataBackpack>();
         if (playerData != null)
@@ -44,25 +56,24 @@ public class ChampionSelectionUI : MonoBehaviour
         }
     }
 
-    private IEnumerator StartIslandAndSelect(int championIndex)
+    private async Task<bool> StartIslandAsync() 
     {
-        StartIsland();
+        Debug.Log("Requesting Steam to create a lobby...");
+        var lobby = await SteamMatchmaking.CreateLobbyAsync(4);
 
-        while (NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject() == null)
+        if (!lobby.HasValue)
         {
-            yield return null;
+            Debug.LogError("Failed to create Steam Lobby");
+            return false;
         }
 
-        SelectChampion(championIndex);
-        
-        gameObject.SetActive(false);
-    }
+        Debug.Log("Steam Lobby created successfully.");
+        lobby.Value.SetPublic();
+        lobby.Value.SetJoinable(true);
 
-    private void StartIsland()
-    {
+        transport.targetSteamId = SteamClient.SteamId;
         NetworkManager.Singleton.StartHost();
 
-        if(healthUI != null) healthUI.SetActive(true);
-        if(crossHairUI != null) crossHairUI.SetActive(true);
+        return true;
     }
 }

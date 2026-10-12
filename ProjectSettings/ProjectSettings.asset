@@ -543,6 +543,12 @@ PlayerSettings:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000i
     m_Automatic: 0
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 02000000i
+    m_Automatic: 0
+  - m_BuildTarget: MacStandaloneSupport
+    m_APIs: 10000000i
+    m_Automatic: 1
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
@@ -836,7 +842,7 @@ PlayerSettings:
   webEnableSubmoduleStrippingCompatibility: 0
   webProgressiveAssetLoading: 0
   scriptingDefineSymbols:
-    Standalone: APP_UI_EDITOR_ONLY;CREST_OCEAN;COZY_WEATHER;COZY_3_AND_UP;COZY_URP;SENTIS_ANALYTICS_ENABLED
+    Standalone: APP_UI_EDITOR_ONLY;CREST_OCEAN;COZY_WEATHER;COZY_3_AND_UP;COZY_URP;SENTIS_ANALYTICS_ENABLED;STEAMWORKS_NET
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

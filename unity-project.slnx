@@ -140,6 +140,7 @@
   <Project Path="Unity.ProBuilder.Stl.csproj" />
   <Project Path="Unity.Multiplayer.Tools.NetStatsReporting.csproj" />
   <Project Path="QFSW.QC.ScanRules.csproj" />
+  <Project Path="Facepunch Transport for Netcode for GameObjects.csproj" />
   <Project Path="Unity.InferenceEngine.ONNX.Editor.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.Multiplayer.Tools.Adapters.Utp2.csproj" />

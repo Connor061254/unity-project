@@ -104,6 +104,13 @@ public class InventoryManager : NetworkBehaviour
             rb.useGravity = false;
             rb.isKinematic = true;
         }
+
+        Collider[] colliders = heldItem.GetComponentsInChildren<Collider>();
+
+        foreach(Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
        
 
         heldItem.transform.localPosition = Vector3.zero;
