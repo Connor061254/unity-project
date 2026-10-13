@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Mono.Cecil;
+using Mono.CSharp;
 using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
@@ -56,77 +58,83 @@ public class InventoryManager : NetworkBehaviour
 
     void Update()
     {
+        if(!IsOwner) return;
+
         for(int i = 0; i < inventoryKeys.Length; i++)
         {
             if (Input.GetKeyDown(inventoryKeys[i]))
             {
-                SwapItem(i);
+                RequestSwapItemRpc(i);
             }
         }
     }
 
-    public void SwapItem(int slotIndex)
+    [Rpc(SendTo.Server)]
+    public void RequestSwapItemRpc(int slotIndex)
     {
-        var pickupScript = this.gameObject.GetComponent<OfficialPickupScript>();
-        var spawnPosition = pickupScript.holdPosition;
+        var pickupScript = gameObject.GetComponent<OfficialPickupScript>();
 
-       if(pickupScript.currentHeldObject != null)
+        if(pickupScript.currentHeldObject != null)
         {
-            if (pickupScript.currentHeldObject.GetComponent<SpecialAbility>() != null)
+            var oldNetworkObject = pickupScript.currentHeldObject.GetComponent<NetworkObject>();
+            if(oldNetworkObject != null && oldNetworkObject.IsSpawned)
             {
-                pickupScript.currentHeldObject.GetComponent<SpecialAbility>().ReduceSpeed();
+                oldNetworkObject.Despawn();
             }
-             
-             NetworkObject networkObject = pickupScript.currentHeldObject.GetComponent<NetworkObject>();
-             networkObject.Despawn();
-
-            pickupScript.heldObject = null;
-            pickupScript.currentHeldObject = null;
         }
-      
 
-        ItemData targetItem = inventorySlots[slotIndex];
+        var targetItem = inventorySlots[slotIndex];
 
         if(targetItem == null || targetItem.itemGameObject == null)
         {
             return;
         }
-       
-        objectToSpawn = targetItem.itemGameObject;
 
-        GameObject heldItem = Instantiate(objectToSpawn, spawnPosition);
+        var spawnPosition = pickupScript.holdPosition;
+        GameObject heldItem = Instantiate(targetItem.itemGameObject, spawnPosition.position, Quaternion.identity);
 
-        NetworkObject netObj = heldItem.GetComponent<NetworkObject>();
-        netObj.Spawn();
+        var netObjHeldItem = heldItem.GetComponent<NetworkObject>();
+        netObjHeldItem.SpawnWithOwnership(OwnerClientId);
 
-        if (heldItem.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        PerformSwapItemRpc(netObjHeldItem.NetworkObjectId);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    public void PerformSwapItemRpc(ulong newItemId)
+    {
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(newItemId, out var spawnedNetObj))
         {
-            rb.useGravity = false;
-            rb.isKinematic = true;
+            GameObject heldItem = spawnedNetObj.gameObject;
+            var pickupScript = this.gameObject.GetComponent<OfficialPickupScript>();
+
+            if(heldItem.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
+            {
+                rigidbody.useGravity = false;
+                rigidbody.isKinematic = true;
+            }
+
+            if(heldItem.TryGetComponentsInChildren<Collider>(out Collider[] colliders))
+            {
+                foreach (Collider collider in colliders)
+                {
+                    collider.enabled = false;
+                }
+            }
+
+            heldItem.transform.SetParent(pickupScript.holdPosition);
+            heldItem.transform.localPosition = Vector3.zero;
+            heldItem.transform.localRotation = Quaternion.identity;
+
+            if (heldItem.GetComponent<SpecialAbility>() != null)
+            {
+                PlayerController playerController = GetComponent<PlayerController>();
+                CharacterType identity = GetComponent<Identification>().type;
+                heldItem.GetComponent<SpecialAbility>().InitalizeRock(identity, playerController);
+            }
+
+            pickupScript.heldObject = heldItem;
+            pickupScript.currentHeldObject = heldItem;
         }
-
-        Collider[] colliders = heldItem.GetComponentsInChildren<Collider>();
-
-        foreach(Collider collider in colliders)
-        {
-            collider.enabled = false;
-        }
-       
-
-        heldItem.transform.localPosition = Vector3.zero;
-
-        heldItem.transform.localRotation = Quaternion.identity;
-
-        if (heldItem.GetComponent<SpecialAbility>() != null)
-        {
-            PlayerController playerController = GetComponent<PlayerController>();
-            CharacterType identity = GetComponent<Identification>().type;
-
-            heldItem.GetComponent<SpecialAbility>().InitalizeRock(identity, playerController);
-        }
-
-        pickupScript.heldObject = heldItem;
-        pickupScript.currentHeldObject = heldItem;
-
     }
 }
+   

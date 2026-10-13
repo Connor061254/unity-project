@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using Steamworks.Ugc;
 
 
 public class OfficialPickupScript : NetworkBehaviour
@@ -42,6 +43,8 @@ public class OfficialPickupScript : NetworkBehaviour
     // THE VIRTUAL PARENT: This glues the item to your hand every single frame!
     void LateUpdate()
     {
+        if(!IsOwner) return;
+
         if (heldObject != null && currentHeldObject != null)
         {
             var itemSettings = heldObject.GetComponent<ItemPickupPosition>();
@@ -142,23 +145,7 @@ public class OfficialPickupScript : NetworkBehaviour
 
                 if (heldObject != null)
                 {
-                    var itemProp = heldObject.GetComponent<ItemProperties>();
-                    var inventory = this.gameObject.GetComponent<InventoryManager>();
-
-                    if(inventory != null && itemProp != null && networkObject != null)
-                    {
-                        itemInfo = itemProp.referenceData;
-                        bool wasPickedUp = inventory.AddItem(itemInfo);
-
-                        if (wasPickedUp)
-                        {
-                            RequestPickUpServerRpc(networkObject.NetworkObjectId);
-                        }
-                        else
-                        {
-                            heldObject = null;
-                        }
-                    }
+                   RequestPickUpServerRpc(networkObject.NetworkObjectId);
                 }
             }
 
@@ -174,6 +161,30 @@ public class OfficialPickupScript : NetworkBehaviour
     {
         if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
         {
+
+            if(item.OwnerClientId != NetworkManager.ServerClientId && item.OwnerClientId != rpcParams.Receive.SenderClientId)
+            {
+                return;
+            }
+
+            if(Vector3.Distance(gameObject.transform.position, item.transform.position) > pickupRange + 1f)
+            {
+                return;
+            }
+
+            var itemProp = item.GetComponent<ItemProperties>();
+            var inventory = this.gameObject.GetComponent<InventoryManager>();
+
+            if(itemProp != null && inventory != null)
+            {
+                bool wasPickedUp = inventory.AddItem(itemProp.referenceData);
+
+                if (!wasPickedUp)
+                {
+                    Debug.Log("Inventory full");
+                    return;
+                }
+            }
              Rigidbody[] allRbs = item.gameObject.GetComponentsInChildren<Rigidbody>();
                             foreach (Rigidbody r in allRbs)
                             {
@@ -234,15 +245,6 @@ public class OfficialPickupScript : NetworkBehaviour
         {
             heldObject.GetComponent<SpecialAbility>().ReduceSpeed();
         }
-        
-        var inventory = this.gameObject.GetComponent<InventoryManager>();
-        
-        var itemProp = heldObject.GetComponent<ItemProperties>();
-        if (itemProp != null && inventory != null)
-        {
-            itemInfo = itemProp.referenceData;
-            inventory.RemoveItem(itemInfo);
-        }
 
         NetworkObject networkObject = heldObject.GetComponent<NetworkObject>();
         if(networkObject != null)
@@ -258,6 +260,16 @@ public class OfficialPickupScript : NetworkBehaviour
     {
         if(NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(itemId, out NetworkObject item))
         {
+            var inventory = this.gameObject.GetComponent<InventoryManager>();
+            
+            var itemProp = heldObject.GetComponent<ItemProperties>();
+            if (itemProp != null && inventory != null)
+            {
+                itemInfo = itemProp.referenceData;
+                inventory.RemoveItem(itemInfo);
+            } 
+        
+        if(item.OwnerClientId != rpcparams.Receive.SenderClientId) return;
             // Take ownership back for the Server
             item.RemoveOwnership();
             PerformDropClientRpc(itemId, dropDirection);

@@ -18,8 +18,6 @@ public class HealthController : NetworkBehaviour
     public float outwardForce = 3f;
 
     public float upwardForce = 5f;
-
-    // Use OnNetworkSpawn instead of Start
     public override void OnNetworkSpawn()
     {
         healthScript = FindAnyObjectByType<HealthbarUI>(FindObjectsInactive.Include);
@@ -44,6 +42,7 @@ public class HealthController : NetworkBehaviour
 
     public void Update()
     {
+        // testing
         if (Input.GetKey(KeyCode.Comma))
         {
             TakeDamage(100f);
@@ -93,14 +92,11 @@ public class HealthController : NetworkBehaviour
         RequestHealthTakeDamageRpc(damageAmount);
     }
 
-    // 3. Added the missing RPC tag!
     [Rpc(SendTo.Server)]
     private void RequestHealthTakeDamageRpc(float damageAmount)
     {
         currentPlayerHealth.Value -= damageAmount;
 
-        // Since we are already on the Server inside this RPC, we can just 
-        // handle the hat dropping and point removal directly! No extra RPCs needed.
         if (currentPlayerHealth.Value <= 0)
         {
             Points getPoints = GetComponent<Points>();
