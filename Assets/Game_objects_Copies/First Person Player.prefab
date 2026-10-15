@@ -375,6 +375,7 @@ MonoBehaviour:
   itemSpeedBuff: 0
   gravity: -15.32
   jumpHeight: 3
+  floatStrength: 4.08
   matchStarted: 1
   controller: {fileID: 4391535740791429150}
   groundcheck: {fileID: 4907645124831204908}
@@ -384,6 +385,7 @@ MonoBehaviour:
     m_Bits: 128
   playerCamera: {fileID: 7250295545125707245}
   playerListener: {fileID: 1803903248410310164}
+  waterLevel: 0.64
   groundCheckRadius: 0.2
 --- !u!114 &3281925576719215717
 MonoBehaviour:
@@ -616,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb72195703fefcf4cb18870eb7892eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  ShowTopMostFoldoutHeaderGroup: 1
   inventorySlots:
   - {fileID: 0}
   - {fileID: 0}

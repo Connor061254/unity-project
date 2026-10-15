@@ -35,8 +35,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8931114021871670504}
   - {fileID: 6930079544841169302}
+  - {fileID: 8931114021871670504}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2632817854941122464
@@ -51,12 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3141866503
+  GlobalObjectIdHash: 3352050088
   InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
+  m_InScenePlaced: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
@@ -222,8 +224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7065851927478998173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.045, y: 2.59, z: 0.38}
+  m_LocalRotation: {x: 0.007582758, y: -0.000018417837, z: -0.0026209394, w: 0.9999678}
+  m_LocalPosition: {x: 0.05, y: 2.82, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,31 +245,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.016796567
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8193967
+      value: 2.2458963
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.20392665
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99976766
+      value: 0.9999561
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.018759802
+      value: 0.002431948
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00872484
+      value: 0.0087264795
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.006048438
+      value: 0.0024250413
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 817ff8a8f29c5354285ccc000433c671, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -400,10 +402,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
   GlobalObjectIdHash: 1644247127
   InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
+  m_InScenePlaced: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1

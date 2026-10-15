@@ -36,10 +36,10 @@ TagManager:
   - Ground
   - Lantern
   - Interactable
-  - 
-  - 
-  - 
-  - 
+  - IslandCollider
+  - TargetBoatObject
+  - WaterFloor
+  - BuoyancyForPlayerFloor
   - 
   - 
   - 

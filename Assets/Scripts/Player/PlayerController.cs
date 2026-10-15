@@ -16,7 +16,10 @@ public class PlayerController : NetworkBehaviour
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
 
+    public float floatStrength = 5f;
+
     public bool matchStarted = true;
+
 
     public CharacterController controller;
 
@@ -29,6 +32,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private AudioListener playerListener;
     private Animator animator;
 
+    public float waterLevel = 0.4f;
     Vector3 velocity;
     bool isGrounded;
 
@@ -51,7 +55,7 @@ public class PlayerController : NetworkBehaviour
         }
         isGrounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0 && transform.position.y > waterLevel)
         {
             velocity.y = -2f;
         }
@@ -66,8 +70,6 @@ public class PlayerController : NetworkBehaviour
             {
                 currentSpeed = sprintSpeed + itemSpeedBuff;
             }
-            
-            
         }
 
         else
@@ -82,17 +84,27 @@ public class PlayerController : NetworkBehaviour
 
         bool isMoving = movement.magnitude > 0.1f;
         
-             Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = transform.right * x + transform.forward * z;
 
-            controller.Move(move * currentSpeed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+        if (Input.GetButtonDown("Jump") && isGrounded && gameObject.transform.position.y > waterLevel)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        if (gameObject.transform.position.y <= waterLevel)
+        {
+            velocity.y += floatStrength * Time.deltaTime;
+
+            if (velocity.y > floatStrength) velocity.y = floatStrength;
+        }
+        else
+        {
             velocity.y += gravity * Time.deltaTime;
 
-            controller.Move(velocity * Time.deltaTime);
+        }
+     
+        controller.Move(velocity * Time.deltaTime);
 
         if (isMoving && isGrounded && animator)
         {

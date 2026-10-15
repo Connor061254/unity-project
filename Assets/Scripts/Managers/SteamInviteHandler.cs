@@ -41,15 +41,26 @@ public class SteamInviteHandler : MonoBehaviour
             return;
         }
 
-       Debug.Log("Joined lobby! Connecting to friend's island...");
+        Debug.Log("Joined lobby! Connecting to friend's island...");
 
-       transport.targetSteamId = lobby.Owner.Id;
+        transport.targetSteamId = lobby.Owner.Id;
 
-       NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.StartClient();
 
-       if (championSelectionUI != null)
+        if (championSelectionUI != null)
         {
-            championSelectionUI.SetActive(true);
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         }
+    }
+
+    private void OnClientConnected(ulong clientId)
+    {
+        if (clientId == NetworkManager.Singleton.LocalClientId)
+    {
+        Debug.Log("Connected to the host! Activating UI.");
+        championSelectionUI.SetActive(true);
+        
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+    }
     }
 }

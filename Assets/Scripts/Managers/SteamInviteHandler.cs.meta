@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 17196c6bb7e7aa44ea9ff979f332d840
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - championSelectionUI: {fileID: 828342239543367349, guid: 35ef54a025ef24e4fa04b4ee72edf26c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
