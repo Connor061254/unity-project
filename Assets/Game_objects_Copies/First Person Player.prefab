@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 3448816866019188061}
   - component: {fileID: -1640613662332111556}
   - component: {fileID: 5366087651012502095}
+  - component: {fileID: -8971255054039665305}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -287,6 +288,7 @@ Transform:
   - {fileID: 4597305284723869706}
   - {fileID: 741582535770903895}
   - {fileID: 7053047136996084302}
+  - {fileID: 4210602827549355257}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4391535740791429150
@@ -375,7 +377,6 @@ MonoBehaviour:
   itemSpeedBuff: 0
   gravity: -15.32
   jumpHeight: 3
-  floatStrength: 4.08
   matchStarted: 1
   controller: {fileID: 4391535740791429150}
   groundcheck: {fileID: 4907645124831204908}
@@ -385,7 +386,6 @@ MonoBehaviour:
     m_Bits: 128
   playerCamera: {fileID: 7250295545125707245}
   playerListener: {fileID: 1803903248410310164}
-  waterLevel: 0.64
   groundCheckRadius: 0.2
 --- !u!114 &3281925576719215717
 MonoBehaviour:
@@ -938,6 +938,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3b35d794e4a93469967bbd0a54e2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+--- !u!114 &-8971255054039665305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403e8360b73b503459373261542514b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterControllerWater
+  waterMaterial: {fileID: 2100000, guid: 9a3a73f5564a39544a7958f1d9a318e8, type: 2}
+  waveProfile: {fileID: 11400000, guid: 343e9ebae18bc0f48811edac300d64d0, type: 2}
+  baseWaterLevel: -0.5
+  gravity: -9.81
+  buoyancyStrength: 57
+  waterResistance: 5
+  inWater: 0
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +1009,37 @@ MonoBehaviour:
   movementSpeedBuffApply: 1
   movementSpeedBuff: 2
   smoothReturnSpeed: 4.96
+--- !u!1 &7525786321912109798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4210602827549355257}
+  m_Layer: 6
+  m_Name: Floater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4210602827549355257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525786321912109798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6116907855491786371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &990818436743393980
 PrefabInstance:
   m_ObjectHideFlags: 0

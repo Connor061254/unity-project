@@ -38,6 +38,7 @@ public class BoatController : MonoBehaviour
         isBeingControlled = true;
 
         // Disable player's own controller if they have one (e.g. a PlayerController script)
+        player.GetComponent<CharacterControllerWater>().enabled = false;
         player.GetComponent<PlayerController>().enabled = false;
 
         var playerCollider = player.GetComponent<CharacterController>();

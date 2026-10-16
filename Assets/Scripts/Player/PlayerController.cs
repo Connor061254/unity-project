@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using QFSW.QC;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -16,8 +17,6 @@ public class PlayerController : NetworkBehaviour
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
 
-    public float floatStrength = 5f;
-
     public bool matchStarted = true;
 
 
@@ -30,9 +29,10 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
 
     [SerializeField] private AudioListener playerListener;
+
     private Animator animator;
 
-    public float waterLevel = 0.4f;
+    private CharacterControllerWater waterController;
     Vector3 velocity;
     bool isGrounded;
 
@@ -42,6 +42,7 @@ public class PlayerController : NetworkBehaviour
     {
         currentSpeed = walkSpeed;
         animator = GetComponentInChildren<Animator>();
+        waterController = GetComponent<CharacterControllerWater>();
         Debug.Log($"the bool matchStarted is {matchStarted}");
 
     }
@@ -53,13 +54,14 @@ public class PlayerController : NetworkBehaviour
         {
             return;
         }
+        bool inWater = waterController != null && waterController.enabled && waterController.inWater;
         isGrounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0 && transform.position.y > waterLevel)
+        if (isGrounded && velocity.y < 0 && !inWater)
         {
             velocity.y = -2f;
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !inWater)
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
@@ -77,6 +79,11 @@ public class PlayerController : NetworkBehaviour
             currentSpeed = walkSpeed + itemSpeedBuff;
         }
 
+        if (inWater)
+        {
+            currentSpeed = 2.8f;
+        }
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -88,25 +95,22 @@ public class PlayerController : NetworkBehaviour
 
         controller.Move(move * currentSpeed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded && gameObject.transform.position.y > waterLevel)
+        if (!inWater && Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-        if (gameObject.transform.position.y <= waterLevel)
+        if (inWater)
         {
-            velocity.y += floatStrength * Time.deltaTime;
-
-            if (velocity.y > floatStrength) velocity.y = floatStrength;
+            // CharacterControllerWater owns vertical movement while submerged.
+            velocity.y = 0f;
         }
         else
         {
             velocity.y += gravity * Time.deltaTime;
-
+            controller.Move(velocity * Time.deltaTime);
         }
-     
-        controller.Move(velocity * Time.deltaTime);
 
-        if (isMoving && isGrounded && animator)
+        if (isMoving && isGrounded && animator && !inWater)
         {
             animator.SetBool("isWalking", true);
 

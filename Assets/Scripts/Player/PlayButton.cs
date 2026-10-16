@@ -12,8 +12,6 @@ public class PlayButton : NetworkBehaviour
 
     private GameObject gameManager;
 
-    private PlayerController player;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))

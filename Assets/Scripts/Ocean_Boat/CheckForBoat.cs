@@ -23,6 +23,7 @@ public class CheckForBoat : NetworkBehaviour
                 currentBoat.LocalExitBoat();
                 GetComponent<PlayerController>().enabled = true;
                 GetComponent<playerCrouch>().enabled = true;
+                GetComponent<CharacterControllerWater>().enabled = true;
                 currentBoat = null;
             }
         }

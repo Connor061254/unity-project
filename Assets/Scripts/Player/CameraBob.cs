@@ -43,7 +43,7 @@ public class CameraBob : MonoBehaviour
     {
         CheckCameraBob();
 
-        if (isMoving == true)
+        if (isMoving == true && gameObject.GetComponentInParent<CharacterControllerWater>().inWater == false)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
