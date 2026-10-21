@@ -38,12 +38,20 @@ public class CheckForBoat : NetworkBehaviour
         if (Physics.Raycast(ray, out hit, 5f) && hit.transform.CompareTag("Boat"))
         {
             var boat = hit.transform.GetComponent<MovementForBoat>();
-            if (boat != null)
+            if (boat != null && boat.player == null)
             {
                 currentBoat = boat;
               
                 currentBoat.RequestBoardBoatRpc();
                 currentBoat.BoardBoat(this.gameObject);
+            }
+            else if(boat.firstPassanger == null)
+            {
+                boat.firstPassanger = gameObject;
+            }
+            else if(boat.secondPassanger == null)
+            {
+                boat.secondPassanger = gameObject;
             }
         }
     }

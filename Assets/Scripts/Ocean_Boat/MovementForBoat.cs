@@ -1,4 +1,4 @@
-    using Unity.Netcode;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,9 +15,17 @@ public class MovementForBoat : NetworkBehaviour
 
     public Transform seatPosition;
 
+    public Transform firstPassangerSeat;
+
+    public Transform secondPassangerSeat;
+
     public NetworkVariable<bool> isControllingBoat = new NetworkVariable<bool>(false);
 
-    private GameObject player;
+    public GameObject player;
+
+    public GameObject firstPassanger;
+
+    public GameObject secondPassanger;
 
     [SerializeField] private float rightTurnSpeed = 100f;
 
@@ -111,6 +119,15 @@ public class MovementForBoat : NetworkBehaviour
         if (isControllingBoat.Value && IsOwner)
         {
             player.transform.position = seatPosition.position;
+        }
+
+        else if(firstPassanger != null)
+        {
+            firstPassanger.transform.position = firstPassangerSeat.position;
+        }
+        else if (secondPassanger != null)
+        {
+            secondPassanger.transform.position = secondPassangerSeat.position;
         }
     }
 

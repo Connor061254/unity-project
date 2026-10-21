@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 4663007848174787228}
+  openCanvas: {fileID: 0}
 --- !u!114 &1707215785639035169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5029686776278704013, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: offset.y
-      value: 0.327
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029686776278704013, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
+      propertyPath: offset.z
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5987030222322038086, guid: 54c1a90e3a9d9334c94eb782a83f98d8, type: 3}
       propertyPath: m_Name

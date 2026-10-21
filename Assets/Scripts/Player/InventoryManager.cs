@@ -101,6 +101,8 @@ public class InventoryManager : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     public void PerformSwapItemRpc(ulong newItemId)
     {
+        if(!IsServer) return;
+
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(newItemId, out var spawnedNetObj))
         {
             GameObject heldItem = spawnedNetObj.gameObject;
@@ -119,10 +121,6 @@ public class InventoryManager : NetworkBehaviour
                     collider.enabled = false;
                 }
             }
-
-            heldItem.transform.SetParent(pickupScript.holdPosition);
-            heldItem.transform.localPosition = Vector3.zero;
-            heldItem.transform.localRotation = Quaternion.identity;
 
             if (heldItem.GetComponent<SpecialAbility>() != null)
             {
