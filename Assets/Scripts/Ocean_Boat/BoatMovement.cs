@@ -62,9 +62,15 @@ public class BoatController : MonoBehaviour
         player.GetComponent<PlayerController>().enabled = true;
 
         var playerCollider = player.GetComponent<CharacterController>();
+        
         if (playerCollider != null) 
         {
             playerCollider.enabled = true;
+        }
+        var cameraBob = player.GetComponentInChildren<CameraBob>();
+        if(cameraBob != null)
+        {
+            cameraBob.enabled = true;
         }
 
         // Un-parent the player

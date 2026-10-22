@@ -25,6 +25,8 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
 
     public float thrownDistanceReducer = 0.4f;
 
+    public float spinStrength = 2f;
+
     private Vector3 myThrowPosition;
 
 
@@ -116,6 +118,10 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             //rb.AddForce(throwDirection * finalThrowForce, ForceMode.Impulse);
 
             rb.linearVelocity = Velocity;
+
+            Vector3 randomDirection = Random.insideUnitSphere;
+
+            rb.AddTorque(randomDirection * spinStrength, ForceMode.Impulse);
 
             pickupScript.ClearHeldObjectOnClients(throwerObj);
 

@@ -134,6 +134,8 @@ public class MovementForBoat : NetworkBehaviour
     public void LocalExitBoat()
     {
         player.transform.position = seatPosition.position + (transform.up * 2f);
+
+        player.GetComponentInChildren<CameraBob>().enabled = true;
         
         Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>(), false);
 

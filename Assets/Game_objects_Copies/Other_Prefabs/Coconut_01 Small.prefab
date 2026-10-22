@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 2571053851156066145}
+  openCanvas: {fileID: 0}
 --- !u!114 &1166385989484797255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RockWeapon
   ShowTopMostFoldoutHeaderGroup: 1
   lastOwner: {fileID: 0}
-  attackCooldown: 2
+  attackCooldown: 1
   damageCurve:
     serializedVersion: 2
     m_Curve: []
@@ -231,6 +232,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
+  spinStrength: 2
 --- !u!114 &4413300309366830986
 MonoBehaviour:
   m_ObjectHideFlags: 0

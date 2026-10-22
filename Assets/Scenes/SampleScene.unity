@@ -2797,7 +2797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.61175585
+      value: -0.5635248
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2805,19 +2805,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.995312
+      value: 0.9959335
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.03401936
+      value: -0.022812227
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.087078504
+      value: 0.08713288
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.02477945
+      value: 0.0020275482
       objectReference: {fileID: 0}
     - target: {fileID: 3579506247252158949, guid: 559eb6c125b8c1343849c20760e0b741, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11173,11 +11173,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovementForBoat
   ShowTopMostFoldoutHeaderGroup: 1
   seatPosition: {fileID: 0}
+  firstPassangerSeat: {fileID: 0}
+  secondPassangerSeat: {fileID: 0}
   isControllingBoat:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
+  player: {fileID: 0}
+  firstPassanger: {fileID: 0}
+  secondPassanger: {fileID: 0}
   rightTurnSpeed: 30
   leftTurnSpeed: -30
   forwardSpeed: 4000

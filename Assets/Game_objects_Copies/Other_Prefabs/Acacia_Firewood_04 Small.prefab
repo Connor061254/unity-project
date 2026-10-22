@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: b966119319adc964a904b59e5fea1468, type: 3}
       propertyPath: m_Name
-      value: Acacia_Firewood_04 (1)
+      value: Acacia_Firewood_04 Small
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b966119319adc964a904b59e5fea1468, type: 3}
       propertyPath: m_TagString
@@ -215,6 +215,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
+  spinStrength: 1
 --- !u!114 &5230410556211666793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 2112557601977002037}
+  openCanvas: {fileID: 0}
 --- !u!114 &-1439379762582461433
 MonoBehaviour:
   m_ObjectHideFlags: 0

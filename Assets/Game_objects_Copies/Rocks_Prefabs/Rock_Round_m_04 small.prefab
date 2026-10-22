@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 8060600730852420899}
+  openCanvas: {fileID: 0}
 --- !u!114 &6563510987763566324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +321,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
+  spinStrength: 1
 --- !u!114 &5805334631277228915
 MonoBehaviour:
   m_ObjectHideFlags: 0

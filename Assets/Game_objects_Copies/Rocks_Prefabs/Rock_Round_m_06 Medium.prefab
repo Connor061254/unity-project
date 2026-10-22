@@ -380,6 +380,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
+  spinStrength: 0.64
 --- !u!114 &7197202397700039224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableItem
   ShowTopMostFoldoutHeaderGroup: 1
   popUpCanvas: {fileID: 4776276928489369843}
+  openCanvas: {fileID: 0}
 --- !u!64 &7664520704174007876
 MeshCollider:
   m_ObjectHideFlags: 0

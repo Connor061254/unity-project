@@ -321,6 +321,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
+  spinStrength: 1
 --- !u!114 &6036365852742836603
 MonoBehaviour:
   m_ObjectHideFlags: 0
