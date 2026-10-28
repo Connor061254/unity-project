@@ -50,6 +50,7 @@
   <Project Path="QFSW.QC.Editor.csproj" />
   <Project Path="DistantLands.Cozy.Runtime.csproj" />
   <Project Path="Unity.Multiplayer.Tools.Common.csproj" />
+  <Project Path="LineworkLite.csproj" />
   <Project Path="Unity.VisualScripting.Flow.csproj" />
   <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
@@ -89,6 +90,7 @@
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.AppUI.Navigation.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
+  <Project Path="LineworkLite.Editor.csproj" />
   <Project Path="Unity.AI.Navigation.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
   <Project Path="sc.stylizedwater3.runtime.csproj" />
