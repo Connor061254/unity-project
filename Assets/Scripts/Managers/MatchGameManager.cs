@@ -82,6 +82,11 @@ public class MatchGameManager : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     void StartMatchRpc()
     {
+        var playersColor = FindObjectsByType<PlayerColor>();
+        foreach(var playerColor in playersColor)
+        {
+            playerColor.UpdatePlayerColors();
+        }
         PlayerController[] Players = FindObjectsByType<PlayerController>();
 
         foreach (PlayerController player in Players)

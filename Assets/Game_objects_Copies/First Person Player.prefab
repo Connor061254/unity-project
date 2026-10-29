@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: -1640613662332111556}
   - component: {fileID: 5366087651012502095}
   - component: {fileID: -8971255054039665305}
+  - component: {fileID: -3165596920457419617}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -957,6 +958,19 @@ MonoBehaviour:
   buoyancyStrength: 57
   waterResistance: 5
   inWater: 0
+--- !u!114 &-3165596920457419617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac933e38e594c43b35074aaff107b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerColor
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &5026710289702217091
 GameObject:
   m_ObjectHideFlags: 0

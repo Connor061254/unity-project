@@ -9,7 +9,9 @@ public class PlayerDataBackpack : NetworkBehaviour
 
     public GameObject tallPiratePrefab;
 
-    private NetworkObject currentLobbyChamp;
+    public NetworkObject currentLobbyChamp;
+
+    public GameObject newAvatar;
 
     public NetworkVariable<int> SelectedChampIndex = new NetworkVariable<int>(
         0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
@@ -18,7 +20,7 @@ public class PlayerDataBackpack : NetworkBehaviour
     public NetworkVariable<int> TeamIndex = new NetworkVariable<int>(-1,
     NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
     );
-        public void SelectChampion(int championIndex)
+    public void SelectChampion(int championIndex)
     {
         RequestChangeChampRpc(championIndex);
     }
@@ -72,7 +74,7 @@ public class PlayerDataBackpack : NetworkBehaviour
 
         if(prefabToSpawn != null)
         {
-            GameObject newAvatar = Instantiate(prefabToSpawn, SpawnPoint, Quaternion.identity);
+            newAvatar = Instantiate(prefabToSpawn, SpawnPoint, Quaternion.identity);
             NetworkObject netObj = newAvatar.GetComponent<NetworkObject>();
 
             netObj.SpawnWithOwnership(OwnerClientId);
