@@ -13,30 +13,30 @@ public class InteractableItem : NetworkBehaviour
     private int outlineLayer = 14;
   public void ShowPopUpPrompt()
     {
-        Debug.Log("showPrompt is running!");
-        if (popUpCanvas != null)
-        {
-            Debug.Log("popupcanvas is being set to active");
+       // Debug.Log("showPrompt is running!");
+       // if (popUpCanvas != null)
+        //{
+            //Debug.Log("popupcanvas is being set to active");
             gameObject.layer = outlineLayer;
-            popUpCanvas.GetComponent<BillBoardUI>().GetObjectPosition(gameObject.transform);
-            popUpCanvas.SetActive(true);
-        }
+            //popUpCanvas.GetComponent<BillBoardUI>().GetObjectPosition(gameObject.transform);
+            //popUpCanvas.SetActive(true);
+       // }
     }
 
     public void ShowOpenPrompt()
     {
-         Debug.Log("showOpenPrompt is running!");
-        if (openCanvas != null)
-        {
-            Debug.Log("opencanvas is being set to active");
+         //Debug.Log("showOpenPrompt is running!");
+       // if (openCanvas != null)
+       // {
+           // Debug.Log("opencanvas is being set to active");
             gameObject.layer = outlineLayer;
-            openCanvas.GetComponent<BillBoardUI>().GetObjectPosition(gameObject.transform);
-            openCanvas.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("OpenCanvas is null");
-        }
+           // openCanvas.GetComponent<BillBoardUI>().GetObjectPosition(gameObject.transform);
+           // openCanvas.SetActive(true);
+       // }
+       // else
+      //  {
+            //Debug.Log("OpenCanvas is null");
+      //  }
     }
 
     public void HidePrompt()
