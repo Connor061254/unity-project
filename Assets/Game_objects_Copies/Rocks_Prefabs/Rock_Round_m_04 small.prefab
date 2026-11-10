@@ -102,6 +102,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5805334631277228915}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1965889230806658538}
   m_SourcePrefab: {fileID: 100100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
 --- !u!1 &2481598454326168729 stripped
 GameObject:
@@ -328,3 +331,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageMultiplier: 6
   damageNumber: 0
+--- !u!114 &-1965889230806658538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481598454326168729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 0

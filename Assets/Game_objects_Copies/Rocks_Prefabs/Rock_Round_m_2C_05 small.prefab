@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: -6040954957154603543}
   - component: {fileID: 4430586046420682032}
   - component: {fileID: -2753270997608941993}
+  - component: {fileID: 2907482588332482748}
   m_Layer: 0
   m_Name: Rock_Round_m_2C_05 small
   m_TagString: PickUp
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b056034864dc0b46af5fa23ac3252ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickupPosition
-  positionOffset: {x: 0.21, y: -0.36, z: -0.45}
+  positionOffset: {x: -0.19, y: 0.14, z: -0.21}
   rotationOffset: {x: 79.03, y: 0, z: 0}
 --- !u!114 &-622955305446175233
 MonoBehaviour:
@@ -428,3 +429,16 @@ MonoBehaviour:
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
   spinStrength: 2
+--- !u!114 &2907482588332482748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440188681892059510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 0

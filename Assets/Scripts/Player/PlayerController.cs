@@ -13,6 +13,8 @@ public class PlayerController : NetworkBehaviour
 
     public float currentSpeed = 0f;
 
+    public float baseWeaponSpeed;
+
     public float itemSpeedBuff = 0f;
     public float gravity = -15.32f;
     public float jumpHeight = 3f;
@@ -65,18 +67,18 @@ public class PlayerController : NetworkBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                currentSpeed = walkSpeed + itemSpeedBuff;
+                currentSpeed = walkSpeed + itemSpeedBuff + baseWeaponSpeed;
             }
 
             else
             {
-                currentSpeed = sprintSpeed + itemSpeedBuff;
+                currentSpeed = sprintSpeed + itemSpeedBuff + baseWeaponSpeed;
             }
         }
 
         else
         {
-            currentSpeed = walkSpeed + itemSpeedBuff;
+            currentSpeed = walkSpeed + itemSpeedBuff + baseWeaponSpeed;
         }
 
         if (inWater)

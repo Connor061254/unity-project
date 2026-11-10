@@ -102,6 +102,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9121568646990817974}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6089110277008712603}
   m_SourcePrefab: {fileID: 100100000, guid: cb9d3abdd5dacde4da9eb7dda5f9f612, type: 3}
 --- !u!1 &3309078392180664015 stripped
 GameObject:
@@ -328,3 +331,16 @@ MonoBehaviour:
   minimumEffectiveDistance: 3
   thrownDistanceReducer: 0.4
   spinStrength: 0.63
+--- !u!114 &6089110277008712603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309078392180664015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 1

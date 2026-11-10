@@ -82,6 +82,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             var inventory = throwerObj.GetComponent<InventoryManager>();
             var itemProp = this.gameObject.GetComponent<ItemProperties>();
             var pickupScript = throwerObj.GetComponent<OfficialPickupScript>();
+            var playerController = throwerObj.GetComponent<PlayerController>();
 
             //myThrowPosition = position;
 
@@ -129,6 +130,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
         {
             StartCoroutine(GetComponent<SpecialAbility>().SplitShotTimer());
         }
+            playerController.baseWeaponSpeed = 0f;
         }
     }
 

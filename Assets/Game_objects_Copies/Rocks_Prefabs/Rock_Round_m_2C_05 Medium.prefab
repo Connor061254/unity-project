@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 472656181367570684}
   - component: {fileID: -6676818611314679499}
   - component: {fileID: 4738934376403784018}
+  - component: {fileID: 5173010690223827142}
   m_Layer: 0
   m_Name: Rock_Round_m_2C_05 Medium
   m_TagString: PickUp
@@ -405,3 +406,16 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &5173010690223827142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747992070757868857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 1

@@ -223,6 +223,8 @@ public class OfficialPickupScript : NetworkBehaviour
         // We just set this variable so LateUpdate() knows it is time to start gluing it to the hand
         currentHeldObject = heldObject;
 
+        ApplyWeaponBaseSpeedEffect(currentHeldObject);
+
         Rigidbody[] allRbs = heldObject.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody r in allRbs)
         {
@@ -306,6 +308,9 @@ public class OfficialPickupScript : NetworkBehaviour
                 heldObject = null;
                 currentHeldObject = null;
             }
+
+            var playerController = GetComponent<PlayerController>();    
+            playerController.baseWeaponSpeed = 0f;
         }
     }
 
@@ -346,5 +351,27 @@ public class OfficialPickupScript : NetworkBehaviour
         canPickup = false;
         yield return new WaitForSeconds(0.5f); 
         canPickup = true;
+    }
+
+    public void ApplyWeaponBaseSpeedEffect(GameObject weapon)
+    {
+        var weaponType = weapon.GetComponent<WeaponIdentity>();
+
+        var playerController = GetComponent<PlayerController>();
+
+        switch (weaponType.weaponIdentity)
+        {
+            case weaponIdentity.smallRock:
+            playerController.baseWeaponSpeed = 0f;
+            break;
+
+            case weaponIdentity.mediumRock:
+            playerController.baseWeaponSpeed = -1f;
+            break;
+
+            case weaponIdentity.largeRock:
+            playerController.baseWeaponSpeed = -2.5f;
+            break;
+        }
     }
 }
