@@ -101,8 +101,6 @@ public class InventoryManager : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     public void PerformSwapItemRpc(ulong newItemId)
     {
-        if(!IsServer) return;
-
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(newItemId, out var spawnedNetObj))
         {
             GameObject heldItem = spawnedNetObj.gameObject;
