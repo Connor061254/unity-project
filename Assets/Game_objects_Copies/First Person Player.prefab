@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 148006225
+  GlobalObjectIdHash: 1029230242
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -374,6 +374,7 @@ MonoBehaviour:
   standingHeight: 0
   sprintSpeed: 8
   currentSpeed: 0
+  baseWeaponSpeed: 0
   itemSpeedBuff: 0
   gravity: -15.32
   jumpHeight: 3
@@ -420,6 +421,7 @@ MonoBehaviour:
   itemInfo: {fileID: 0}
   dropForce: 2
   mainCamera: {fileID: 7250295545125707245}
+  animator: {fileID: 0}
   currentHeldObject: {fileID: 0}
   playerController: {fileID: 0}
 --- !u!114 &7524277906128006799
@@ -708,6 +710,10 @@ MonoBehaviour:
       ParameterType: 1
     - name: StopAnimation
       NameHash: 1085755905
+      Synchronize: 1
+      ParameterType: 4
+    - name: isHoldingMediumRock
+      NameHash: 1489587423
       Synchronize: 1
       ParameterType: 4
   AnimatorParametersExpanded: 0

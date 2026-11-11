@@ -83,6 +83,7 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             var itemProp = this.gameObject.GetComponent<ItemProperties>();
             var pickupScript = throwerObj.GetComponent<OfficialPickupScript>();
             var playerController = throwerObj.GetComponent<PlayerController>();
+            var animator = throwerObj.GetComponentInChildren<Animator>();
 
             //myThrowPosition = position;
 
@@ -131,7 +132,13 @@ public class RockWeapon : NetworkBehaviour, IWeapon, IWeaponThrow
             StartCoroutine(GetComponent<SpecialAbility>().SplitShotTimer());
         }
             playerController.baseWeaponSpeed = 0f;
+
+            if(animator != null)
+            {
+                animator.SetBool("isHoldingMediumRock", false);
+            }
         }
+
     }
 
     void OnCollisionEnter(Collision collision)

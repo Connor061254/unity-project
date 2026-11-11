@@ -16,6 +16,8 @@ public class OfficialPickupScript : NetworkBehaviour
     public float dropForce = 2f;
     public Camera mainCamera;
 
+    public Animator animator;
+
     private InteractableItem currentTarget;
     public GameObject currentHeldObject;
 
@@ -220,7 +222,6 @@ public class OfficialPickupScript : NetworkBehaviour
 
     void PerformPickup()
     {
-        // We just set this variable so LateUpdate() knows it is time to start gluing it to the hand
         currentHeldObject = heldObject;
 
         ApplyWeaponBaseSpeedEffect(currentHeldObject);
@@ -236,6 +237,11 @@ public class OfficialPickupScript : NetworkBehaviour
         foreach (Collider c in allCols)
         {
             c.enabled = false;
+        }
+
+        if(animator != null)
+        {
+            animator.SetBool("isHoldingMediumRock", true);
         }
     }
 
@@ -307,6 +313,11 @@ public class OfficialPickupScript : NetworkBehaviour
             {
                 heldObject = null;
                 currentHeldObject = null;
+            }
+
+            if(animator != null)
+            {
+                animator.SetBool("isHoldingMediumRock", false);
             }
 
             var playerController = GetComponent<PlayerController>();    
