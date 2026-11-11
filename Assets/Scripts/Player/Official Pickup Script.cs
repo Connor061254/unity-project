@@ -241,8 +241,23 @@ public class OfficialPickupScript : NetworkBehaviour
 
         if(animator != null)
         {
-            animator.SetBool("isHoldingMediumRock", true);
+            var identity = currentHeldObject.GetComponent<WeaponIdentity>();
+
+            if(identity != null)
+            {
+                if (identity.weaponIdentity == weaponIdentity.mediumRock)
+                {
+                    Debug.Log("setting pose to hold position"); 
+                    animator.SetBool("isHoldingMediumRock", true);
+                } 
+                else
+                {
+                    Debug.Log("animator is null");
+                }
+            }
+           
         }
+       
     }
 
     void Drop()
@@ -366,23 +381,26 @@ public class OfficialPickupScript : NetworkBehaviour
 
     public void ApplyWeaponBaseSpeedEffect(GameObject weapon)
     {
-        var weaponType = weapon.GetComponent<WeaponIdentity>();
+        weapon.TryGetComponent<WeaponIdentity>(out WeaponIdentity weaponType);
 
         var playerController = GetComponent<PlayerController>();
 
-        switch (weaponType.weaponIdentity)
+        if(weaponType != null)
         {
-            case weaponIdentity.smallRock:
-            playerController.baseWeaponSpeed = 0f;
-            break;
+              switch (weaponType.weaponIdentity)
+            {
+                case weaponIdentity.smallRock:
+                playerController.baseWeaponSpeed = 0f;
+                break;
 
-            case weaponIdentity.mediumRock:
-            playerController.baseWeaponSpeed = -1f;
-            break;
+                case weaponIdentity.mediumRock:
+                playerController.baseWeaponSpeed = -1f;
+                break;
 
-            case weaponIdentity.largeRock:
-            playerController.baseWeaponSpeed = -2.5f;
-            break;
+                case weaponIdentity.largeRock:
+                playerController.baseWeaponSpeed = -2.5f;
+                break;
+            }
         }
     }
 }

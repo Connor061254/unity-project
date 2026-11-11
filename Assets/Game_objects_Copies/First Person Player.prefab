@@ -421,7 +421,7 @@ MonoBehaviour:
   itemInfo: {fileID: 0}
   dropForce: 2
   mainCamera: {fileID: 7250295545125707245}
-  animator: {fileID: 0}
+  animator: {fileID: 7649471449251934255}
   currentHeldObject: {fileID: 0}
   playerController: {fileID: 0}
 --- !u!114 &7524277906128006799
