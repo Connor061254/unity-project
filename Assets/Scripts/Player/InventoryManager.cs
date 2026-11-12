@@ -76,9 +76,18 @@ public class InventoryManager : NetworkBehaviour
         if(pickupScript.currentHeldObject != null)
         {
             var oldNetworkObject = pickupScript.currentHeldObject.GetComponent<NetworkObject>();
+            var playerController = GetComponent<PlayerController>();
             if(oldNetworkObject != null && oldNetworkObject.IsSpawned)
             {
                 oldNetworkObject.Despawn();
+            }
+            if(playerController != null)
+            {
+                playerController.baseWeaponSpeed = 0f;
+            }
+            if(pickupScript.animator != null)
+            {
+                pickupScript.animator.SetBool("isHoldingMediumRock", false);
             }
         }
 
@@ -126,6 +135,16 @@ public class InventoryManager : NetworkBehaviour
                 CharacterType identity = GetComponent<Identification>().type;
                 heldItem.GetComponent<SpecialAbility>().InitalizeRock(identity, playerController);
             }
+            if(pickupScript != null)
+            {
+                pickupScript.ApplyWeaponBaseSpeedEffect(heldItem);
+            }
+            heldItem.TryGetComponent<WeaponIdentity>(out WeaponIdentity weapon);
+
+            if(weapon.weaponIdentity == weaponIdentity.mediumRock)
+            {
+                pickupScript.animator.SetBool("isHoldingMediumRock", true);
+            }   
 
             pickupScript.heldObject = heldItem;
             pickupScript.currentHeldObject = heldItem;

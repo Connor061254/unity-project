@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b056034864dc0b46af5fa23ac3252ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickupPosition
-  positionOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: -0.13, y: -0.06, z: 0}
+  rotationOffset: {x: 136.1, y: 76.6, z: 131.5}
 --- !u!114 &-3130262752253443638
 MonoBehaviour:
   m_ObjectHideFlags: 0

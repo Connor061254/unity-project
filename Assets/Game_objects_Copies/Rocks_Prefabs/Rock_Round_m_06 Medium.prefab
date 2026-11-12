@@ -339,4 +339,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
-  weaponIdentity: 0
+  weaponIdentity: 1
