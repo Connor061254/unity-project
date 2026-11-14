@@ -85,7 +85,6 @@ public class HealthController : NetworkBehaviour
         }
     }
 
-    // 2. Changed float to int to match your NetworkVariable
     public void TakeDamage(float damageAmount) 
     {
         // All the client does is ask the server to handle the math

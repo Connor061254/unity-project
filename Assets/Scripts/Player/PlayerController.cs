@@ -39,7 +39,6 @@ public class PlayerController : NetworkBehaviour
     bool isGrounded;
 
     public float groundCheckRadius = 0.2f; 
-
     void Start()
     {
         currentSpeed = walkSpeed;
@@ -119,7 +118,7 @@ public class PlayerController : NetworkBehaviour
             float animationMultiplier = currentSpeed / walkSpeed;
             animator.SetFloat("animSpeed", animationMultiplier);
         }
-        else
+        else if(animator != null)
         {
             animator.SetBool("isWalking", false);
         }
