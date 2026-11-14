@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6590181492007130785}
   - component: {fileID: 6553946258722714521}
   - component: {fileID: 4980495988986003711}
+  - component: {fileID: 8529169218340413213}
   m_Layer: 0
   m_Name: Apple_01
   m_TagString: PickUp
@@ -173,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b056034864dc0b46af5fa23ac3252ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickupPosition
-  positionOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: -0.16, y: 0.13, z: -0.1}
+  rotationOffset: {x: 0, y: -22.37, z: 0}
 --- !u!114 &-4100427616352401794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,3 +305,16 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &8529169218340413213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499495731607801324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 0

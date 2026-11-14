@@ -103,6 +103,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 99427049dce8b6f49990a51758507214, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2245265036697312256}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 99427049dce8b6f49990a51758507214, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5658560316806992225}
   m_SourcePrefab: {fileID: 100100000, guid: 99427049dce8b6f49990a51758507214, type: 3}
 --- !u!1 &2504310424438627883 stripped
 GameObject:
@@ -148,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b056034864dc0b46af5fa23ac3252ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickupPosition
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: -0.27, y: 0, z: 0.1}
   rotationOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &760286129530816767
 MonoBehaviour:
@@ -307,3 +310,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageDealer
   damageMultiplier: 6
   damageNumber: 0
+--- !u!114 &5658560316806992225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504310424438627883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bd88eabce38704e9fddeb19f5e06aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponIdentity
+  weaponIdentity: 1
