@@ -12,9 +12,15 @@ public class HealthController : NetworkBehaviour
 
 
     private GameObject myHealthBar;
+
+    private Rigidbody[] ragdollRigidbodies;
+
+    public Collider rootCollider;
+
+    private Collider[] ragdollColliders;
     private HealthbarUI healthScript;
     public GameObject hatPrefab;
-
+    public bool isDowned;
     public float outwardForce = 3f;
 
     public float upwardForce = 5f;
@@ -40,6 +46,15 @@ public class HealthController : NetworkBehaviour
         }
     }
 
+    private void Awake()
+    {
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        ragdollColliders = GetComponentsInChildren<Collider>();
+
+        SetRagdollState(false);
+    }
+
     public void Update()
     {
         // testing
@@ -50,6 +65,10 @@ public class HealthController : NetworkBehaviour
         if (Input.GetKey(KeyCode.Period))
         {
             GetComponent<Points>().points.Value++;
+        }
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            Revive();
         }
     }
 
@@ -68,21 +87,42 @@ public class HealthController : NetworkBehaviour
         // If health hits 0, trigger the local death visuals
         if (newValue <= 0 && previousValue > 0)
         {
-            if(GetComponent<MeshRenderer>() && GetComponent<Collider>().enabled)
+            if(this.TryGetComponentInChildren<Animator>(out Animator animator))
             {
-                GetComponent<MeshRenderer>().enabled = false;
-                GetComponent<Collider>().enabled = false;
+                animator.enabled = false;
             }
             
-
+            SetRagdollState(true);
             if(TryGetComponent<PlayerController>(out PlayerController playerController) && TryGetComponent<Look>(out Look look))
             {
                 playerController.enabled = false;
                 look.enabled = false;
             }
 
-            StartCoroutine(Respawn());
+            isDowned = true;
+
+           // StartCoroutine(Respawn());
         }
+    }
+
+    public void Revive()
+    {
+        if(currentPlayerHealth.Value > 0) return;
+
+        SetRagdollState(false);
+
+        if(this.TryGetComponentInChildren<Animator>(out Animator animator))
+        {
+            animator.enabled = true;
+        }
+       
+        if(TryGetComponent<PlayerController>(out PlayerController playerController) && TryGetComponent<Look>(out Look look))
+        {
+            playerController.enabled = true;
+            look.enabled = true;
+        }
+
+        isDowned = false;
     }
 
     public void TakeDamage(float damageAmount) 
@@ -156,5 +196,21 @@ public class HealthController : NetworkBehaviour
              currentPlayerHealth.Value = 100f;
         }
        
+    }
+
+    private void SetRagdollState(bool isRagdollActive)
+    {
+        foreach (Rigidbody r in ragdollRigidbodies)
+        {
+           r.isKinematic = !isRagdollActive;
+           r.useGravity = isRagdollActive;
+        }
+
+        foreach (Collider c in ragdollColliders)
+        {
+            if(c == rootCollider) continue;
+
+            c.enabled = isRagdollActive;
+        }
     }
 }

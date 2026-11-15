@@ -150,6 +150,7 @@ public class OfficialPickupScript : NetworkBehaviour
                    RequestPickUpServerRpc(networkObject.NetworkObjectId);
                 }
             }
+            if(hit.transform != null && hit.transform)
 
             if(hit.transform != null && hit.transform.CompareTag("Chest"))
             {
