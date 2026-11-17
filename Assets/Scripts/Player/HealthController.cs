@@ -24,6 +24,8 @@ public class HealthController : NetworkBehaviour
     public float outwardForce = 3f;
 
     public float upwardForce = 5f;
+
+    private Coroutine flashCorountine;
     public override void OnNetworkSpawn()
     {
         healthScript = FindAnyObjectByType<HealthbarUI>(FindObjectsInactive.Include);
@@ -136,6 +138,8 @@ public class HealthController : NetworkBehaviour
     {
         currentPlayerHealth.Value -= damageAmount;
 
+        DamageEffectRpc();
+
         if (currentPlayerHealth.Value <= 0)
         {
             Points getPoints = GetComponent<Points>();
@@ -152,6 +156,17 @@ public class HealthController : NetworkBehaviour
             
             getPoints.RemovePoints();
         }
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void DamageEffectRpc()
+    {
+        if(flashCorountine != null)
+        {
+            StopCoroutine(flashCorountine);
+        }
+
+        flashCorountine = StartCoroutine(FlashRed());
     }
 
     // Notice there's no RPC tag here, because we only call this from inside the damage RPC (which is already on the server)
@@ -212,5 +227,20 @@ public class HealthController : NetworkBehaviour
 
             c.enabled = isRagdollActive;
         }
+    }
+
+    private IEnumerator FlashRed()
+    {
+         var meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        
+        if(!meshRenderer) yield break;
+
+        var dmgEffectMaterial = meshRenderer.materials[1];
+        dmgEffectMaterial.SetFloat("_color_strength", 0.45f);
+
+        yield return new WaitForSeconds(0.3f);
+
+        dmgEffectMaterial.SetFloat("_color_strength", 0f);
+        flashCorountine = null;
     }
 }
