@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraBob : MonoBehaviour
@@ -21,11 +22,17 @@ public class CameraBob : MonoBehaviour
 
     private Vector3 defaultPos;
 
+    private Quaternion defaultRot;
+
     private Vector3 newPos;
 
     private OfficialPickupScript ops;
 
     [SerializeField] [Range(1,10)] private float smoothReturnSpeed = 5f;
+
+    private float fastReturnSpeed = 2f;
+
+    private float knockBackOffset = 0f;
 
 
     private bool isMoving = false;
@@ -35,6 +42,7 @@ public class CameraBob : MonoBehaviour
     void Start()
     {
        defaultPos = transform.localPosition; 
+       defaultRot = transform.localRotation;
        ops = transform.parent.GetComponent<OfficialPickupScript>();
     }
 
@@ -56,6 +64,13 @@ public class CameraBob : MonoBehaviour
             
         }
         else
+        {
+            ReturnCameraPos();
+        }
+
+        DamageCameraMovement();
+
+        if(transform.localRotation != defaultRot)
         {
             ReturnCameraPos();
         }
@@ -122,5 +137,27 @@ public class CameraBob : MonoBehaviour
         float newX = defaultPos.x + Mathf.Cos(runTimer/2) * (runningCameraBobStrength * movementSpeedBuffApply);
 
         transform.localPosition = new Vector3(newX, newY, defaultPos.z);
+    }
+
+    public void DamageCameraMovement()
+    {
+
+        Quaternion targetRot = defaultRot * Quaternion.Euler(-knockBackOffset, 0f, 0f);
+
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRot, Time.deltaTime * (fastReturnSpeed * 2f));
+
+        if(knockBackOffset > 0.01f)
+        {
+            knockBackOffset = Mathf.Lerp(knockBackOffset, 0, Time.deltaTime * fastReturnSpeed);
+        }
+        else
+        {
+            knockBackOffset = 0f;
+        }
+    }
+
+    public void TriggerDamageKick(float kickAngle = 25f)
+    {
+        knockBackOffset = kickAngle;
     }
 }

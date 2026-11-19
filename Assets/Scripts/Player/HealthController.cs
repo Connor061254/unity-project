@@ -131,6 +131,10 @@ public class HealthController : NetworkBehaviour
     {
         // All the client does is ask the server to handle the math
         RequestHealthTakeDamageRpc(damageAmount);
+
+        this.TryGetComponentInChildren<CameraBob>(out CameraBob cameraBob);
+
+        cameraBob.TriggerDamageKick();
     }
 
     [Rpc(SendTo.Server)]
@@ -161,6 +165,8 @@ public class HealthController : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     private void DamageEffectRpc()
     {
+        if(!IsOwner) return;
+
         if(flashCorountine != null)
         {
             StopCoroutine(flashCorountine);
