@@ -14,7 +14,7 @@ public class AttackPrep : MonoBehaviour
     public float powerMultiplier;
     private float cooldown;
     private TrajectoryPredictor trajectoryPredictor;
-    private float baseThrowSpeed = 10f;
+    public float baseThrowSpeed = 10f;
 
     void Start()
     {
@@ -42,7 +42,6 @@ public class AttackPrep : MonoBehaviour
                 targetPoint = ray.GetPoint(100f);
             }
 
-            // 3. Calculate the velocity dynamically right NOW
             Vector3 startPos = pickupScript.heldObject.transform.position;
             Vector3 currentVelocity = CalculateThrowVelocity(currentPower);
 
@@ -162,14 +161,13 @@ public class AttackPrep : MonoBehaviour
 
     private Vector3 CalculateThrowVelocity(float power)
     {
-        // Prevent division by zero if power gets weird
-       float currentSpeed = baseThrowSpeed * power;
+        var weaponRb = pickupScript.currentHeldObject.GetComponent<Rigidbody>();
+        var weaponMass = weaponRb.mass;
 
-        // 2. Base the throw entirely on where the player's eyes are looking
+        float currentSpeed = (baseThrowSpeed * power) - weaponMass;
+
         Vector3 throwDirection = MainCamera.transform.forward;
 
-        // 3. Add a generous, consistent upward arc. 
-        // This ensures a low-power throw arcs nicely over the ground instead of slamming into your toes.
         throwDirection += Vector3.up * 0.35f; 
         
         throwDirection.Normalize();
