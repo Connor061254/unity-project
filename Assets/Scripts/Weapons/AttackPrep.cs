@@ -1,9 +1,10 @@
 using NUnit.Framework;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AttackPrep : MonoBehaviour
+public class AttackPrep : NetworkBehaviour
 {
     private float nextAttackTime = 0f;
     private OfficialPickupScript pickupScript; 
@@ -77,13 +78,20 @@ public class AttackPrep : MonoBehaviour
     {
         if (context.performed)
         {
-            if (isAiming)
+            if (isAiming && pickupScript.currentHeldObject.GetComponent<RockWeapon>() != null)
             {
                 Throw();
             }
             else
             {
                 Melee();
+
+                if(!pickupScript.currentHeldObject) return;
+
+                if (pickupScript.currentHeldObject.TryGetComponent<Summoner>(out Summoner summoner))
+                {
+                    summoner.TrySpawnCapybaraRpc(NetworkManager.Singleton.LocalClientId);
+                }
             }
         }
     }
@@ -161,7 +169,9 @@ public class AttackPrep : MonoBehaviour
 
     private Vector3 CalculateThrowVelocity(float power)
     {
-        var weaponRb = pickupScript.currentHeldObject.GetComponent<Rigidbody>();
+        pickupScript.currentHeldObject.TryGetComponent<Rigidbody>(out Rigidbody weaponRb);
+        if(!weaponRb) return Vector3.zero;
+
         var weaponMass = weaponRb.mass;
 
         float currentSpeed = (baseThrowSpeed * power) - weaponMass;
