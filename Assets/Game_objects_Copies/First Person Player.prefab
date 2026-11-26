@@ -1523,6 +1523,7 @@ GameObject:
   - component: {fileID: -8971255054039665305}
   - component: {fileID: -3165596920457419617}
   - component: {fileID: 5192006353994458172}
+  - component: {fileID: 278838854747355057}
   m_Layer: 6
   m_Name: First Person Player
   m_TagString: Player
@@ -1588,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1029230242
+  GlobalObjectIdHash: 148006225
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -1857,9 +1858,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1844ab6475c834f8fddb1e27d28169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackPrep
+  ShowTopMostFoldoutHeaderGroup: 1
   MainCamera: {fileID: 7250295545125707245}
   isAiming: 0
   powerMultiplier: 0
+  baseThrowSpeed: 10
 --- !u!114 &2266534665991127803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2271,6 +2274,20 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 131072
+--- !u!114 &278838854747355057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126959764447674887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e525e5ee7c8cb6944a4c4b919c953d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckForCapybara
+  ShowTopMostFoldoutHeaderGroup: 1
+  mainCamera: {fileID: 7250295545125707245}
 --- !u!1 &4134142795558098033
 GameObject:
   m_ObjectHideFlags: 0

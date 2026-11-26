@@ -10,14 +10,14 @@ public class CheckForBoat : NetworkBehaviour
     void Update()
     {
         if(!IsOwner) return;
-        // Check if we are trying to board or exit a boat
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (currentBoat == null) // If we are NOT on a boat, try to board one
+            if (currentBoat == null)
             {
                 TryBoardBoat();
             }
-            else // If we ARE on a boat, exit it
+            else
             {
                 currentBoat.RequestExitBoatRpc();
                 currentBoat.LocalExitBoat();
